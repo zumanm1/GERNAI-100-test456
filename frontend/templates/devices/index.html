@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Device Management Hub{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <!-- Header Section -->
+    <div class="d-flex justify-content-between align-items-center p-3 mb-4 bg-light rounded">
+        <h1 class="h2 mb-0">🖥️ Device Management Hub</h1>
+        <div>
+            <span class="me-3">📊 Status: <span class="text-success">🟢 247 Online</span></span>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <ul class="nav nav-tabs mb-4" id="deviceTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="all-devices-tab" data-bs-toggle="tab" data-bs-target="#all-devices" type="button" role="tab" aria-controls="all-devices" aria-selected="true">🖥️ All Devices</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="real-devices-tab" data-bs-toggle="tab" data-bs-target="#real-devices" type="button" role="tab" aria-controls="real-devices" aria-selected="false">🌐 Real Devices</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="dummy-devices-tab" data-bs-toggle="tab" data-bs-target="#dummy-devices" type="button" role="tab" aria-controls="dummy-devices" aria-selected="false">🧪 Dummy Devices</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="add-device-tab" data-bs-toggle="tab" data-bs-target="#add-device" type="button" role="tab" aria-controls="add-device" aria-selected="false">➕ Add Device</button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="deviceTabsContent">
+
+        <!-- All Devices Tab -->
+        <div class="tab-pane fade show active" id="all-devices" role="tabpanel" aria-labelledby="all-devices-tab">
+            <div class="card">
+                <div class="card-header">DEVICE INVENTORY</div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>Name</th>
+                                <th>IP Address</th>
+                                <th>Model</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>R1-HQ-Core</td>
+                                <td>192.168.1.1</td>
+                                <td>Cisco ISR4331</td>
+                                <td>Real</td>
+                                <td><span class="badge bg-success">Online</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">⚙️</button>
+                                    <button class="btn btn-sm btn-outline-info">📊</button>
+                                    <button class="btn btn-sm btn-outline-warning">🔧</button>
+                                    <button class="btn btn-sm btn-outline-danger">🗑️</button>
+                                </td>
+                            </tr>
+                            <!-- Add more device rows here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real Devices Tab -->
+        <div class="tab-pane fade" id="real-devices" role="tabpanel" aria-labelledby="real-devices-tab">
+            <div class="card">
+                <div class="card-header">🌐 REAL DEVICE MANAGEMENT</div>
+                <div class="card-body">
+                    <!-- Real device controls and add device wizard -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Other tabs would go here... -->
+
+    </div>
+</div>
+{% endblock %}
+

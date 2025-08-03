@@ -1,0 +1,336 @@
+
+{% extends "base.html" %}
+
+{% block title %}GenAI Network Operations{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Header Section -->
+    <div class="card bg-dark text-white mb-4">
+        <div class="card-body">
+            <h4 class="card-title mb-0">🔧 GenAI Network Operations Dashboard</h4>
+            <small>📊 Health: 94% | 🚨 3 Alerts</small>
+        </div>
+        <div class="card-footer d-flex justify-content-around p-2">
+            <span>Active Operations: 12</span>
+            <span>Automated Actions: 247 today</span>
+            <span>Manual Interventions: 2</span>
+            <span>Uptime: 99.7%</span>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <ul class="nav nav-tabs" id="operationsTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="hub-tab" data-bs-toggle="tab" data-bs-target="#hub" type="button" role="tab" aria-controls="hub" aria-selected="true">🎯 Operations Hub</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="troubleshoot-tab" data-bs-toggle="tab" data-bs-target="#troubleshoot" type="button" role="tab" aria-controls="troubleshoot" aria-selected="false">🤖 Auto Troubleshoot</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="monitoring-tab" data-bs-toggle="tab" data-bs-target="#monitoring" type="button" role="tab" aria-controls="monitoring" aria-selected="false">📈 Predictive Monitoring</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">🔐 Security Operations</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="insights-tab" data-bs-toggle="tab" data-bs-target="#insights" type="button" role="tab" aria-controls="insights" aria-selected="false">🔍 Network Insights</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="audit-tab" data-bs-toggle="tab" data-bs-target="#audit" type="button" role="tab" aria-controls="audit" aria-selected="false">📋 Audit & Compliance</button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="operationsTabsContent">
+        <!-- Operations Hub Tab -->
+        <div class="tab-pane fade show active" id="hub" role="tabpanel" aria-labelledby="hub-tab">
+            <div class="row mt-4">
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>🚨 ACTIVE INCIDENTS & AUTOMATED RESPONSES</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-danger">
+                                <strong>🔴 HIGH: Interface Down - R3-Branch-Dallas [Auto-Resolving]</strong>
+                                <p class="mb-1">Detected: 14:23:15 | Affected Users: 45 | Business Impact: $2,400/hour</p>
+                                <p class="mb-1">🤖 AI Analysis: Fiber cut detected, ISP confirmed outage</p>
+                                <p class="mb-1">🔄 Auto-Action: Backup WAN activated in 34 seconds</p>
+                                <p class="mb-0">📊 Status: ✅ Traffic rerouted, 0 users affected | ETA: Primary repair 16:30</p>
+                            </div>
+                            <div class="alert alert-warning">
+                                <strong>🟡 MEDIUM: High CPU on R1-Core [AI Monitoring]</strong>
+                                <p class="mb-1">Detected: 14:15:22 | CPU: 85% | Trend: Increasing 2%/hour</p>
+                                <p class="mb-1">🤖 AI Analysis: BGP route flaps from Provider-A causing processing overhead</p>
+                                <p class="mb-1">🔄 Auto-Action: Route dampening applied, monitoring enhanced</p>
+                                <p class="mb-0">📊 Status: 🔄 CPU stabilizing at 78% | Action: Contacting Provider-A</p>
+                            </div>
+                            <div class="alert alert-info">
+                                <strong>🟢 INFO: Predictive Alert - Seattle Office Bandwidth [Scheduled Fix]</strong>
+                                <p class="mb-1">Forecast: Will exceed 90% utilization in 11 days</p>
+                                <p class="mb-1">🤖 AI Recommendation: Upgrade circuit from 100Mbps to 200Mbps</p>
+                                <p class="mb-0">📅 Status: Change request CHG-2024-0089 approved, scheduled Aug 12</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>📊 OPERATIONAL METRICS DASHBOARD</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr>
+                                        <th>🔧 AUTO REMEDIATION</th>
+                                        <th>📈 PERFORMANCE</th>
+                                        <th>🔍 MONITORING</th>
+                                        <th>🤖 AI EFFICIENCY</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Today: 23 incidents</td>
+                                        <td>Network Health: 94%</td>
+                                        <td>Devices: 247/250</td>
+                                        <td>Accuracy: 96.7%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Auto-Resolved: 21</td>
+                                        <td>Avg Latency: 12ms</td>
+                                        <td>Coverage: 98.8%</td>
+                                        <td>False Positives: 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Manual: 2</td>
+                                        <td>Packet Loss: 0.02%</td>
+                                        <td>Alerting: Real-time</td>
+                                        <td>Resolution Time: 34s</td>
+                                    </tr>
+                                     <tr>
+                                        <td>Success Rate: 91.3%</td>
+                                        <td>Availability: 99.7%</td>
+                                        <td>Data Points: 2.4M</td>
+                                        <td>Learning Rate: +2.1%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>🔧 SYSTEM STATUS</h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>🤖 AI AGENTS STATUS</h6>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item">🧠 Monitoring Agent: ● Active - 247 devices</li>
+                                <li class="list-group-item">🔧 Remediation Agent: ● Standby - Ready</li>
+                                <li class="list-group-item">📊 Analysis Agent: ● Processing - Learning</li>
+                                <li class="list-group-item">🔮 Prediction Agent: ● Active - 15 forecasts</li>
+                                <li class="list-group-item">🔐 Security Agent: ● Monitoring - Real-time</li>
+                            </ul>
+                            <h6>📊 PERFORMANCE METRICS</h6>
+                            <ul class="list-unstyled mb-3">
+                                <li>• Response Time: 1.2s avg</li>
+                                <li>• Accuracy: 96.7%</li>
+                                <li>• Uptime: 99.97%</li>
+                                <li>• Auto-Resolution: 91.3%</li>
+                                <li>• Cost Savings: $45K/month</li>
+                            </ul>
+                             <h6>⚙️ OPERATION MODES</h6>
+                             <div class="btn-group w-100 mb-3">
+                                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Fully Automated
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Supervised</a></li>
+                                    <li><a class="dropdown-item" href="#">Manual Approval</a></li>
+                                </ul>
+                            </div>
+                            <h6>🚨 QUICK ACTIONS</h6>
+                            <div class="d-grid gap-2 mb-3">
+                                <button class="btn btn-primary">🔍 Network Scan</button>
+                                <button class="btn btn-info">🤖 AI Health Check</button>
+                                <button class="btn btn-secondary">📊 Generate Report</button>
+                                <button class="btn btn-danger">🔧 Emergency Mode</button>
+                            </div>
+                             <h6>📋 RECENT ACTIVITIES</h6>
+                             <ul class="list-group">
+                                <li class="list-group-item">14:23 - Interface failover</li>
+                                <li class="list-group-item">14:18 - Security quarantine</li>
+                                <li class="list-group-item">14:15 - QoS optimization</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auto Troubleshoot Tab -->
+        <div class="tab-pane fade" id="troubleshoot" role="tabpanel" aria-labelledby="troubleshoot-tab">
+             <div class="card mt-4">
+                <div class="card-header">
+                    <h5>🤖 AUTOMATED TROUBLESHOOTING OPERATIONS</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                           <h6>🔧 ACTIVE TROUBLESHOOTING SESSIONS</h6>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Session #TS-2024-0234 | Started: 14:23:15 | Issue: Email Server Connectivity Loss</strong></p>
+                            <hr>
+                            <p><strong>📋 Symptom Collection:</strong></p>
+                            <ul>
+                                <li>✅ User Reports: 3 users from Marketing VLAN</li>
+                                <li>✅ Ping Test: 50% packet loss to mail.company.com</li>
+                                <li>✅ Traceroute: Timeout at hop 3 (192.168.1.1)</li>
+                                <li>✅ DNS Resolution: SUCCESS - A record resolves</li>
+                                <li>✅ Port Connectivity: FAILED - Port 25/443 unreachable</li>
+                            </ul>
+                            <p><strong>🧠 AI Diagnostic Analysis:</strong></p>
+                            <ul>
+                                <li>Primary Hypothesis: Router interface issue on R1-HQ GigE0/1 (87% confidence)</li>
+                                <li>Evidence: Packet loss correlates with interface errors, other VLANs unaffected</li>
+                                <li>Secondary: ISP routing issue (12%), Switch port failure (8%), Cable fault (5%)</li>
+                            </ul>
+                            <p><strong>🔬 Automated Testing:</strong></p>
+                            <ul>
+                                <li>✅ Interface Diagnostics: Input errors 15,847 CRC errors detected</li>
+                                <li>✅ Cable Test: TDR shows cable fault at 45 meters</li>
+                                <li>✅ Backup Path: GigE0/2 available and functional</li>
+                            </ul>
+                             <p><strong>🔄 Auto-Resolution Executed:</strong></p>
+                            <ul>
+                                <li>⚡ Traffic rerouted via backup interface in 34 seconds</li>
+                                <li>📋 Work order created for cable replacement (tonight maintenance)</li>
+                                <li>📧 Users notified of resolution</li>
+                            </ul>
+                            <p>✅ Verification: All users can access email, latency normal, 0% packet loss</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Predictive Monitoring Tab -->
+        <div class="tab-pane fade" id="monitoring" role="tabpanel" aria-labelledby="monitoring-tab">
+              <div class="card mt-4">
+                <div class="card-header">
+                    <h5>📈 PREDICTIVE MONITORING & CAPACITY PLANNING</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6>🔮 ACTIVE PREDICTIONS & FORECASTS</h6>
+                        </div>
+                        <div class="card-body">
+                             <div class="alert alert-danger">
+                                <strong>🔴 CRITICAL: Branch-Austin Bandwidth Exhaustion</strong>
+                                <p>Current: 78% utilization | 7-day trend: +2.1% weekly growth</p>
+                                <p>🔮 Prediction: Will breach 90% threshold in 13 days (August 15, 2024)</p>
+                                <p>📊 Confidence: 89% | Model: ARIMA + ML regression</p>
+                                <p>💰 Impact: $800/month upgrade vs $12K downtime risk</p>
+                                <p>🎯 Action: Circuit upgrade scheduled for August 10 | CHG-2024-0088</p>
+                            </div>
+                            <div class="alert alert-warning">
+                                <strong>🟡 WARNING: R2-Core Memory Trending High</strong>
+                                <p>Current: 74% utilization | Trend: +1.5% weekly</p>
+                                <p>🔮 Prediction: Will reach 85% in 6 weeks | Pattern: Linear growth</p>
+                                <p>📊 Confidence: 76% | Recommended action: Memory upgrade planning</p>
+                                <p>🎯 Status: Monitoring enhanced, upgrade budgeted for Q4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Security Operations Tab -->
+        <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5>🔐 GENAI SECURITY OPERATIONS CENTER</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6>🚨 ACTIVE SECURITY INCIDENTS</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-danger">
+                                <strong>🔴 HIGH: Potential Malware Infection - Marketing Workstation</strong>
+                                <p>Detected: 14:18:33 | Source: 192.168.50.23 | User: john.doe@company.com</p>
+                                <p>🔍 AI Analysis: 2,847 connections to known botnet C&C servers (Zeus variant)</p>
+                                <p>📊 Threat Score: 85/100 | Data Volume: 1.2GB in 10 minutes</p>
+                                <p>🔄 Auto-Containment: Device quarantined in 23 seconds</p>
+                                <p>📋 Status: ✅ Contained | Investigation ongoing | User notified</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Network Insights Tab -->
+        <div class="tab-pane fade" id="insights" role="tabpanel" aria-labelledby="insights-tab">
+             <div class="card mt-4">
+                <div class="card-header">
+                    <h5>🔍 NATURAL LANGUAGE NETWORK INSIGHTS</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                           <h6>💬 CONVERSATION INTERFACE</h6>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>👤 "Why is our Seattle office network slow today?"</strong></p>
+                            <p>🤖 I've analyzed the Seattle office network and found the root cause:</p>
+                            <ul>
+                                <li><strong>Issue</strong>: Microsoft Teams traffic increased 340% due to company all-hands meeting</li>
+                                <li><strong>Impact</strong>: 23 users experiencing video quality degradation</li>
+                            </ul>
+                             <hr>
+                             <p><strong>👤 "Show me all devices with high CPU usage this week"</strong></p>
+                             <p>🤖 Here are devices with elevated CPU usage (>80%) over the past 7 days:</p>
+                             <ul>
+                                 <li>R1-Core: 85% average (BGP route processing increased)</li>
+                                 <li>R2-Branch: 82% average (DHCP pool exhaustion causing retries)</li>
+                             </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Ask me anything about your network...">
+                                <button class="btn btn-primary">🚀 Ask AI</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Audit & Compliance Tab -->
+        <div class="tab-pane fade" id="audit" role="tabpanel" aria-labelledby="audit-tab">
+             <div class="card mt-4">
+                <div class="card-header">
+                    <h5>📋 NETWORK AUDIT & COMPLIANCE OPERATIONS</h5>
+                </div>
+                <div class="card-body">
+                     <div class="card mb-4">
+                        <div class="card-header">
+                           <h6>🔍 ONGOING AUDIT ACTIVITIES</h6>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>📊 Current Audit: Quarterly Security Assessment Q3-2024</strong></p>
+                            <p>Progress: 78% Complete</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}AI Chat - GenAI Network Automation{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column h-100">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+        <h4 class="mb-0"><i data-lucide="message-circle" class="me-2"></i>AI Chat Interface</h4>
+        <div class="d-flex align-items-center">
+            <span class="badge bg-success-soft me-3">
+                <i data-lucide="cpu" class="me-1"></i> Model: GPT-4.1-turbo
+            </span>
+            <span class="badge bg-primary-soft me-3">
+                <i data-lucide="user" class="me-1"></i> User: admin
+            </span>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="darkModeSwitch">
+                <label class="form-check-label" for="darkModeSwitch">Dark Mode</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <ul class="nav nav-tabs p-3 border-bottom" id="chatTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="active-chat-tab" data-bs-toggle="tab" data-bs-target="#active-chat" type="button" role="tab">Active Chat</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="kb-tab" data-bs-toggle="tab" data-bs-target="#kb-management" type="button" role="tab">Knowledge Base</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="agents-tab" data-bs-toggle="tab" data-bs-target="#ai-agents" type="button" role="tab">AI Agents</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="analytics-tab" data-bs-toggle="tab" data-bs-target="#analytics" type="button" role="tab">Analytics</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#chat-settings" type="button" role="tab">Settings</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab">History</button>
+        </li>
+    </ul>
+
+    <!-- Main Content -->
+    <div class="d-flex flex-grow-1 overflow-hidden">
+        <!-- Left Sidebar -->
+        <div class="border-end" style="width: 280px;">
+            {% include 'chat/partials/left_sidebar.html' %}
+        </div>
+
+        <!-- Center: Chat Interface -->
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="tab-content flex-grow-1 d-flex flex-column" id="chatTabsContent">
+                <div class="tab-pane fade show active h-100" id="active-chat" role="tabpanel">
+                    {% include 'chat/partials/active_chat.html' %}
+                </div>
+                <div class="tab-pane fade h-100" id="kb-management" role="tabpanel">
+                     <div class="p-3">Knowledge Base Management UI</div>
+                </div>
+                <div class="tab-pane fade h-100" id="ai-agents" role="tabpanel">
+                    <div class="p-3">AI Agents Management UI</div>
+                </div>
+                 <div class="tab-pane fade h-100" id="analytics" role="tabpanel">
+                    <div class="p-3">Analytics UI</div>
+                </div>
+                 <div class="tab-pane fade h-100" id="chat-settings" role="tabpanel">
+                    <div class="p-3">Chat Settings UI</div>
+                </div>
+                 <div class="tab-pane fade h-100" id="history" role="tabpanel">
+                    <div class="p-3">Chat History UI</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="border-start" style="width: 320px;">
+            {% include 'chat/partials/right_sidebar.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add any specific JS for the new chat interface here
+    console.log('Chat interface loaded');
+</script>
+{% endblock %}

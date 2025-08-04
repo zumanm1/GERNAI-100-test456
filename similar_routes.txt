@@ -1,0 +1,423 @@
+=== SIMILAR ROUTES BETWEEN FRONTEND (8001) AND BACKEND (5000) ===
+=== IDENTICAL ROUTES (Available on Both Frontend and Backend) ===
+
+Route: /
+  Frontend: http://localhost:8001/
+  Backend:  http://localhost:5000/
+
+Route: /automation
+  Frontend: http://localhost:8001/automation
+  Backend:  http://localhost:5000/automation
+
+Route: /chat
+  Frontend: http://localhost:8001/chat
+  Backend:  http://localhost:5000/chat
+
+Route: /devices
+  Frontend: http://localhost:8001/devices
+  Backend:  http://localhost:5000/devices
+
+Route: /docs
+  Frontend: http://localhost:8001/docs
+  Backend:  http://localhost:5000/docs
+
+Route: /openapi.json
+  Frontend: http://localhost:8001/openapi.json
+  Backend:  http://localhost:5000/openapi.json
+
+Route: /operations
+  Frontend: http://localhost:8001/operations
+  Backend:  http://localhost:5000/operations
+
+Route: /redoc
+  Frontend: http://localhost:8001/redoc
+  Backend:  http://localhost:5000/redoc
+
+Route: /settings
+  Frontend: http://localhost:8001/settings
+  Backend:  http://localhost:5000/settings
+
+=== SIMILAR FUNCTIONALITY ROUTES ===
+
+GenAI/Settings related:
+  Frontend: /genai -> http://localhost:8001/genai
+  Backend:  /genai-settings -> http://localhost:5000/genai-settings
+
+Device Management:
+  Frontend: /device-management -> http://localhost:8001/device-management
+  Backend API: /api/v1/devices/ -> http://localhost:5000/api/v1/devices/
+
+=== CONTENT COMPARISON FOR IDENTICAL ROUTES ===
+
+--- ROOT PATH (/) ---
+Frontend (8001):
+{% extends "base.html" %}
+
+Backend (5000):
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+--- DEVICES PATH (/devices) ---
+Frontend (8001):
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+Backend (5000):
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+--- DOCS PATH (/docs) ---
+Frontend (8001) - FastAPI Docs:
+<title>Network Automation Frontend - Swagger UI</title>
+Backend (5000) - FastAPI Docs:
+<title>Network Automation Application - Swagger UI</title>
+
+=== DETAILED ROUTE COMPARISON TABLE ===
+
+Route                Frontend   Backend    Notes                         
+-------------------- ---------- ---------- ------------------------------
+/                    ✅ HTML   ✅ HTML   Different content/purpose     
+/devices             ✅ HTML   ✅ HTML   Device management pages       
+/automation          ✅ HTML   ✅ HTML   Automation interface          
+/operations          ✅ HTML   ✅ HTML   Operations dashboard          
+/chat                ✅ HTML   ✅ HTML   Chat interface                
+/settings            ✅ HTML   ✅ HTML   Settings configuration        
+/docs                ✅ API    ✅ API    FastAPI documentation         
+/openapi.json        ✅ JSON   ✅ JSON   OpenAPI spec                  
+/redoc               ✅ HTML   ✅ HTML   ReDoc API documentation       
+
+=== UNIQUE TO FRONTEND (8001) ===
+Route                     Purpose                                 
+------------------------- ----------------------------------------
+/genai                    GenAI settings interface                
+/dashboard                Main dashboard view                     
+/device-management        Device management interface             
+
+=== UNIQUE TO BACKEND (5000) ===
+Route                               Purpose                                 
+----------------------------------- ----------------------------------------
+/login                              Login page                              
+/genai-settings                     GenAI configuration                     
+/health                             Health check endpoint                   
+/api/stats                          Statistics API                          
+/api/v1/devices/                    Device management API                   
+/api/v1/operations/                 Operations API                          
+/api/v1/auth/verify                 Token verification API                  
+/api/v1/auth/me                     Current user API                        
+/api/v1/genai-settings/genai/llm    LLM settings API                        
+/api/v1/genai-settings/genai/rag    RAG settings API                        
+/api/v1/genai-settings/genai/agentic Agentic settings API                    
+/api/v1/settings/                   Settings API                            
+/api/device-status-chart            Device status chart API                 
+/api/operations-timeline            Operations timeline API                 
+/api/network-operations/status      Network operations status API           
+/api/chat/status                    Chat service status API                 
+
+=== ACTUAL RESPONSE SAMPLES ===
+
+--- Sample: Root Path (/) Response Difference ---
+Frontend (8001) returns Jinja2 template:
+{% extends "base.html" %}
+
+Backend (5000) returns direct HTML:
+<title>Dashboard - Network Automation Platform</title>
+
+--- OpenAPI Specs Comparison ---
+Frontend OpenAPI title:
+"title":"Network Automation Frontend"
+Backend OpenAPI title:
+"title":"Network Automation Application"
+"title":"Hours"
+"title":"Response Get Devices Api V1 Devices  Get"
+"title":"User Id"
+"title":"Device Id"
+"title":"Device Id"
+"title":"Device Id"
+"title":"Device Id"
+"title":"Device Id"
+"title":"Device Id"
+"title":"Device Id"
+"title":"Limit"
+"title":"Operation"
+"title":"Device Ids"
+"title":"Provider"
+"title":"Model"
+"title":"Temperature"
+"title":"Max Tokens"
+"title":"Name"
+"title":"Service"
+"title":"Key"
+"title":"Key Id"
+"title":"Name"
+"title":"Service"
+"title":"Key"
+"title":"Key Id"
+"title":"Skip"
+"title":"Limit"
+"title":"Status"
+"title":"Operation Type"
+"title":"Operation Data"
+"title":"Operation Id"
+"title":"Operation Id"
+"title":"Audit Id"
+"title":"Audit Id"
+"title":"Severity Filter"
+"title":"Device Filter"
+"title":"Audit Id"
+"title":"Export Format"
+"title":"Session Id"
+"title":"Baseline Id"
+"title":"Device Id"
+"title":"Command"
+"title":"Skip"
+"title":"Limit"
+"title":"Status"
+"title":"Operation Type"
+"title":"Operation Data"
+"title":"Operation Id"
+"title":"Operation Id"
+"title":"Audit Id"
+"title":"Audit Id"
+"title":"Severity Filter"
+"title":"Device Filter"
+"title":"Audit Id"
+"title":"Export Format"
+"title":"Session Id"
+"title":"Baseline Id"
+"title":"Device Id"
+"title":"Command"
+"title":"Active Only"
+"title":"Response Get User Automation Tasks Api V1 Automation Tasks Get"
+"title":"Task Id"
+"title":"Task Id"
+"title":"Task Id"
+"title":"Config"
+"title":"Device Type"
+"title":"Key Id"
+"title":"Provider"
+"title":"Api Key"
+"title":"User Id"
+"title":"Session Id"
+"title":"Limit"
+"title":"User Id"
+"title":"User Id"
+"title":"Session Id"
+"title":"User Id"
+"title":"Config Type"
+"title":"User Id"
+"title":"Parameters"
+"title":"Config Content"
+"title":"Device Type"
+"title":"User Id"
+"title":"Name"
+"title":"Service"
+"title":"Key"
+"title":"Organization Id"
+"title":"APIKeyRequest"
+"title":"Planning Agent Enabled"
+"title":"Reasoning Depth"
+"title":"Step Validation"
+"title":"Execution Agent Enabled"
+"title":"Auto Execution Enabled"
+"title":"Safety Checks"
+"title":"Rollback Capability"
+"title":"Multi Agent Workflow"
+"title":"Conflict Resolution"
+"title":"Feedback Loop"
+"title":"AgenticSettingsRequest"
+"title":"Critical"
+"title":"Warning"
+"title":"Info"
+"title":"AlertSummary"
+"title":"Device Ids"
+"title":"Audit Type"
+"title":"Audit Options"
+"title":"AuditRequest"
+"title":"Name"
+"title":"Description"
+"title":"Device Ids"
+"title":"Baseline Type"
+"title":"Environment"
+"title":"BaselineRequest"
+"title":"Message"
+"title":"Session Id"
+"title":"ChatMessage"
+"title":"Response"
+"title":"Session Id"
+"title":"Message Id"
+"title":"ChatResponse"
+"title":"Config"
+"title":"Device Id"
+"title":"Backup Current"
+"title":"Dry Run"
+"title":"ConfigDeploymentRequest"
+"title":"Requirements"
+"title":"Device Type"
+"title":"Target Device"
+"title":"Include Comments"
+"title":"Validate Syntax"
+"title":"Parameters"
+"title":"ConfigGenerationRequest"
+"title":"Default Chat Provider"
+"title":"Default Config Generation Provider"
+"title":"Default Analysis Provider"
+"title":"Response Timeout"
+"title":"Concurrent Requests"
+"title":"Cache Enabled"
+"title":"Cache Duration"
+"title":"Cache Size Limit"
+"title":"Max Devices Per Operation"
+"title":"Require Approval Threshold"
+"title":"Safety Validation Level"
+"title":"Log All Operations"
+"title":"CoreSettingsRequest"
+"title":"Timestamp"
+"title":"Cpu Usage"
+"title":"Memory Usage"
+"title":"Disk Usage"
+"title":"Network In"
+"title":"Network Out"
+"title":"DashboardMetrics"
+"title":"Recent Activities"
+"title":"DashboardOverview"
+"title":"Name"
+"title":"Ip Address"
+"title":"Model"
+"title":"Metadata"
+"title":"DeviceCreate"
+"title":"Id"
+"title":"Name"
+"title":"Ip Address"
+"title":"Model"
+"title":"Status"
+"title":"Uptime"
+"title":"Uptime Seconds"
+"title":"Last Seen"
+"title":"Has Config Backup"
+"title":"Metadata"
+"title":"Created At"
+"title":"Updated At"
+"title":"DeviceResponse"
+"title":"Total"
+"title":"Online"
+"title":"Offline"
+"title":"Error"
+"title":"DeviceSummary"
+"title":"Name"
+"title":"Ip Address"
+"title":"Model"
+"title":"Metadata"
+"title":"DeviceUpdate"
+"title":"Text Embeddings Model"
+"title":"Dimensions"
+"title":"Batch Size"
+"title":"Config Embeddings Enabled"
+"title":"Network Topology Embeddings"
+"title":"Vector Database Provider"
+"title":"Index Type"
+"title":"Distance Metric"
+"title":"EmbeddingsSettingsRequest"
+"title":"Requirements"
+"title":"Device Type"
+"title":"GenerateConfigRequest"
+"title":"Knowledge Graph Enabled"
+"title":"Entity Extraction Enabled"
+"title":"Configuration Relationships"
+"title":"Topology Connections"
+"title":"Graph Provider"
+"title":"Connection String"
+"title":"Indexing Strategy"
+"title":"Dynamic Graph Updates"
+"title":"Agent Graph Reasoning"
+"title":"GraphRAGSettingsRequest"
+"title":"Detail"
+"title":"HTTPValidationError"
+"title":"Primary Llm"
+"title":"Temperature"
+"title":"Max Tokens"
+"title":"Top P"
+"title":"Fallback Llm"
+"title":"Retry Attempts"
+"title":"Timeout Settings"
+"title":"Specialized Models"
+"title":"LLMSettingsRequest"
+"title":"Email"
+"title":"Password"
+"title":"Remember"
+"title":"LoginRequest"
+"title":"Access Token"
+"title":"Token Type"
+"title":"Expires In"
+"title":"User"
+"title":"LoginResponse"
+"title":"Current Password"
+"title":"New Password"
+"title":"PasswordChangeRequest"
+"title":"Cisco Documentation Enabled"
+"title":"Cisco Doc Version"
+"title":"Update Frequency"
+"title":"Similarity Threshold"
+"title":"Max Retrieved Chunks"
+"title":"Chunk Size"
+"title":"Overlap Percentage"
+"title":"RAGSettingsRequest"
+"title":"Id"
+"title":"Description"
+"title":"Timestamp"
+"title":"User"
+"title":"RecentActivity"
+"title":"ResourceUsage"
+"title":"Cpu Usage"
+"title":"Memory Usage"
+"title":"Disk Usage"
+"title":"SystemMetrics"
+"title":"Name"
+"title":"Description"
+"title":"Task Type"
+"title":"Schedule Cron"
+"title":"Is Active"
+"title":"Config"
+"title":"TaskCreateRequest"
+"title":"Id"
+"title":"Name"
+"title":"Description"
+"title":"Task Type"
+"title":"Schedule Cron"
+"title":"Is Active"
+"title":"Created At"
+"title":"Last Run"
+"title":"Next Run"
+"title":"TaskResponse"
+"title":"Pending"
+"title":"Completed"
+"title":"Failed"
+"title":"TaskSummary"
+"title":"Timestamps"
+"title":"Values"
+"title":"TimeSeriesData"
+"title":"Problem Description"
+"title":"Problem Domain"
+"title":"Affected Devices"
+"title":"Symptoms"
+"title":"TroubleshootRequest"
+"title":"Id"
+"title":"Username"
+"title":"Email"
+"title":"Full Name"
+"title":"User"
+"title":"Email"
+"title":"Password"
+"title":"Display Name"
+"title":"Role"
+"title":"UserCreate"
+"title":"Id"
+"title":"Email"
+"title":"Display Name"
+"title":"Role"
+"title":"Is Active"
+"title":"Created At"
+"title":"UserResponse"
+"title":"Location"
+"title":"Message"
+"title":"Error Type"
+"title":"ValidationError"
+

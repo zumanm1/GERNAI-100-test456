@@ -1,0 +1,21 @@
+nohup: ignoring input
+INFO:     Started server process [93932]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:5000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57068 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58008 - "GET /login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58012 - "GET /devices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44100 - "GET /automation HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44104 - "GET /operations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44482 - "GET /settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44762 - "GET /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44772 - "GET /genai-settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48682 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48690 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33294 - "GET /api/v1/devices/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33308 - "GET /api/v1/operations/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46230 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49924 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49938 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36586 - "GET /api/v1/devices/ HTTP/1.1" 200 OK

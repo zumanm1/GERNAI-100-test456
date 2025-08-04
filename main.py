@@ -127,9 +127,22 @@ async def websocket_operations(websocket: WebSocket):
         connection_manager.disconnect(client_id)
 
 # Frontend routes
-@app.get("/", response_class=HTMLResponse)
-async def dashboard(request: Request):
-    return templates.TemplateResponse("dashboard/index.html", {"request": request})
+@app.get("/")
+async def welcome_api():
+    return {
+        "message": "Welcome to the Network Automation API",
+        "service": "network-automation-api",
+        "version": "1.0.0",
+        "description": "A GENAI-powered network automation application for Cisco devices",
+        "endpoints": {
+            "health": "/health",
+            "api_docs": "/docs",
+            "api_routes": "/api",
+            "websocket": "/ws/operations"
+        },
+        "status": "running",
+        "frontend_url": "http://localhost:8001"
+    }
 
 @app.get("/login", response_class=HTMLResponse)
 async def login(request: Request):

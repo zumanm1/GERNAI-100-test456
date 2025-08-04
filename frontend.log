@@ -1,115 +1,115 @@
 nohup: ignoring input
-INFO:     Started server process [97613]
+INFO:     Started server process [382993]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
-INFO:     127.0.0.1:37680 - "HEAD /chat HTTP/1.1" 405 Method Not Allowed
-INFO:     127.0.0.1:40766 - "GET /chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33282 - "GET /chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33282 - "GET /favicon.ico HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:33224 - "GET /chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33272 - "GET /css/style.css HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33224 - "GET /css/automation.css HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33242 - "GET /js/automation.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33228 - "GET /css/devices.css HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33256 - "GET /js/app.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33288 - "GET /automation HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33288 - "GET /operations HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33288 - "GET /operations HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33288 - "GET /devices HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33288 - "GET /chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33288 - "GET /chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33288 - "GET /settings HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39498 - "GET /dashboard HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39498 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:39576 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:39576 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:39498 - "GET /automation HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39498 - "GET /operations HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39498 - "GET /dashboard HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39498 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:39872 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:39876 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:51494 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:60768 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:57950 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:45364 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:34346 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:44366 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:41114 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:47734 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:35102 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:43930 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:34814 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:40744 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:39810 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:48436 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:37378 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49722 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:38058 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:34944 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52402 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:58872 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:51092 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:44158 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:48930 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:53096 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:41472 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:54844 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:48698 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:59948 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:42212 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:59838 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:51864 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:43884 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:44992 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:35110 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:33798 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:44410 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:36192 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50576 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:59342 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:40494 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:36334 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:39660 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:41238 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49928 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:48400 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52974 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49594 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50488 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:42786 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:48926 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:33072 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49760 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:56560 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:41584 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:32866 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:57432 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:36316 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:42782 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52076 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:50864 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:57658 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:49628 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:42004 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:38370 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:59130 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:46584 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52628 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:60564 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:39944 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:57426 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:40876 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:52466 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:48602 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:53192 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:39826 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:42524 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:33828 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:56884 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:35326 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:60516 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:51746 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:43650 - "GET /api/stats HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:58858 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:60758 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38218 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38228 - "GET /css/automation.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:38218 - "GET /css/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:38256 - "GET /js/automation.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:38230 - "GET /css/devices.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:38246 - "GET /js/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:38228 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38256 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38230 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38262 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38262 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55378 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55380 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38262 - "GET /automation HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38262 - "GET /operations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38262 - "GET /devices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38262 - "GET /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38262 - "GET /settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35256 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35256 - "GET /css/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35258 - "GET /css/automation.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35260 - "GET /css/devices.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35264 - "GET /js/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35256 - "GET /js/automation.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35272 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35272 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35284 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35284 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35284 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35284 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35272 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:37086 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35272 - "GET /automation HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35272 - "GET /operations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35272 - "GET /devices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35272 - "GET /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35272 - "GET /settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45684 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45684 - "GET /css/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45686 - "GET /css/automation.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45698 - "GET /css/devices.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45710 - "GET /js/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45722 - "GET /js/automation.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45722 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45710 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45710 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45710 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45710 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45710 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45710 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45722 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57590 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57590 - "GET /css/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57604 - "GET /css/automation.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57618 - "GET /css/devices.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57622 - "GET /js/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57634 - "GET /js/automation.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57634 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57604 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57622 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57604 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57604 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57604 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57622 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57634 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46610 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46610 - "GET /css/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46614 - "GET /css/automation.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46624 - "GET /css/devices.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46634 - "GET /js/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46640 - "GET /js/automation.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46640 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46634 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46610 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46640 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46640 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46640 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46640 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46610 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44412 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44412 - "GET /css/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44426 - "GET /css/automation.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44432 - "GET /css/devices.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44444 - "GET /js/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44446 - "GET /js/automation.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44448 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44450 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:40148 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40008 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40008 - "GET /css/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:40018 - "GET /css/devices.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:40032 - "GET /css/automation.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:40008 - "GET /js/automation.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:40040 - "GET /js/app.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:40032 - "GET /api/device-status-chart HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:40018 - "GET /api/operations-timeline HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:40040 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54558 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49794 - "GET /api/stats HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50536 - "GET /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50536 - "GET /devices HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50536 - "GET /operations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57298 - "GET /automation HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49010 - "GET /operations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49010 - "GET /operations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37498 - "GET /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42912 - "GET /settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60480 - "GET /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60480 - "GET /chat HTTP/1.1" 200 OK

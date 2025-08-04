@@ -19,5 +19,9 @@
   "homepage": "https://github.com/zumanm1/GENAI-99-test123#readme",
   "devDependencies": {
     "puppeteer": "^24.15.0"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
   }
 }

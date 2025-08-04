@@ -27,3 +27,7 @@
 2025-08-02 01:51:16,000 - api - INFO - API Request: GET /dashboard/overview - Status: 200 - User: None
 2025-08-02 02:07:44,169 - api - INFO - API Request: GET /dashboard/overview - Status: 200 - User: None
 2025-08-02 20:23:42,852 - api - INFO - API Request: GET /dashboard/overview - Status: 200 - User: None
+2025-08-03 16:30:48,970 - api - INFO - API Request: GET /settings/ - Status: 200 - User: None
+2025-08-03 16:30:48,989 - api - INFO - API Request: GET /settings/ - Status: 200 - User: None
+2025-08-03 16:42:54,271 - api - INFO - API Request: GET /settings/ - Status: 200 - User: None
+2025-08-03 16:42:54,720 - api - INFO - API Request: GET /settings/ - Status: 200 - User: None

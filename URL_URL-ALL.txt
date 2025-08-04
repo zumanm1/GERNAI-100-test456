@@ -1,0 +1,232 @@
+=== COMPREHENSIVE URL TESTING FOR NETWORK AUTOMATION APP ===
+Date: Sun Aug  3 04:30:47 PM SAST 2025
+
+
+=== FRONTEND ROUTES (Port 8001) ===
+Route: / -> URL: http://localhost:8001/ -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {% extends "base.html" %}
+
+{% block title %}Login - Network Automation Platform{% endblock %}
+
+{% bl...
+Route: /devices -> URL: http://localhost:8001/devices -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /genai -> URL: http://localhost:8001/genai -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /dashboard -> URL: http://localhost:8001/dashboard -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /automation -> URL: http://localhost:8001/automation -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /device-management -> URL: http://localhost:8001/device-management -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /chat -> URL: http://localhost:8001/chat -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /operations -> URL: http://localhost:8001/operations -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: 
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="v...
+Route: /settings -> URL: http://localhost:8001/settings -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+
+=== BACKEND ROUTES (Port 5000) ===
+Route: / -> URL: http://localhost:5000/ -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /login -> URL: http://localhost:5000/login -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /devices -> URL: http://localhost:5000/devices -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /automation -> URL: http://localhost:5000/automation -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /operations -> URL: http://localhost:5000/operations -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: 
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="v...
+Route: /settings -> URL: http://localhost:5000/settings -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /chat -> URL: http://localhost:5000/chat -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /genai-settings -> URL: http://localhost:5000/genai-settings -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: <!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="vi...
+Route: /health -> URL: http://localhost:5000/health -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"status":"healthy","service":"network-automation-api"}...
+Route: /api/stats -> URL: http://localhost:5000/api/stats -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"devices":{"total":15,"online":12,"offline":2,"warning":1,"online_percentage":80.0},"operations":{"...
+Route: /api/v1/devices/ -> URL: http://localhost:5000/api/v1/devices/ -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: [{"id":"8ba6b997-a221-4e38-9ca7-aacb737f5b99","name":"Firewall FW01","ip_address":"192.168.1.254","m...
+Route: /api/v1/operations/ -> URL: http://localhost:5000/api/v1/operations/ -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: []...
+Route: /api/v1/auth/login -> URL: http://localhost:5000/api/v1/auth/login -> ❌ INACCESSIBLE (HTTP 405)
+Route: /api/v1/auth/register -> URL: http://localhost:5000/api/v1/auth/register -> ❌ INACCESSIBLE (HTTP 405)
+Route: /api/v1/auth/verify -> URL: http://localhost:5000/api/v1/auth/verify -> ✅ ACCESSIBLE (HTTP 403)
+Route: /api/v1/auth/me -> URL: http://localhost:5000/api/v1/auth/me -> ✅ ACCESSIBLE (HTTP 403)
+Route: /api/v1/dashboard/stats -> URL: http://localhost:5000/api/v1/dashboard/stats -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v1/dashboard/device-status-chart -> URL: http://localhost:5000/api/v1/dashboard/device-status-chart -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v1/dashboard/operations-timeline -> URL: http://localhost:5000/api/v1/dashboard/operations-timeline -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v1/dashboard/recent-operations -> URL: http://localhost:5000/api/v1/dashboard/recent-operations -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v1/genai-settings/genai/llm -> URL: http://localhost:5000/api/v1/genai-settings/genai/llm -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"primary_llm":"gpt-4","temperature":0.7,"max_tokens":2000,"top_p":1.0,"fallback_llm":"gpt-3.5-turbo...
+Route: /api/v1/genai-settings/genai/rag -> URL: http://localhost:5000/api/v1/genai-settings/genai/rag -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"cisco_documentation_enabled":true,"cisco_doc_version":"Latest","update_frequency":"Weekly","simila...
+Route: /api/v1/genai-settings/genai/agentic -> URL: http://localhost:5000/api/v1/genai-settings/genai/agentic -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"planning_agent_enabled":true,"reasoning_depth":"Intermediate","step_validation":true,"execution_ag...
+Route: /api/v1/settings/ -> URL: http://localhost:5000/api/v1/settings/ -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"message":"Application settings","llm_provider":"openai","model":"gpt-3.5-turbo","api_keys_configur...
+Route: /api/v1/chat/conversations -> URL: http://localhost:5000/api/v1/chat/conversations -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v1/automation/playbooks -> URL: http://localhost:5000/api/v1/automation/playbooks -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v1/users/ -> URL: http://localhost:5000/api/v1/users/ -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v1/actions/ -> URL: http://localhost:5000/api/v1/actions/ -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v1/genai/ -> URL: http://localhost:5000/api/v1/genai/ -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/device-status-chart -> URL: http://localhost:5000/api/device-status-chart -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"labels":["Online","Offline","Warning"],"data":[12,2,1],"backgroundColor":["#22c55e","#ef4444","#f5...
+Route: /api/operations-timeline -> URL: http://localhost:5000/api/operations-timeline -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"labels":["07/28","07/29","07/30","07/31","08/01","08/02","08/03"],"data":[5,8,11,11,14,17,17]}...
+Route: /api/network-operations/status -> URL: http://localhost:5000/api/network-operations/status -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"message":"Network operations service status","status":"active"}...
+Route: /api/chat/status -> URL: http://localhost:5000/api/chat/status -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"message":"Chat service status","status":"active"}...
+
+=== ADDITIONAL API ENDPOINTS ===
+Port 5000 additional endpoints:
+Route: /docs -> URL: http://localhost:5000/docs -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: 
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <link type="text/css" rel="stylesheet" href="https://...
+Route: /openapi.json -> URL: http://localhost:5000/openapi.json -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"openapi":"3.1.0","info":{"title":"Network Automation Application","description":"A GENAI-powered n...
+Route: /redoc -> URL: http://localhost:5000/redoc -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: 
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Network Automation Application - ReDoc</title>...
+Route: /api/docs -> URL: http://localhost:5000/api/docs -> ❌ INACCESSIBLE (HTTP 404)
+Route: /swagger -> URL: http://localhost:5000/swagger -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api -> URL: http://localhost:5000/api -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v1 -> URL: http://localhost:5000/api/v1 -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v2 -> URL: http://localhost:5000/api/v2 -> ❌ INACCESSIBLE (HTTP 404)
+Route: /status -> URL: http://localhost:5000/status -> ❌ INACCESSIBLE (HTTP 404)
+Route: /ping -> URL: http://localhost:5000/ping -> ❌ INACCESSIBLE (HTTP 404)
+Route: /version -> URL: http://localhost:5000/version -> ❌ INACCESSIBLE (HTTP 404)
+Route: /info -> URL: http://localhost:5000/info -> ❌ INACCESSIBLE (HTTP 404)
+
+Port 8001 additional endpoints:
+Route: /docs -> URL: http://localhost:8001/docs -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: 
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <link type="text/css" rel="stylesheet" href="https://...
+Route: /openapi.json -> URL: http://localhost:8001/openapi.json -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: {"openapi":"3.1.0","info":{"title":"Network Automation Frontend","description":"Frontend server for ...
+Route: /redoc -> URL: http://localhost:8001/redoc -> ✅ ACCESSIBLE (HTTP 200)
+  Content Preview: 
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Network Automation Frontend - ReDoc</title>
+  ...
+Route: /api/docs -> URL: http://localhost:8001/api/docs -> ❌ INACCESSIBLE (HTTP 404)
+Route: /swagger -> URL: http://localhost:8001/swagger -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api -> URL: http://localhost:8001/api -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v1 -> URL: http://localhost:8001/api/v1 -> ❌ INACCESSIBLE (HTTP 404)
+Route: /api/v2 -> URL: http://localhost:8001/api/v2 -> ❌ INACCESSIBLE (HTTP 404)
+Route: /status -> URL: http://localhost:8001/status -> ❌ INACCESSIBLE (HTTP 404)
+Route: /ping -> URL: http://localhost:8001/ping -> ❌ INACCESSIBLE (HTTP 404)
+Route: /version -> URL: http://localhost:8001/version -> ❌ INACCESSIBLE (HTTP 404)
+Route: /info -> URL: http://localhost:8001/info -> ❌ INACCESSIBLE (HTTP 404)
+
+=== SUMMARY ===
+Total routes tested: 66
+
+=== SAMPLE CONTENT EXAMPLES ===
+
+--- Port 5000 Health Check ---
+{"status":"healthy","service":"network-automation-api"}
+--- Port 5000 API Devices ---
+[{"id":"8ba6b997-a221-4e38-9ca7-aacb737f5b99","name":"Firewall FW01","ip_address":"192.168.1.254","model":"Cisco ASA 5516-X","status":"warning","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"has_config_backup":false,"metadata":{},"created_at":"2025-08-02T05:52:02.606715","updated_at":"2025-08-02T05:52:02.606716"},{"id":"9b0bdb7a-6960-4a05-860c-37f3c672a1ce","name":"Router R15","ip_address":"192.168.1.15","model":"Cisco ISR 4331","status":"online","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"has_config_backup":false,"metadata":{},"created_at":"2025-08-02T05:52:02.606682","updated_at":"2025-08-02T05:52:02.606686"},{"id":"91b57087-9f7a-414e-bc91-b22d6dbf8fbb","name":"Router R16","ip_address":"192.168.1.16","model":"Cisco ASR 1001-X","status":"online","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"has_config_backup":false,"metadata":{},"created_at":"2025-08-02T05:52:02.606695","updated_at":"2025-08-02T05:52:02.606696"},{"id":"58afcf94-b6ad-48a9-88c1-0b83a64aa618","name":"Router R17","ip_address":"192.168.1.17","model":"Cisco ISR 4321","status":"offline","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"has_config_backup":false,"metadata":{},"created_at":"2025-08-02T05:52:02.606703","updated_at":"2025-08-02T05:52:02.606703"},{"id":"d874a96a-a811-403d-abd3-2476657eb806","name":"Switch SW01","ip_address":"192.168.1.101","model":"Cisco Catalyst 9300","status":"online","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"has_config_backup":false,"metadata":{},"created_at":"2025-08-02T05:52:02.606709","updated_at":"2025-08-02T05:52:02.606710"}]
+--- Port 5000 API Stats ---
+{"devices":{"total":15,"online":12,"offline":2,"warning":1,"online_percentage":80.0},"operations":{"total_today":45,"successful":42,"failed":3,"success_rate":93.3},"system":{"cpu_usage":45.2,"memory_usage":62.1,"disk_usage":78.5}}
+--- Port 5000 Dashboard HTML ---
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+--- Port 8001 Frontend Main Page ---
+{% extends "base.html" %}
+
+{% block title %}Login - Network Automation Platform{% endblock %}
+
+=== FINAL SUMMARY REPORT ===
+Application running on ports: 5000 (Backend), 8001 (Frontend)
+Frontend Server: Network Automation Frontend
+Backend Server: Network Automation Test Backend (Simplified)
+Total URLs Discovered and Tested: 66
+Accessible Routes: 37
+Inaccessible Routes: 29
+Error/Timeout Routes: 0

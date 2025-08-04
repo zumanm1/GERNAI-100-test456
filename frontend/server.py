@@ -29,9 +29,9 @@ templates_path = os.path.join(frontend_dir, "templates")
 templates = Jinja2Templates(directory=templates_path)
 
 
-@app.get("/")
-async def read_root():
-    return FileResponse(os.path.join(frontend_dir, 'templates/auth/login.html'))
+@app.get("/", response_class=HTMLResponse)
+async def read_root(request: Request):
+    return templates.TemplateResponse("dashboard/index.html", {"request": request})
 
 @app.get("/devices")
 async def read_devices(request: Request):

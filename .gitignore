@@ -18,3 +18,4 @@ venv/
 
 # Node.js
 node_modules/
+venv_run/

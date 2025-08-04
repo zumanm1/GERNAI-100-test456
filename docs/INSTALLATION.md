@@ -159,7 +159,6 @@ python scripts/verify_db.py
 The application uses several ports:
 
 - **5000** – Backend API service (`backend/app.py`)
-- **8001** – Front-end server (`frontend/server.py`)
 - **8002** – Main FastAPI service (`main.py`, `FASTAPI_PORT`)
 
 ## Full Start-up Flow
@@ -176,13 +175,7 @@ source venv/bin/activate
 bash init_setup.sh  # (dev)
 ```
 
-### Step 3: Start Front-end Server (Port 8001)
-In **Terminal 1**:
-```bash
-python frontend/server.py  # (port 8001)
-```
-
-### Step 4: Start Back-end API (Port 8002)
+### Step 3: Start Back-end API (Port 8002)
 In **Terminal 2**:
 ```bash
 python main.py  # (port 8002)

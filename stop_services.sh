@@ -14,7 +14,6 @@ clean_services() {
     
     # Kill specific Python processes
     pkill -f "python backend/app.py" || true
-    pkill -f "python frontend/server.py" || true
     
     echo "Services stopped and ports cleared."
 }

@@ -33,18 +33,12 @@ def start_application():
     """
     print("Starting the application...")
     try:
-        # Change to the backend directory
-        os.chdir("backend/api")
-        
         # Start the FastAPI application
-        subprocess.run([sys.executable, "main.py"], check=True)
+        subprocess.run([sys.executable, "-m", "backend.api.main"], check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error starting application: {e}")
     except KeyboardInterrupt:
         print("\nApplication stopped by user")
-    finally:
-        # Change back to the original directory
-        os.chdir("../..")
 
 def main():
     """

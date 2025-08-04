@@ -17,7 +17,7 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 **Gap Analysis by Page**
 
 ### 1. Device Management Hub (`/devices`)
-- **Frontend Template:** `frontend/templates/devices/index.html`
+- **Frontend Template:** `templates/devices/index.html`
 - **Backend Endpoints:** 
   - `GET /api/v1/devices`
   - `POST /api/v1/devices`
@@ -51,7 +51,7 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 ---
 
 ### 2. Dashboard (`/dashboard` or `/`)
-- **Frontend Template:** `frontend/templates/dashboard/index.html`
+- **Frontend Template:** `templates/dashboard/index.html`
 - **Backend Endpoints:** 
   - `GET /api/stats` (dashboard statistics)
   - `GET /api/device-status-chart` (device status chart data)
@@ -76,7 +76,7 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 ---
 
 ### 3. AI Chat (`/chat`)
-- **Frontend Template:** `frontend/templates/chat/index.html` and partials
+- **Frontend Template:** `templates/chat/index.html` and partials
 - **Backend Endpoints:** 
   - `POST /api/v1/chat` (send message)
   - `GET /api/v1/chat/history` (fetch conversation history)
@@ -101,7 +101,7 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 ---
 
 ### 4. Operations (`/operations`)
-- **Frontend Template:** `frontend/templates/operations/index.html`
+- **Frontend Template:** `templates/operations/index.html`
 - **Backend Endpoints:** 
   - `GET /api/v1/operations` (operation history)
   - WebSocket: `/ws/operations` (real-time operation updates)
@@ -122,7 +122,7 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 ---
 
 ### 5. Automation (`/automation`)
-- **Frontend Template:** `frontend/templates/automation/index.html`
+- **Frontend Template:** `templates/automation/index.html`
 - **Backend Endpoints:** 
   - `GET /api/v1/automation` (list automation tasks)
   - `POST /api/v1/automation` (create task)
@@ -145,7 +145,7 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 ---
 
 ### 6. Login / Authentication (`/login`)
-- **Frontend Template:** `frontend/templates/auth/login.html`, `frontend/templates/login.html`
+- **Frontend Template:** `templates/auth/login.html`, `templates/login.html`
 - **Backend Endpoints:** 
   - `POST /api/v1/auth/token` (login)
   - `POST /api/v1/auth/register` (register, if available)
@@ -168,7 +168,7 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 ---
 
 ### 7. Settings (`/settings`)
-- **Frontend Template:** `frontend/templates/settings/index.html`
+- **Frontend Template:** `templates/settings/index.html`
 - **Backend Endpoints:** 
   - `GET /api/v1/settings` (fetch settings)
   - `PUT /api/v1/settings` (update settings)
@@ -187,7 +187,7 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 ---
 
 ### 8. GenAI Settings (`/genai-settings`)
-- **Frontend Template:** `frontend/templates/genai-settings/index.html` and sub-templates
+- **Frontend Template:** `templates/genai-settings/index.html` and sub-templates
 - **Backend Endpoints:** 
   - `GET /api/v1/genai-settings` (fetch GenAI settings)
   - `PUT /api/v1/genai-settings` (update GenAI settings)
@@ -206,7 +206,7 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 ---
 
 ### 9. Error Pages (`/errors/404`, `/errors/500`)
-- **Frontend Templates:** `frontend/templates/errors/404.html`, `frontend/templates/errors/500.html`
+- **Frontend Templates:** `templates/errors/404.html`, `templates/errors/500.html`
 - **Backend State:**
   - FastAPI custom error handlers render these templates.
 

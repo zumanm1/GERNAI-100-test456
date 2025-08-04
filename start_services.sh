@@ -47,21 +47,6 @@ start_backend() {
     fi
 }
 
-# FUNCTION TO START FRONTEND
-start_frontend() {
-    echo "Starting the frontend server..."
-    cd /home/test/Documents/GENAI-99-test123
-    source venv/bin/activate
-    nohup python frontend/server.py > frontend.log 2>&1 &
-    sleep 3
-    
-    # Check if frontend started successfully
-    if lsof -ti:${FRONTEND_PORT} > /dev/null; then
-        echo "Frontend started successfully on port $FRONTEND_PORT."
-    else
-        echo "Warning: Frontend may not have started properly. Check frontend.log for details."
-    fi
-}
 
 # MAIN FUNCTION
 main() {
@@ -72,9 +57,6 @@ main() {
 
     # Start backend service
     start_backend
-
-    # Start frontend service
-    start_frontend
 
     echo "Setup complete! Frontend and Backend services are up and running."
 }

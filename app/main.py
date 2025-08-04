@@ -46,8 +46,8 @@ async def get_current_user_optional(request: Request):
         return None
 
 # Mount static files and templates
-app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-templates = Jinja2Templates(directory="frontend/templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 # Include routers
 app.include_router(auth_router, prefix="/auth", tags=["authentication"])

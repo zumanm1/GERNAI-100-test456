@@ -75,8 +75,8 @@ app.add_middleware(
 from backend.api.main import api_router
 
 # Setup static files and templates
-app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-templates = Jinja2Templates(directory="frontend/templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 # Include the main API router
 app.include_router(api_router, prefix="/api")

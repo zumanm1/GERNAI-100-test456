@@ -9,7 +9,6 @@
 
 ## Codebase Structure
 - **Backend**: FastAPI application with AI integration for network automation
-- **Frontend**: Served from frontend/ directory, likely on port 8001
 - **API**: REST endpoints in backend/api/ directory
 - **AI Components**: 
   - LLM providers (OpenAI, Groq, OpenRouter) in backend/ai/llm_providers.py

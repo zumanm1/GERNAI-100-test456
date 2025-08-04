@@ -38,13 +38,7 @@ After the initial setup, you can run the frontend and backend servers.
     source venv/bin/activate
     ```
 
-2.  **Start the Frontend Server**:
-    ```bash
-    python frontend/server.py
-    ```
-    The frontend will be available at [http://localhost:8001](http://localhost:8001).
-
-3.  **Start the Backend Server** (in a new terminal):
+2.  **Start the Backend Server** (in a new terminal):
     ```bash
     uvicorn main:app --host 0.0.0.0 --port 8002
     ```

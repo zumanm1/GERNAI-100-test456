@@ -1,0 +1,938 @@
+Product Requirements Document: Frontend-Backend Integration
+
+**Objective:** This document outlines the necessary frontend development tasks to fully integrate with the existing backend API and create a dynamic, data-driven application. The focus is on identifying the work required to connect the static frontend templates to the live backend services.
+
+---
+
+**Comprehensive Gap Analysis: Frontend Templates & Backend Endpoints**
+
+Below is a detailed mapping of every major frontend template (webpage) to its intended URL and backend route(s). For each, we analyze:
+- What the frontend currently does (static/dynamic, UI/UX, error handling)
+- What the backend provides (API endpoints, data, error messages)
+- The exact gaps (missing dynamic rendering, missing error handling, lack of integration, etc.)
+- What is needed to achieve full, robust integration
+
+---
+
+**Gap Analysis by Page**
+
+### 1. Device Management Hub (`/devices`)
+- **Frontend Template:** `frontend/templates/devices/index.html`
+- **Backend Endpoints:** 
+  - `GET /api/v1/devices`
+  - `POST /api/v1/devices`
+  - `PUT /api/v1/devices/{device_id}`
+  - `DELETE /api/v1/devices/{device_id}`
+  - `POST /api/v1/devices/{device_id}/test-connectivity`
+  - `POST /api/v1/devices/{device_id}/backup-config`
+  - `GET /api/v1/devices/{device_id}/config`
+  - `GET /api/v1/devices/{device_id}/operations`
+  - `POST /api/v1/devices/bulk-operations/{operation}`
+  - `GET /api/v1/devices/statistics/overview`
+
+#### Current Frontend State:
+- Static table, hardcoded rows, no dynamic data population.
+- Action buttons present but not functional.
+- No JavaScript fetches device data or handles user actions.
+- No error handling, loading indicators, or user feedback for API calls.
+
+#### Backend State:
+- Fully implemented REST API for device CRUD, operations, statistics, and bulk actions.
+- Returns JSON responses, handles errors with appropriate HTTP codes.
+
+#### Gaps & What Needs to be Done:
+- Implement JavaScript to fetch and render device data on page load.
+- Wire up all action buttons to call backend endpoints and update the UI accordingly.
+- Implement forms for device creation and editing, with validation and error handling.
+- Add loading indicators, error messages, and success toasts.
+- Implement pagination or filtering if device list is large.
+- Handle all backend error responses gracefully in the UI.
+
+---
+
+### 2. Dashboard (`/dashboard` or `/`)
+- **Frontend Template:** `frontend/templates/dashboard/index.html`
+- **Backend Endpoints:** 
+  - `GET /api/stats` (dashboard statistics)
+  - `GET /api/device-status-chart` (device status chart data)
+  - `GET /api/operations-timeline` (operations timeline data)
+  - `GET /api/v1/dashboard/overview` (extended metrics)
+
+#### Current Frontend State:
+- Static UI, charts and metrics are hardcoded or missing.
+- No JavaScript fetches real-time data or updates charts.
+- No error handling for failed data fetches.
+
+#### Backend State:
+- Endpoints return JSON with stats, chart data, and metrics.
+- Dummy/sample data, but structure is ready for real data.
+
+#### Gaps & What Needs to be Done:
+- Implement JavaScript to fetch metrics and chart data from backend endpoints.
+- Use Chart.js to render charts dynamically.
+- Add loading indicators and error handling for failed fetches.
+- Display real-time statistics, updating UI as new data arrives.
+
+---
+
+### 3. AI Chat (`/chat`)
+- **Frontend Template:** `frontend/templates/chat/index.html` and partials
+- **Backend Endpoints:** 
+  - `POST /api/v1/chat` (send message)
+  - `GET /api/v1/chat/history` (fetch conversation history)
+  - WebSocket: `/ws/chat` (if implemented)
+
+#### Current Frontend State:
+- Chat UI exists, but input/output is not connected to backend.
+- No logic to send/receive messages or display conversation history.
+- No error handling or loading feedback.
+
+#### Backend State:
+- API endpoints for sending messages and fetching history exist.
+- Handles AI conversation logic and stores messages.
+
+#### Gaps & What Needs to be Done:
+- Add JavaScript to send user messages to backend and display AI responses.
+- Fetch and render conversation history on page load.
+- Implement real-time updates if WebSocket is available.
+- Handle errors (e.g., failed message send) with user feedback.
+- Add loading spinners for message processing.
+
+---
+
+### 4. Operations (`/operations`)
+- **Frontend Template:** `frontend/templates/operations/index.html`
+- **Backend Endpoints:** 
+  - `GET /api/v1/operations` (operation history)
+  - WebSocket: `/ws/operations` (real-time operation updates)
+
+#### Current Frontend State:
+- Static template, no dynamic listing of operations.
+- No real-time updates or history rendering.
+
+#### Backend State:
+- API provides operation history and real-time updates via WebSocket.
+
+#### Gaps & What Needs to be Done:
+- Implement JavaScript to fetch and render operation history.
+- Connect to WebSocket for real-time updates and display them in UI.
+- Add error handling for failed fetches or WebSocket disconnects.
+- Provide user feedback for operation status changes.
+
+---
+
+### 5. Automation (`/automation`)
+- **Frontend Template:** `frontend/templates/automation/index.html`
+- **Backend Endpoints:** 
+  - `GET /api/v1/automation` (list automation tasks)
+  - `POST /api/v1/automation` (create task)
+  - `PUT /api/v1/automation/{task_id}` (update task)
+  - `DELETE /api/v1/automation/{task_id}` (delete task)
+
+#### Current Frontend State:
+- Static UI, no dynamic task listing or management.
+- No forms for creating/updating automation tasks.
+
+#### Backend State:
+- Full REST API for automation task management.
+
+#### Gaps & What Needs to be Done:
+- Implement dynamic fetching and rendering of automation tasks.
+- Add forms for creating and editing tasks, with validation and error handling.
+- Wire up delete and update actions.
+- Provide user feedback and loading indicators.
+
+---
+
+### 6. Login / Authentication (`/login`)
+- **Frontend Template:** `frontend/templates/auth/login.html`, `frontend/templates/login.html`
+- **Backend Endpoints:** 
+  - `POST /api/v1/auth/token` (login)
+  - `POST /api/v1/auth/register` (register, if available)
+
+#### Current Frontend State:
+- Login form exists, but submission is not handled.
+- No logic to store access token or redirect on success.
+- No error feedback on failed login.
+
+#### Backend State:
+- Auth endpoints issue JWT tokens on successful login.
+- Handles error cases (invalid credentials, etc.).
+
+#### Gaps & What Needs to be Done:
+- Add JavaScript to handle form submission, call backend, and store token.
+- Redirect user to dashboard on success.
+- Show error messages for failed login.
+- Ensure all protected pages check authentication and redirect if not logged in.
+
+---
+
+### 7. Settings (`/settings`)
+- **Frontend Template:** `frontend/templates/settings/index.html`
+- **Backend Endpoints:** 
+  - `GET /api/v1/settings` (fetch settings)
+  - `PUT /api/v1/settings` (update settings)
+
+#### Current Frontend State:
+- Static settings page, no dynamic data or update forms.
+
+#### Backend State:
+- Endpoints provide and update settings data.
+
+#### Gaps & What Needs to be Done:
+- Fetch and display current settings on page load.
+- Add forms for updating settings, with validation and error handling.
+- Provide user feedback on save success/failure.
+
+---
+
+### 8. GenAI Settings (`/genai-settings`)
+- **Frontend Template:** `frontend/templates/genai-settings/index.html` and sub-templates
+- **Backend Endpoints:** 
+  - `GET /api/v1/genai-settings` (fetch GenAI settings)
+  - `PUT /api/v1/genai-settings` (update GenAI settings)
+
+#### Current Frontend State:
+- Static UI, no dynamic fetching or updating of GenAI settings.
+
+#### Backend State:
+- Endpoints provide and update GenAI settings.
+
+#### Gaps & What Needs to be Done:
+- Fetch and render GenAI settings on page load.
+- Add forms for updating settings, with validation and error handling.
+- Provide user feedback on save success/failure.
+
+---
+
+### 9. Error Pages (`/errors/404`, `/errors/500`)
+- **Frontend Templates:** `frontend/templates/errors/404.html`, `frontend/templates/errors/500.html`
+- **Backend State:**
+  - FastAPI custom error handlers render these templates.
+
+#### Current Frontend State:
+- Templates exist, but may not show detailed error info.
+
+#### Backend State:
+- Returns error pages with error ID and status.
+
+#### Gaps & What Needs to be Done:
+- Ensure error pages display meaningful error info from backend.
+- Optionally, provide a way to report errors or return to a safe page.
+
+---
+
+### 10. Miscellaneous / Partials
+- **Templates:** Chat partials, base.html, etc.
+- **Backend State:**
+  - Used for layout and UI composition.
+
+#### Gaps & What Needs to be Done:
+- Ensure all partials are included and rendered correctly in all pages.
+- Confirm that all shared UI logic is DRY and robust.
+
+---
+
+## Ultra-Detailed Frontend-Backend Integration Analysis (Element by Element)
+
+This section provides a granular, element-by-element mapping and analysis for every major webpage and backend route. For each UI element (tab, button, modal, AJAX call, etc.), we specify:
+- Data structures expected and returned
+- Request/response payloads
+- Error and edge case handling
+- UI/UX flow and feedback
+- Security/authentication handling
+- Any mismatch, missing field, or unclear flow
+
+---
+
+### 1. Device Management Hub (`/devices`)
+#### Tabs
+- **All Devices Tab**: Should display a table populated by `GET /api/v1/devices`. Each row must map backend device fields (`id`, `name`, `ip_address`, `model`, `status`, etc.) to table columns. Missing: dynamic population, pagination, and search/filtering.
+- **Real Devices/Dummy Devices Tabs**: Should filter devices by type (e.g., real vs. dummy). Backend does not expose a direct filter; frontend must filter after fetching all devices, or backend should support query params (gap).
+- **Add Device Tab**: Contains a form. On submit, should POST to `/api/v1/devices`. Required fields: `name`, `ip_address`, `model`, `metadata`. UI must validate input and handle backend validation errors (400).
+
+#### Table Actions
+- **Edit Button**: Should open a modal pre-filled with device data (`GET /api/v1/devices/{device_id}`), then submit changes via `PUT /api/v1/devices/{device_id}`. Gaps: No modal or AJAX implemented; backend expects full/partial payload.
+- **Delete Button**: Should confirm with user, then call `DELETE /api/v1/devices/{device_id}`. UI must handle 404 (device not found) and 500 (server error).
+- **Test Connectivity**: Calls `POST /api/v1/devices/{device_id}/test-connectivity`. UI should show spinner, then display result (success/failure, latency, message). Backend returns status and message; frontend must parse and display.
+- **Backup Config**: Calls `POST /api/v1/devices/{device_id}/backup-config`. UI should show progress, then display backup result. Edge case: device offline, backend returns error.
+
+#### Bulk Actions
+- **Bulk Select**: Checkbox in table header and rows. Selected IDs sent to `POST /api/v1/devices/bulk-operations/{operation}`. Payload: `{ device_ids: [id1, id2, ...] }`. UI must show per-device result (success/failure).
+
+#### Device Details
+- **Details Modal/Page**: Should fetch and display device details (`GET /api/v1/devices/{device_id}`), config backup (`GET /api/v1/devices/{device_id}/config`), and operation history (`GET /api/v1/devices/{device_id}/operations`). Gaps: No modal/page or AJAX implemented.
+
+#### Error Handling
+- UI must show user-friendly messages for all backend errors (400, 404, 500). Backend returns JSON with `detail` field for errors.
+
+#### Security
+- All API calls must include JWT in Authorization header. If 401 received, redirect to login.
+
+---
+
+### 2. Dashboard (`/dashboard` or `/`)
+#### Charts
+- **Device Status Chart**: Fetches from `GET /api/device-status-chart`. Expects `{ labels: [...], data: [...], backgroundColor: [...] }`. UI must pass data to Chart.js. Gaps: No AJAX or chart rendering implemented.
+- **Operations Timeline Chart**: Fetches from `GET /api/operations-timeline`. Expects `{ labels: [...], data: [...] }`. Same as above.
+
+#### Stats Cards
+- **System/Device/Operation Stats**: Fetch from `GET /api/stats`. Expects nested JSON for each domain. UI must update cards dynamically. Edge case: backend returns partial data or error.
+
+#### Recent Activities
+- **Recent Operations Table/Feed**: Should fetch from `GET /api/v1/dashboard/overview` or similar. Gaps: No AJAX or UI implemented.
+
+#### Error Handling
+- Show loading spinner on fetch, error message on failure.
+
+#### Security
+- Auth required for all fetches.
+
+---
+
+### 3. AI Chat (`/chat`)
+#### Chat Input & Send Button
+- **Send Message**: On submit, POSTs to `/api/v1/chat` with `{ message: string }`. Expects `{ response: string, ... }` in reply. UI must disable input while waiting, handle errors (e.g., AI unavailable).
+
+#### Chat Window
+- **Conversation History**: Fetched from `GET /api/v1/chat/history`. UI must render as chat bubbles, handle empty history.
+- **Streaming/Real-Time**: If WebSocket is available, UI should update with streaming responses. Gaps: unclear if backend supports streaming.
+
+#### Error Handling
+- Show error if AI fails to respond or backend returns error.
+
+#### Security
+- Auth required for all chat endpoints.
+
+---
+
+### 4. Operations (`/operations`)
+#### Operation List
+- **History Table**: Fetch from `GET /api/v1/operations`. UI must render rows, support pagination if many operations. Gaps: no dynamic table implemented.
+
+#### Real-Time Updates
+- **WebSocket**: Connects to `/ws/operations`. UI must handle connection loss, reconnection, and display live updates. Backend sends JSON messages; frontend must parse and update UI.
+
+#### Operation Details
+- **Details Modal/Page**: Fetches additional info for a selected operation. Gaps: not implemented.
+
+#### Error Handling
+- Show spinner/loading on fetch, error on failure.
+
+#### Security
+- Auth required for all endpoints and WebSocket.
+
+---
+
+### 5. Automation (`/automation`)
+#### Task List
+- **List Table**: Fetch from `GET /api/v1/automation`. UI must render rows, support add/edit/delete actions.
+- **Add/Edit Task Modal**: Form submits to `POST` or `PUT` endpoints. UI must validate, handle backend errors.
+
+#### Error Handling
+- Show errors for invalid input, backend failures.
+
+#### Security
+- Auth required.
+
+---
+
+### 6. Login / Authentication (`/login`)
+#### Login Form
+- **Form Submission**: POSTs to `/api/v1/auth/token` with `{ username, password }`. On success, stores JWT and redirects. On failure, shows error (e.g., invalid credentials).
+
+#### Error Handling
+- Show error for 401/400 from backend.
+
+#### Security
+- Ensure HTTPS in production. Do not store tokens insecurely.
+
+---
+
+### 7. Settings (`/settings`)
+#### Settings Form
+- **Fetch Settings**: GET `/api/v1/settings`. UI must populate form fields.
+- **Update Settings**: PUT `/api/v1/settings`. UI must validate, handle backend errors, and show success/failure.
+
+#### Error Handling
+- Show error for failed fetch or save.
+
+#### Security
+- Auth required.
+
+---
+
+### 8. GenAI Settings (`/genai-settings`)
+#### Settings Tabs/Forms
+- **Fetch Settings**: GET `/api/v1/genai-settings`. UI must render all fields/sections.
+- **Update Settings**: PUT `/api/v1/genai-settings`. UI must validate and handle errors.
+
+#### Error Handling
+- Show error for failed fetch or save.
+
+#### Security
+- Auth required.
+
+---
+
+### 9. Error Pages (`/errors/404`, `/errors/500`)
+#### Error Display
+- **404/500 Templates**: Rendered by backend with error ID. UI should display error ID and friendly message. Optionally, offer retry or return to dashboard link.
+
+---
+
+### 10. Miscellaneous / Partials
+#### Shared Components
+- **Navbar, Toasts, Modals**: All must be dynamically updated based on app state (e.g., show/hide on auth, display toasts on API errors, etc.).
+- **Security**: Ensure no sensitive data is exposed in UI or logs.
+
+---
+
+## Field-Level Integration Analysis and Edge Cases
+
+This section provides the deepest level of integration analysis, examining each API endpoint's request/response data structures at the field level, validation requirements, edge cases, and specific integration challenges.
+
+---
+
+### 1. Device Management Hub - Field-Level Analysis
+
+#### `GET /api/v1/devices` (List Devices)
+
+**Response Structure:**
+```json
+[
+  {
+    "id": "uuid-string",
+    "name": "string",
+    "ip_address": "string (IPv4/IPv6)",
+    "model": "string",
+    "vendor": "string",
+    "os_version": "string",
+    "status": "string (enum: online, offline, unknown)",
+    "last_seen": "ISO datetime string",
+    "metadata": { /* key-value object */ },
+    "created_at": "ISO datetime string",
+    "updated_at": "ISO datetime string"
+  }
+]
+```
+
+**Integration Gaps:**
+- Frontend must handle empty arrays (no devices)
+- Status field should be color-coded in UI (online=green, offline=red, unknown=gray)
+- Timestamps need formatting for user-friendly display
+- Metadata is a dynamic object; UI must handle varying structures
+- Pagination parameters missing (`page`, `limit`); frontend must implement pagination controls
+- No sorting parameters; frontend must implement client-side sorting
+
+**Edge Cases:**
+- Very large device lists (>100) may cause performance issues
+- Devices with missing fields must be handled gracefully
+- Long text fields may need truncation in table view
+
+#### `POST /api/v1/devices` (Create Device)
+
+**Request Structure:**
+```json
+{
+  "name": "string (required)",
+  "ip_address": "string (required, IPv4/IPv6)",
+  "model": "string (required)",
+  "vendor": "string (optional)",
+  "os_version": "string (optional)",
+  "metadata": { /* optional key-value object */ }
+}
+```
+
+**Response Structure:**
+```json
+{
+  "id": "uuid-string",
+  "name": "string",
+  "ip_address": "string",
+  /* other fields same as GET response */
+}
+```
+
+**Integration Gaps:**
+- Frontend form validation must match backend validation rules:
+  - Name: required, max length validation missing
+  - IP address: required, IPv4/IPv6 format validation
+  - Model: required, no specific format validation
+- No client-side IP address format validation
+- No feedback on duplicate device names or IP addresses
+- Metadata field has no schema validation or UI guidance
+
+**Edge Cases:**
+- Error handling for network timeouts during device creation
+- Duplicate IP address detection and user feedback
+- Form should prevent double-submission during API call
+
+#### `PUT /api/v1/devices/{device_id}` (Update Device)
+
+**Request Structure:**
+Same as POST but all fields optional
+
+**Integration Gaps:**
+- No clear indication if partial updates are supported
+- Edit form must be pre-populated with existing values
+- No validation for unchanged fields to minimize payload
+
+**Edge Cases:**
+- Device might be deleted by another user during edit
+- Concurrent edits by multiple users not handled
+
+#### `POST /api/v1/devices/{device_id}/test-connectivity` (Test Device)
+
+**Response Structure:**
+```json
+{
+  "status": "boolean",
+  "message": "string",
+  "latency_ms": "number (optional)",
+  "details": { /* optional object with test details */ }
+}
+```
+
+**Integration Gaps:**
+- No progress indicator during testing (can take time)
+- No timeout handling in UI
+- Success/failure states need visual indicators
+- Details object structure varies by device type; UI must adapt
+
+**Edge Cases:**
+- Very slow responses (>10s) need special handling
+- Multiple simultaneous tests may impact performance
+
+---
+
+### 2. Dashboard - Field-Level Analysis
+
+#### `GET /api/stats` (Dashboard Statistics)
+
+**Response Structure:**
+```json
+{
+  "devices": {
+    "total": "number",
+    "online": "number",
+    "offline": "number"
+  },
+  "operations": {
+    "total": "number",
+    "completed": "number",
+    "failed": "number",
+    "in_progress": "number"
+  },
+  "system": {
+    "cpu_usage": "number (percentage)",
+    "memory_usage": "number (percentage)",
+    "uptime": "number (seconds)"
+  }
+}
+```
+
+**Integration Gaps:**
+- No refresh mechanism for real-time updates
+- No error state UI for failed data fetch
+- Uptime needs formatting (days, hours, minutes)
+- No loading state for initial data fetch
+
+**Edge Cases:**
+- Zero values should display properly (not as errors)
+- System metrics may be unavailable in some environments
+
+#### `GET /api/device-status-chart` (Chart Data)
+
+**Response Structure:**
+```json
+{
+  "labels": ["string array"],
+  "data": ["number array"],
+  "backgroundColor": ["string array (hex colors)"]
+}
+```
+
+**Integration Gaps:**
+- Chart.js configuration missing in frontend
+- No error handling for mismatched array lengths
+- No fallback UI if chart data is empty
+
+**Edge Cases:**
+- Very large datasets may impact chart rendering performance
+- Color accessibility issues not addressed
+
+---
+
+### 3. AI Chat - Field-Level Analysis
+
+#### `POST /api/v1/chat` (Send Message)
+
+**Request Structure:**
+```json
+{
+  "message": "string (required)",
+  "context": { /* optional context object */ },
+  "conversation_id": "string (optional)"
+}
+```
+
+**Response Structure:**
+```json
+{
+  "response": "string",
+  "conversation_id": "string",
+  "message_id": "string",
+  "timestamp": "ISO datetime string"
+}
+```
+
+**Integration Gaps:**
+- No handling for very long responses (scrolling, pagination)
+- No message typing indicators during AI processing
+- No conversation context management in UI
+- No error recovery for failed messages
+
+**Edge Cases:**
+- AI response timeout handling missing
+- No offline mode or message queuing
+- No handling for message formatting (markdown, code blocks)
+
+#### WebSocket `/ws/chat` (Real-time Chat)
+
+**Message Structure:**
+```json
+{
+  "type": "string (message, typing, error)",
+  "content": "string or object",
+  "conversation_id": "string",
+  "timestamp": "ISO datetime string"
+}
+```
+
+**Integration Gaps:**
+- No WebSocket connection management (reconnect logic)
+- No typing indicator implementation
+- No handling for missed messages during disconnection
+
+**Edge Cases:**
+- WebSocket fallback to polling not implemented
+- No handling for server-initiated conversation closure
+
+---
+
+### 4. Operations - Field-Level Analysis
+
+#### `GET /api/v1/operations` (List Operations)
+
+**Response Structure:**
+```json
+[
+  {
+    "id": "string",
+    "type": "string (enum)",
+    "status": "string (enum: pending, in_progress, completed, failed)",
+    "target": {
+      "type": "string (device, system)",
+      "id": "string (optional)"
+    },
+    "progress": "number (0-100)",
+    "result": { /* operation-specific result object */ },
+    "error": "string (optional)",
+    "created_at": "ISO datetime string",
+    "updated_at": "ISO datetime string"
+  }
+]
+```
+
+**Integration Gaps:**
+- No pagination controls for large operation lists
+- Status should be color-coded and have icons
+- Progress should be displayed as progress bar
+- No filtering by operation type or status
+- Result object structure varies by operation type; UI must adapt
+
+**Edge Cases:**
+- Long-running operations need special UI treatment
+- Operations with large result objects may cause rendering issues
+
+#### WebSocket `/ws/operations` (Real-time Updates)
+
+**Message Structure:**
+```json
+{
+  "type": "string (update, complete, error)",
+  "operation_id": "string",
+  "data": { /* operation data */ }
+}
+```
+
+**Integration Gaps:**
+- No WebSocket connection status indicator
+- No handling for missed updates during disconnection
+- No sound/visual notifications for completed operations
+
+**Edge Cases:**
+- Multiple rapid updates may cause UI flicker
+- WebSocket authentication renewal not implemented
+
+---
+
+### 5. Authentication - Field-Level Analysis
+
+#### `POST /api/v1/auth/token` (Login)
+
+**Request Structure:**
+```json
+{
+  "username": "string (required)",
+  "password": "string (required)"
+}
+```
+
+**Response Structure:**
+```json
+{
+  "access_token": "string (JWT)",
+  "token_type": "string (Bearer)",
+  "expires_in": "number (seconds)"
+}
+```
+
+**Integration Gaps:**
+- No token refresh mechanism before expiration
+- No secure token storage implementation
+- No "remember me" functionality
+- No password strength requirements in UI
+
+**Edge Cases:**
+- Session timeout handling missing
+- No handling for password reset flow
+- No handling for account lockout after failed attempts
+
+---
+
+### 6. Settings & GenAI Settings - Field-Level Analysis
+
+#### `GET /api/v1/settings` and `GET /api/v1/genai-settings`
+
+**Response Structure:**
+Varies based on settings type, typically key-value objects
+
+**Integration Gaps:**
+- No schema validation for settings forms
+- No handling for environment-specific settings
+- No validation for interdependent settings
+- No settings history or change tracking
+
+**Edge Cases:**
+- Settings with sensitive values need masking
+- Default values not clearly indicated in UI
+
+---
+
+### Cross-Cutting Integration Concerns
+
+#### Authentication & Authorization
+- JWT token must be included in all API requests (Authorization header)
+- Token expiration handling missing in frontend
+- No role-based UI adaptation
+- No handling for unauthorized access attempts
+
+#### Error Handling
+- Backend error format is inconsistent across endpoints
+- Frontend needs unified error display system
+- Validation errors need field-level highlighting
+- Network errors need retry mechanisms
+
+#### Performance
+- No loading indicators for slow operations
+- No data prefetching for common operations
+- Large response handling (pagination, virtualization) missing
+
+#### Accessibility
+- Form validation errors not properly announced to screen readers
+- Interactive elements missing proper ARIA attributes
+- Color contrast issues in status indicators
+
+#### Mobile Responsiveness
+- Tables need responsive design for small screens
+- Modal dialogs may not work well on mobile
+- Touch interactions not fully supported
+
+---
+
+## API-to-Frontend Connectivity Analysis
+
+This section analyzes whether each backend API endpoint is properly connected to the frontend, identifying unused APIs, missing frontend implementations, and connectivity gaps.
+
+### API Connectivity Matrix
+
+| API Endpoint | Frontend Connected | Connection Method | Connection Status | Gap Description |
+|-------------|-------------------|------------------|------------------|------------------|
+| `GET /api/v1/devices` | No | None | Missing | No JavaScript code fetches device data from this endpoint |
+| `POST /api/v1/devices` | No | None | Missing | Add device form exists but doesn't submit to this endpoint |
+| `PUT /api/v1/devices/{device_id}` | No | None | Missing | Edit functionality not implemented |
+| `DELETE /api/v1/devices/{device_id}` | No | None | Missing | Delete button exists but not connected |
+| `POST /api/v1/devices/{device_id}/test-connectivity` | No | None | Missing | Test button exists but not connected |
+| `POST /api/v1/devices/{device_id}/backup-config` | No | None | Missing | Backup button exists but not connected |
+| `GET /api/v1/devices/{device_id}/config` | No | None | Missing | No UI to view device config exists |
+| `GET /api/v1/devices/{device_id}/operations` | No | None | Missing | No UI to view device operations exists |
+| `POST /api/v1/devices/bulk-operations/{operation}` | No | None | Missing | Bulk action UI exists but not connected |
+| `GET /api/v1/devices/statistics/overview` | No | None | Missing | No statistics display connected to this endpoint |
+| `GET /api/stats` | No | None | Missing | Dashboard stats cards exist but not connected |
+| `GET /api/device-status-chart` | No | None | Missing | Chart placeholder exists but not connected |
+| `GET /api/operations-timeline` | No | None | Missing | Timeline chart placeholder exists but not connected |
+| `POST /api/v1/chat` | No | None | Missing | Chat input exists but not connected |
+| `GET /api/v1/chat/history` | No | None | Missing | Chat history display exists but not connected |
+| WebSocket `/ws/chat` | No | None | Missing | No WebSocket client connection implemented |
+| `GET /api/v1/operations` | No | None | Missing | Operations table exists but not connected |
+| WebSocket `/ws/operations` | No | None | Missing | No WebSocket client connection implemented |
+| `GET /api/v1/automation` | No | None | Missing | Automation UI exists but not connected |
+| `POST /api/v1/automation` | No | None | Missing | Add automation form exists but not connected |
+| `PUT /api/v1/automation/{task_id}` | No | None | Missing | Edit automation not implemented |
+| `DELETE /api/v1/automation/{task_id}` | No | None | Missing | Delete automation not implemented |
+| `POST /api/v1/auth/token` | No | None | Missing | Login form exists but not connected |
+| `GET /api/v1/settings` | No | None | Missing | Settings form exists but not connected |
+| `PUT /api/v1/settings` | No | None | Missing | Settings save functionality not implemented |
+| `GET /api/v1/genai-settings` | No | None | Missing | GenAI settings form exists but not connected |
+| `PUT /api/v1/genai-settings` | No | None | Missing | GenAI settings save not implemented |
+
+### Unused Backend APIs
+
+The following backend APIs have no corresponding frontend UI components:
+
+1. `GET /api/v1/devices/{device_id}/config` - No dedicated UI to view device configurations
+2. `GET /api/v1/devices/{device_id}/operations` - No UI to view device-specific operations
+3. `GET /api/v1/devices/statistics/overview` - No dedicated device statistics view
+
+### Missing Frontend Implementations
+
+The following UI components exist in the frontend but lack JavaScript implementation to connect to backend APIs:
+
+1. Device table - Static HTML with no dynamic data loading
+2. Device action buttons (edit, delete, test, backup) - No click handlers
+3. Add device form - No form submission handler
+4. Dashboard charts and statistics - No data fetching or rendering
+5. Chat interface - Input and display exist but no message handling
+6. Operations table - Static with no dynamic updates
+7. Login form - No authentication flow implementation
+8. Settings forms - No data loading or saving
+
+### Authentication Integration Gaps
+
+1. **Token Management**
+   - No code to store JWT token after login
+   - No code to include token in API requests
+   - No token refresh mechanism
+   - No token expiration handling
+
+2. **Protected Routes**
+   - No route protection for authenticated-only pages
+   - No redirect to login for unauthenticated users
+   - No UI adaptation based on authentication state
+
+### WebSocket Integration Gaps
+
+1. **Chat WebSocket**
+   - No connection establishment code
+   - No message handling
+   - No reconnection logic
+   - No error handling
+
+2. **Operations WebSocket**
+   - No connection establishment code
+   - No real-time updates handling
+   - No UI updates on operation status changes
+
+### API Error Handling Gaps
+
+1. **Global Error Handling**
+   - No global error interceptor for API calls
+   - No consistent error display mechanism
+   - No retry logic for failed requests
+
+2. **Form Validation**
+   - No client-side validation matching backend requirements
+   - No display of backend validation errors
+   - No field-level error highlighting
+
+### API Integration Priority Matrix
+
+| API Endpoint | Implementation Priority | Complexity | Dependencies |
+|-------------|------------------------|------------|---------------|
+| `POST /api/v1/auth/token` | High | Medium | None - Authentication is foundational |
+| `GET /api/v1/devices` | High | Medium | Authentication |
+| `POST /api/v1/devices` | High | Medium | Authentication, GET devices |
+| `PUT /api/v1/devices/{device_id}` | Medium | Medium | Authentication, GET devices |
+| `DELETE /api/v1/devices/{device_id}` | Medium | Low | Authentication, GET devices |
+| `GET /api/stats` | Medium | Low | Authentication |
+| `GET /api/device-status-chart` | Medium | Medium | Authentication, Chart.js integration |
+| `POST /api/v1/chat` | Medium | High | Authentication |
+| WebSocket connections | Low | High | Authentication, WebSocket client library |
+
+### Implementation Recommendations
+
+1. **Authentication First**
+   - Implement login and token storage
+   - Create API client with authentication headers
+   - Add route protection
+
+2. **Core Data Display**
+   - Implement device list fetching and display
+   - Implement dashboard statistics and charts
+   - Implement basic operations list
+
+3. **Data Manipulation**
+   - Implement device add/edit/delete
+   - Implement settings management
+   - Implement chat functionality
+
+4. **Real-time Features**
+   - Implement WebSocket connections
+   - Add real-time updates for operations
+   - Add real-time chat functionality
+
+5. **Advanced Features**
+   - Implement bulk operations
+   - Add device-specific views (config, operations)
+   - Implement automation workflows
+
+---
+
+**2. Dashboard (`/`)**
+
+*   **Current State:** The dashboard page is static and does not reflect real-time data from the backend.
+*   **Identified Gaps & Required Actions:**
+    *   **Statistics:** The frontend needs to call the `GET /api/stats` endpoint to fetch and display the latest system and operational statistics.
+    *   **Charts:** The device status and operations timeline charts must be dynamically generated. This requires fetching data from `GET /api/device-status-chart` and `GET /api/operations-timeline` and using Chart.js to render the visualizations.
+
+**3. AI Chat (`/chat`)**
+
+*   **Current State:** A basic chat interface template exists but is not connected to the backend.
+*   **Identified Gaps & Required Actions:**
+    *   **Message Handling:** Implement JavaScript to capture user input from the chat box and send it to the `POST /api/v1/chat` endpoint.
+    *   **Displaying Responses:** The frontend must be able to receive the AI's response from the backend and display it in the chat window.
+    *   **Conversation History:** Implement logic to maintain and display the history of the current chat session.
+
+**4. Operations (`/operations`)**
+
+*   **Current State:** The operations page is a static template.
+*   **Identified Gaps & Required Actions:**
+    *   **Real-time Updates:** The frontend needs to establish a WebSocket connection to the `/ws/operations` endpoint to receive and display real-time updates on ongoing operations.
+    *   **Operation History:** Implement functionality to fetch and display a history of past operations by calling the `GET /api/v1/operations` endpoint.
+
+**5. Authentication (`/login`)**
+
+*   **Current State:** A login page exists, but the form submission is not handled.
+*   **Identified Gaps & Required Actions:**
+    *   **Login Logic:** The login form needs a JavaScript event handler to send the user's credentials to the `POST /api/v1/auth/token` endpoint.
+    *   **Token Management:** Upon successful login, the received access token must be stored securely in the browser (e.g., `localStorage`).
+    *   **Authenticated Requests:** The `apiCall` helper in `app.js` should be used for all subsequent requests to include the authentication token in the headers.
+
+**6. Settings (`/settings` & `/genai-settings`)**
+
+*   **Current State:** The settings pages are static templates.
+*   **Identified Gaps & Required Actions:**
+    *   **Load Settings:** The frontend needs to fetch the current application and GenAI settings from their respective endpoints (e.g., `GET /api/v1/settings`, `GET /api/v1/genai-settings`).
+    *   **Update Settings:** Implement forms that allow users to update settings and submit them to the corresponding `PUT` or `POST` endpoints.

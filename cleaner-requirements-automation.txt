@@ -1,0 +1,19 @@
+# Automation-specific dependencies
+fastapi==0.104.1
+sqlalchemy==2.0.23
+pydantic==2.5.0
+python-crontab==3.3.0
+
+# Project-specific dependencies (should be covered by the core and AI requirements)
+# You may install or update projects dependencies individually if needed.
+
+netmiko
+paramiko
+napalm
+scrapli
+ncclient
+pexpect
+textfsm
+ntc-templates
+genie
+pyats

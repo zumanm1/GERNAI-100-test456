@@ -1,72 +1,10 @@
 Product Requirements Document: Frontend-Backend Integration
 
-## Purpose & Scope
-
-This document outlines the necessary frontend development tasks to fully integrate with the existing backend API and create a dynamic, data-driven application. The scope encompasses identifying and bridging the gaps between static frontend templates and live backend services across all major application components including device management, dashboard analytics, AI chat functionality, operations monitoring, automation workflows, authentication systems, and configuration management. The document provides detailed field-level analysis, integration requirements, and implementation roadmap to transform the current static UI into a fully functional, real-time web application.
-
-## Stakeholders
-
-| Name | Role | Contact |
-|------|------|--------|
-| Product Manager | Project Owner & Requirements Definition | pm@company.com |
-| Frontend Developer | UI/UX Implementation & Integration | frontend@company.com |
-| Backend Developer | API Development & Maintenance | backend@company.com |
-| QA Engineer | Testing & Quality Assurance | qa@company.com |
-| DevOps Engineer | Deployment & Infrastructure | devops@company.com |
-| UI/UX Designer | User Interface Design & Experience | design@company.com |
-
-## Glossary
-
-| Term | Definition |
-|------|------------|
-| **JWT** | JSON Web Token - A compact, URL-safe means of representing claims to be transferred between two parties for authentication |
-| **CRUD** | Create, Read, Update, Delete - Basic operations for data management |
-| **WS** | WebSocket - A communication protocol providing full-duplex communication channels over a single TCP connection |
-| **API** | Application Programming Interface - Set of protocols and tools for building software applications |
-| **REST** | Representational State Transfer - Architectural style for designing networked applications |
-| **AJAX** | Asynchronous JavaScript and XML - Technique for creating interactive web applications |
-| **SPA** | Single Page Application - Web application that interacts with users by dynamically rewriting the current page |
-| **UI/UX** | User Interface/User Experience - The design and experience aspects of user interaction |
-| **GenAI** | Generative Artificial Intelligence - AI systems capable of generating human-like content |
-| **SSE** | Server-Sent Events - Standard allowing a web page to get updates from a server |
-| **CORS** | Cross-Origin Resource Sharing - Mechanism that allows restricted resources to be requested from another domain |
-
----
-
 **Objective:** This document outlines the necessary frontend development tasks to fully integrate with the existing backend API and create a dynamic, data-driven application. The focus is on identifying the work required to connect the static frontend templates to the live backend services.
 
 ---
 
-## Non-Functional Requirements
-
-### Performance
-- Ensure all API responses are cached appropriately.
-- Achieve page load times under 3 seconds.
-- Optimizations for high-traffic scenarios must be considered.
-
-### Accessibility (a11y)
-- All pages must be navigable by keyboard.
-- Ensure text alternatives for all non-text content.
-- Compliance with WCAG 2.1 AA standards.
-
-### Security
-- Incorporate OWASP best practices.
-- Regular security audits and penetration tests.
-- Ensure all sensitive data is transmitted over HTTPS.
-
-## Acceptance Criteria Checklist
-- [ ] All frontend components dynamically fetch and render backend data.
-- [ ] Implement user session management with JWT.
-- [ ] Ensure responsive design across all major devices.
-- [ ] Real-time data updates through WebSockets where applicable.
-- [ ] Comprehensive error handling and user feedback mechanisms.
-
-## Open Questions
-- How will legacy systems integrate with the new architecture? ❓
-- What is the plan for data migration from the current system? ❓
-- Are there any third-party dependencies that need special attention? ❓
-
-**Comprehensive Gap Analysis: Frontend Templates 6 Backend Endpoints**
+**Comprehensive Gap Analysis: Frontend Templates & Backend Endpoints**
 
 Below is a detailed mapping of every major frontend template (webpage) to its intended URL and backend route(s). For each, we analyze:
 - What the frontend currently does (static/dynamic, UI/UX, error handling)
@@ -80,17 +18,22 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 
 ### 1. Device Management Hub (`/devices`)
 - **Frontend Template:** `frontend/templates/devices/index.html`
-- **Backend Endpoints:** 
-  - `GET /api/v1/devices`
-  - `POST /api/v1/devices`
-  - `PUT /api/v1/devices/{device_id}`
-  - `DELETE /api/v1/devices/{device_id}`
-  - `POST /api/v1/devices/{device_id}/test-connectivity`
-  - `POST /api/v1/devices/{device_id}/backup-config`
-  - `GET /api/v1/devices/{device_id}/config`
-  - `GET /api/v1/devices/{device_id}/operations`
-  - `POST /api/v1/devices/bulk-operations/{operation}`
-  - `GET /api/v1/devices/statistics/overview`
+- **Backend Endpoints:**
+  * **Listing Devices**:
+    - `GET /api/v1/devices` - List all devices
+  * **Device Manipulation**:
+    - `POST /api/v1/devices` - Create a new device
+    - `PUT /api/v1/devices/{device_id}` - Update an existing device
+    - `DELETE /api/v1/devices/{device_id}` - Delete a device
+    - `POST /api/v1/devices/{device_id}/test-connectivity` - Test device connectivity
+    - `POST /api/v1/devices/{device_id}/backup-config` - Backup device configuration
+  * **Device Details**:
+    - `GET /api/v1/devices/{device_id}/config` - Get device configuration
+    - `GET /api/v1/devices/{device_id}/operations` - View device operations
+  * **Bulk Operations**:
+    - `POST /api/v1/devices/bulk-operations/{operation}` - Perform bulk operations
+  * **Statistics**:
+    - `GET /api/v1/devices/statistics/overview` - Overview of device statistics
 
 #### Current Frontend State:
 - Static table, hardcoded rows, no dynamic data population.
@@ -114,11 +57,13 @@ Below is a detailed mapping of every major frontend template (webpage) to its in
 
 ### 2. Dashboard (`/dashboard` or `/`)
 - **Frontend Template:** `frontend/templates/dashboard/index.html`
-- **Backend Endpoints:** 
-  - `GET /api/stats` (dashboard statistics)
-  - `GET /api/device-status-chart` (device status chart data)
-  - `GET /api/operations-timeline` (operations timeline data)
-  - `GET /api/v1/dashboard/overview` (extended metrics)
+- **Backend Endpoints:**
+  * **Statistics & Metrics**:
+    - `GET /api/stats` - Dashboard statistics overview
+    - `GET /api/v1/dashboard/overview` - Extended metrics and system information
+  * **Chart Data**:
+    - `GET /api/device-status-chart` - Device status chart data for visualization
+    - `GET /api/operations-timeline` - Operations timeline chart data
 
 #### Current Frontend State:
 - Static UI, charts and metrics are hardcoded or missing.
@@ -310,7 +255,7 @@ This section provides a granular, element-by-element mapping and analysis for ev
 ### 1. Device Management Hub (`/devices`)
 #### Tabs
 - **All Devices Tab**: Should display a table populated by `GET /api/v1/devices`. Each row must map backend device fields (`id`, `name`, `ip_address`, `model`, `status`, etc.) to table columns. Missing: dynamic population, pagination, and search/filtering.
-- **Real Devices/Dummy Devices Tabs**: Should filter devices by type (e.g., real vs. dummy). Backend does not expose a direct filter; frontend must filter after fetching all devices, or backend should support query params (gap).
+- **Real Devices/Dummy Devices Tabs**: Should filter devices by type (e.g., real vs. dummy). **Implementation Approach**: Since backend does not currently expose filtering query parameters, frontend must implement client-side filtering after fetching all devices from `GET /api/v1/devices`. Future enhancement: add `?type=real` or `?type=dummy` query parameter support to the backend API for better performance.
 - **Add Device Tab**: Contains a form. On submit, should POST to `/api/v1/devices`. Required fields: `name`, `ip_address`, `model`, `metadata`. UI must validate input and handle backend validation errors (400).
 
 #### Table Actions

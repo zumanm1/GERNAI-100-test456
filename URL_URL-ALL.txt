@@ -59,7 +59,7 @@ Route: /settings -> URL: http://localhost:8001/settings -> ✅ ACCESSIBLE (HTTP 
     <meta charset="UTF-8">
     <meta name="vi...
 
-=== BACKEND ROUTES (Port 5000) ===
+=== BACKEND ROUTES (Port 8002) ===
 Route: / -> URL: http://localhost:5000/ -> ✅ ACCESSIBLE (HTTP 200)
   Content Preview: <!DOCTYPE html>
 <html lang="en" class="h-full">
@@ -148,7 +148,7 @@ Route: /api/chat/status -> URL: http://localhost:5000/api/chat/status -> ✅ ACC
   Content Preview: {"message":"Chat service status","status":"active"}...
 
 === ADDITIONAL API ENDPOINTS ===
-Port 5000 additional endpoints:
+Port 8002 additional endpoints:
 Route: /docs -> URL: http://localhost:5000/docs -> ✅ ACCESSIBLE (HTTP 200)
   Content Preview: 
     <!DOCTYPE html>
@@ -204,13 +204,13 @@ Total routes tested: 66
 
 === SAMPLE CONTENT EXAMPLES ===
 
---- Port 5000 Health Check ---
+--- Port 8002 Health Check ---
 {"status":"healthy","service":"network-automation-api"}
---- Port 5000 API Devices ---
+--- Port 8002 API Devices ---
 [{"id":"8ba6b997-a221-4e38-9ca7-aacb737f5b99","name":"Firewall FW01","ip_address":"192.168.1.254","model":"Cisco ASA 5516-X","status":"warning","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"has_config_backup":false,"metadata":{},"created_at":"2025-08-02T05:52:02.606715","updated_at":"2025-08-02T05:52:02.606716"},{"id":"9b0bdb7a-6960-4a05-860c-37f3c672a1ce","name":"Router R15","ip_address":"192.168.1.15","model":"Cisco ISR 4331","status":"online","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"has_config_backup":false,"metadata":{},"created_at":"2025-08-02T05:52:02.606682","updated_at":"2025-08-02T05:52:02.606686"},{"id":"91b57087-9f7a-414e-bc91-b22d6dbf8fbb","name":"Router R16","ip_address":"192.168.1.16","model":"Cisco ASR 1001-X","status":"online","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"has_config_backup":false,"metadata":{},"created_at":"2025-08-02T05:52:02.606695","updated_at":"2025-08-02T05:52:02.606696"},{"id":"58afcf94-b6ad-48a9-88c1-0b83a64aa618","name":"Router R17","ip_address":"192.168.1.17","model":"Cisco ISR 4321","status":"offline","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"has_config_backup":false,"metadata":{},"created_at":"2025-08-02T05:52:02.606703","updated_at":"2025-08-02T05:52:02.606703"},{"id":"d874a96a-a811-403d-abd3-2476657eb806","name":"Switch SW01","ip_address":"192.168.1.101","model":"Cisco Catalyst 9300","status":"online","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"has_config_backup":false,"metadata":{},"created_at":"2025-08-02T05:52:02.606709","updated_at":"2025-08-02T05:52:02.606710"}]
---- Port 5000 API Stats ---
+--- Port 8002 API Stats ---
 {"devices":{"total":15,"online":12,"offline":2,"warning":1,"online_percentage":80.0},"operations":{"total_today":45,"successful":42,"failed":3,"success_rate":93.3},"system":{"cpu_usage":45.2,"memory_usage":62.1,"disk_usage":78.5}}
---- Port 5000 Dashboard HTML ---
+--- Port 8002 Dashboard HTML ---
 <!DOCTYPE html>
 <html lang="en" class="h-full">
 <head>
@@ -223,7 +223,7 @@ Total routes tested: 66
 {% block title %}Login - Network Automation Platform{% endblock %}
 
 === FINAL SUMMARY REPORT ===
-Application running on ports: 5000 (Backend), 8001 (Frontend)
+Application running on ports: 8002 (Backend), 8001 (Frontend)
 Frontend Server: Network Automation Frontend
 Backend Server: Network Automation Test Backend (Simplified)
 Total URLs Discovered and Tested: 66

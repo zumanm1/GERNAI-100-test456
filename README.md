@@ -15,8 +15,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/zumanm1/GENAI-99-test123.git
-    cd GENAI-99-test123
+    git clone https://github.com/zumanm1/GERNAI-100-test456.git
+    cd GERNAI-100-test456
     ```
 
 2.  **Configure your environment**:
@@ -33,21 +33,33 @@ These instructions will get you a copy of the project up and running on your loc
 
 After the initial setup, you can run the frontend and backend servers.
 
-1.  **Activate the virtual environment**:
+1.  **Use the automated startup script**:
     ```bash
-    source venv/bin/activate
+    ./start_services.sh
+    ```
+    This script will automatically:
+    - Clear any processes using ports 8002, 8001, 8000, 3000, 3001
+    - Start the backend server on port 8002
+    - Start the frontend server on port 8001
+
+2.  **Manual startup (alternative)**:
+    
+    **Activate the virtual environment**:
+    ```bash
+    source venv_run/bin/activate
     ```
 
-2.  **Start the Frontend Server**:
+    **Start the Backend Server**:
     ```bash
-    python frontend/server.py
+    python3 main.py
+    ```
+    The backend will be available at [http://localhost:8002](http://localhost:8002).
+
+    **Start the Frontend Server** (in a new terminal):
+    ```bash
+    python3 frontend/server.py
     ```
     The frontend will be available at [http://localhost:8001](http://localhost:8001).
-
-3.  **Start the Backend Server** (in a new terminal):
-    ```bash
-    uvicorn main:app --host 0.0.0.0 --port 8002
-    ```
     The backend API will be available at [http://localhost:8002/docs](http://localhost:8002/docs).
 
 

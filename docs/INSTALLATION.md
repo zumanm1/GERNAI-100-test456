@@ -211,7 +211,7 @@ curl http://localhost:8002/health
 # Check frontend
 curl http://localhost:8001
 
-# Check alternative backend (port 5000)
+# Check alternative backend (port 8002)
 curl http://localhost:5000/health
 ```
 

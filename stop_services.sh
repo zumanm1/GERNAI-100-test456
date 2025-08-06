@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # NETWORK PORTS
-BACKEND_PORT=5000
+BACKEND_PORT=8002
 FRONTEND_PORT=8001
 
 # FUNCTION TO CLEAN PORTS AND PROCESSES
@@ -13,8 +13,9 @@ clean_services() {
     lsof -ti:${FRONTEND_PORT} | xargs kill -9 || true
     
     # Kill specific Python processes
-    pkill -f "python backend/app.py" || true
-    pkill -f "python frontend/server.py" || true
+    pkill -f "python.*main.py" || true
+    pkill -f "python.*frontend/server.py" || true
+    pkill -f "python.*backend/app.py" || true
     
     echo "Services stopped and ports cleared."
 }

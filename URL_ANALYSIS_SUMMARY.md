@@ -8,7 +8,7 @@
 
 ## Port Distribution
 - **Frontend (Port 8001)**: 12 accessible routes
-- **Backend (Port 5000)**: 25 accessible routes
+- **Backend (Port 8002)**: 25 accessible routes
 
 ## Content Types Found
 
@@ -46,7 +46,7 @@
 ❌ **DIFFERENT** (serving different content per port):
 - `/` (Root path)
   - **Port 8001**: Jinja2 template for login page
-  - **Port 5000**: Direct HTML dashboard page
+  - **Port 8002**: Direct HTML dashboard page
 
 ## Route Categories
 
@@ -55,7 +55,7 @@
 - `/dashboard` - Main dashboard view  
 - `/device-management` - Device management interface
 
-### 2. Backend-Only Routes (Port 5000)
+### 2. Backend-Only Routes (Port 8002)
 - `/login` - Login page
 - `/genai-settings` - GenAI configuration
 - `/health` - Health check endpoint
@@ -79,7 +79,7 @@
    - Backend (5000): Serves both API responses and direct HTML pages
 
 2. **API Architecture**:
-   - All API endpoints are served exclusively on port 5000
+   - All API endpoints are served exclusively on port 8002
    - Well-structured RESTful API with proper JSON responses
    - Comprehensive coverage of CRUD operations for devices, operations, settings
 
@@ -95,7 +95,7 @@
 
 5. **Functional Separation**:
    - Port 8001: Frontend serving (templates, static content)
-   - Port 5000: Backend serving (APIs, test pages, documentation)
+   - Port 8002: Backend serving (APIs, test pages, documentation)
 
 ## Content Quality Assessment
 - ✅ All JSON APIs return valid, well-structured data

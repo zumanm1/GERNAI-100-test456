@@ -1,6 +1,6 @@
 # Network Automation Application - Complete URL List
 
-## Backend API (Port 5000)
+## Backend API (Port 8002)
 
 ### Main Application Routes
 - GET `/` - Dashboard page

@@ -1,21 +1,19 @@
-nohup: ignoring input
-Starting FastAPI application on port 5000
-Health endpoint available at: http://localhost:5000/health
-INFO:     Started server process [419419]
+/home/test/Documents/GENAI-100-test456-optiplex/GERNAI-100-test456/main.py:31: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+INFO:     Started server process [3619430]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:5000 (Press CTRL+C to quit)
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
 Initializing LLM providers...
 OpenAI API key not found or is a placeholder. Skipping.
 Groq API key not found or is a placeholder. Skipping.
 OpenRouter API key not found or is a placeholder. Skipping.
-INFO:     127.0.0.1:52334 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:46158 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:46164 - "GET /favicon.ico HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:46164 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58880 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58880 - "GET /favicon.ico HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:58880 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:44918 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:40834 - "GET / HTTP/1.1" 200 OK
-INFO:     127.0.0.1:40858 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     None:0 - "GET / HTTP/1.1" 200 OK
+INFO:     None:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51444 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51460 - "GET /favicon.ico HTTP/1.1" 404 Not Found

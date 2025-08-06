@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # NETWORK PORTS
-BACKEND_PORT=5000
+BACKEND_PORT=8002
 FRONTEND_PORT=8001
 ADDITIONAL_PORTS=(8000 8002 3000 3001)
 
@@ -34,9 +34,9 @@ clear_ports() {
 # FUNCTION TO START BACKEND
 start_backend() {
     echo "Starting the FastAPI backend..."
-    cd /home/test/Documents/GENAI-99-test123
-    source venv/bin/activate
-    nohup python backend/app.py > backend.log 2>&1 &
+    cd /home/test/Documents/GENAI-100-test456-optiplex/GERNAI-100-test456
+    source venv_run/bin/activate
+    nohup python3 main.py > backend.log 2>&1 &
     sleep 5
     
     # Check if backend started successfully
@@ -50,9 +50,9 @@ start_backend() {
 # FUNCTION TO START FRONTEND
 start_frontend() {
     echo "Starting the frontend server..."
-    cd /home/test/Documents/GENAI-99-test123
-    source venv/bin/activate
-    nohup python frontend/server.py > frontend.log 2>&1 &
+    cd /home/test/Documents/GENAI-100-test456-optiplex/GERNAI-100-test456
+    source venv_run/bin/activate
+    nohup python3 frontend/server.py > frontend.log 2>&1 &
     sleep 3
     
     # Check if frontend started successfully

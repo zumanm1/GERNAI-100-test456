@@ -152,7 +152,7 @@ Content Preview:
     <!-- needed for adaptive design -->
     <meta ch...
 
---- / (Port 5000) ---
+--- / (Port 8002) ---
 URL: http://localhost:5000/
 Content-Type: application/json
 Content Length: 18350 characters
@@ -164,7 +164,7 @@ Content: <!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Network Automation P...
 
---- /login (Port 5000) ---
+--- /login (Port 8002) ---
 URL: http://localhost:5000/login
 Content-Type: application/json
 Content Length: 11468 characters
@@ -176,7 +176,7 @@ Content: <!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Network Automation Platf...
 
---- /devices (Port 5000) ---
+--- /devices (Port 8002) ---
 URL: http://localhost:5000/devices
 Content-Type: application/json
 Content Length: 8798 characters
@@ -189,7 +189,7 @@ Content: <!DOCTYPE html>
     <title>Device Management Hub</title>
   ...
 
---- /automation (Port 5000) ---
+--- /automation (Port 8002) ---
 URL: http://localhost:5000/automation
 Content-Type: application/json
 Content Length: 24838 characters
@@ -201,7 +201,7 @@ Content: <!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GenAI Network Automation Hub</ti...
 
---- /operations (Port 5000) ---
+--- /operations (Port 8002) ---
 URL: http://localhost:5000/operations
 Content-Type: application/json
 Content Length: 24395 characters
@@ -214,7 +214,7 @@ Content:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GenAI Network Operations</title...
 
---- /settings (Port 5000) ---
+--- /settings (Port 8002) ---
 URL: http://localhost:5000/settings
 Content-Type: application/json
 Content Length: 56537 characters
@@ -226,7 +226,7 @@ Content: <!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GenAI Settings & Configuration -...
 
---- /chat (Port 5000) ---
+--- /chat (Port 8002) ---
 URL: http://localhost:5000/chat
 Content-Type: application/json
 Content Length: 9282 characters
@@ -238,7 +238,7 @@ Content: <!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Chat - GenAI Network Automati...
 
---- /genai-settings (Port 5000) ---
+--- /genai-settings (Port 8002) ---
 URL: http://localhost:5000/genai-settings
 Content-Type: application/json
 Content Length: 8338 characters
@@ -250,91 +250,91 @@ Content: <!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GenAI Settings - Network Automat...
 
---- /health (Port 5000) ---
+--- /health (Port 8002) ---
 URL: http://localhost:5000/health
 Content-Type: application/json
 Content Length: 55 characters
 Type: JSON API Response
 Content: {"status":"healthy","service":"network-automation-api"}...
 
---- /api/stats (Port 5000) ---
+--- /api/stats (Port 8002) ---
 URL: http://localhost:5000/api/stats
 Content-Type: application/json
 Content Length: 230 characters
 Type: JSON API Response
 Content: {"devices":{"total":15,"online":12,"offline":2,"warning":1,"online_percentage":80.0},"operations":{"total_today":45,"successful":42,"failed":3,"success_rate":93.3},"system":{"cpu_usage":45.2,"memory_u...
 
---- /api/v1/devices/ (Port 5000) ---
+--- /api/v1/devices/ (Port 8002) ---
 URL: http://localhost:5000/api/v1/devices/
 Content-Type: application/json
 Content Length: 1588 characters
 Type: JSON API Response
 Content: [{"id":"8ba6b997-a221-4e38-9ca7-aacb737f5b99","name":"Firewall FW01","ip_address":"192.168.1.254","model":"Cisco ASA 5516-X","status":"warning","uptime":"0d 0h","uptime_seconds":0,"last_seen":null,"ha...
 
---- /api/v1/operations/ (Port 5000) ---
+--- /api/v1/operations/ (Port 8002) ---
 URL: http://localhost:5000/api/v1/operations/
 Content-Type: application/json
 Content Length: 2 characters
 Type: JSON API Response
 Content: []...
 
---- /api/v1/genai-settings/genai/llm (Port 5000) ---
+--- /api/v1/genai-settings/genai/llm (Port 8002) ---
 URL: http://localhost:5000/api/v1/genai-settings/genai/llm
 Content-Type: application/json
 Content Length: 258 characters
 Type: JSON API Response
 Content: {"primary_llm":"gpt-4","temperature":0.7,"max_tokens":2000,"top_p":1.0,"fallback_llm":"gpt-3.5-turbo","retry_attempts":3,"timeout_settings":120,"specialized_models":{"network_config_llm":"gpt-4","trou...
 
---- /api/v1/genai-settings/genai/rag (Port 5000) ---
+--- /api/v1/genai-settings/genai/rag (Port 8002) ---
 URL: http://localhost:5000/api/v1/genai-settings/genai/rag
 Content-Type: application/json
 Content Length: 187 characters
 Type: JSON API Response
 Content: {"cisco_documentation_enabled":true,"cisco_doc_version":"Latest","update_frequency":"Weekly","similarity_threshold":0.7,"max_retrieved_chunks":5,"chunk_size":1024,"overlap_percentage":20}...
 
---- /api/v1/genai-settings/genai/agentic (Port 5000) ---
+--- /api/v1/genai-settings/genai/agentic (Port 8002) ---
 URL: http://localhost:5000/api/v1/genai-settings/genai/agentic
 Content-Type: application/json
 Content Length: 301 characters
 Type: JSON API Response
 Content: {"planning_agent_enabled":true,"reasoning_depth":"Intermediate","step_validation":true,"execution_agent_enabled":true,"auto_execution_enabled":false,"safety_checks":"Syntax + Logic","rollback_capabili...
 
---- /api/v1/settings/ (Port 5000) ---
+--- /api/v1/settings/ (Port 8002) ---
 URL: http://localhost:5000/api/v1/settings/
 Content-Type: application/json
 Content Length: 106 characters
 Type: JSON API Response
 Content: {"message":"Application settings","llm_provider":"openai","model":"gpt-3.5-turbo","api_keys_configured":0}...
 
---- /api/device-status-chart (Port 5000) ---
+--- /api/device-status-chart (Port 8002) ---
 URL: http://localhost:5000/api/device-status-chart
 Content-Type: application/json
 Content Length: 107 characters
 Type: JSON API Response
 Content: {"labels":["Online","Offline","Warning"],"data":[12,2,1],"backgroundColor":["#22c55e","#ef4444","#f59e0b"]}...
 
---- /api/operations-timeline (Port 5000) ---
+--- /api/operations-timeline (Port 8002) ---
 URL: http://localhost:5000/api/operations-timeline
 Content-Type: application/json
 Content Length: 96 characters
 Type: JSON API Response
 Content: {"labels":["07/28","07/29","07/30","07/31","08/01","08/02","08/03"],"data":[5,8,11,11,14,17,17]}...
 
---- /api/network-operations/status (Port 5000) ---
+--- /api/network-operations/status (Port 8002) ---
 URL: http://localhost:5000/api/network-operations/status
 Content-Type: application/json
 Content Length: 65 characters
 Type: JSON API Response
 Content: {"message":"Network operations service status","status":"active"}...
 
---- /api/chat/status (Port 5000) ---
+--- /api/chat/status (Port 8002) ---
 URL: http://localhost:5000/api/chat/status
 Content-Type: application/json
 Content Length: 51 characters
 Type: JSON API Response
 Content: {"message":"Chat service status","status":"active"}...
 
---- /docs (Port 5000) ---
+--- /docs (Port 8002) ---
 URL: http://localhost:5000/docs
 Content-Type: text/html; charset=utf-8
 Content Length: 962 characters
@@ -347,14 +347,14 @@ Content Preview:
     <head>
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger...
 
---- /openapi.json (Port 5000) ---
+--- /openapi.json (Port 8002) ---
 URL: http://localhost:5000/openapi.json
 Content-Type: application/json
 Content Length: 72671 characters
 Type: JSON API Response
 Content: {"openapi":"3.1.0","info":{"title":"Network Automation Application","description":"A GENAI-powered network automation application for Cisco devices","version":"1.0.0"},"paths":{"/api/v1/auth/login":{"...
 
---- /redoc (Port 5000) ---
+--- /redoc (Port 8002) ---
 URL: http://localhost:5000/redoc
 Content-Type: text/html; charset=utf-8
 Content Length: 914 characters
@@ -373,7 +373,7 @@ Content Preview:
 
 --- Comparing: / ---
 ❌ DIFFERENT CONTENT
-Port 5000: <!DOCTYPE html>
+Port 8002: <!DOCTYPE html>
 <html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
@@ -401,7 +401,7 @@ Port 8001: {% extends "base.html" %}
 
 --- Comparing: /docs ---
 ❌ DIFFERENT CONTENT
-Port 5000: 
+Port 8002: 
     <!DOCTYPE html>
     <html>
     <head>
@@ -414,12 +414,12 @@ Port 8001:
 
 --- Comparing: /openapi.json ---
 ❌ DIFFERENT CONTENT
-Port 5000: {"openapi":"3.1.0","info":{"title":"Network Automation Application","description":"A GENAI-powered n...
+Port 8002: {"openapi":"3.1.0","info":{"title":"Network Automation Application","description":"A GENAI-powered n...
 Port 8001: {"openapi":"3.1.0","info":{"title":"Network Automation Frontend","description":"Frontend server for ...
 
 --- Comparing: /redoc ---
 ❌ DIFFERENT CONTENT
-Port 5000: 
+Port 8002: 
     <!DOCTYPE html>
     <html>
     <head>

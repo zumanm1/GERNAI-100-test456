@@ -27,6 +27,35 @@ def get_settings(db: Session = Depends(get_db)):
         log_api_request("GET", "/settings/", status.HTTP_500_INTERNAL_SERVER_ERROR)
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
 
+@router.get("/core")
+def get_core_settings(db: Session = Depends(get_db)):
+    """Get core application settings for frontend"""
+    try:
+        from ..database.models import SystemConfig
+        # Get core settings from SystemConfig
+        core_settings = db.query(SystemConfig).filter(SystemConfig.config_key == "core_settings").first()
+        
+        if core_settings:
+            settings_data = core_settings.config_value
+        else:
+            # Default settings if none exist
+            settings_data = {
+                "default_chat_provider": "groq",
+                "default_config_provider": "groq", 
+                "default_analysis_provider": "openrouter"
+            }
+        
+        log_api_request("GET", "/settings/core", status.HTTP_200_OK)
+        return settings_data
+        
+    except Exception as e:
+        log_api_request("GET", "/settings/core", status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return {
+            "default_chat_provider": "groq",
+            "default_config_provider": "groq", 
+            "default_analysis_provider": "openrouter"
+        }
+
 @router.get("/settings/genai/llm")
 def get_llm_settings(db: Session = Depends(get_db)):
     """Get current LLM settings"""

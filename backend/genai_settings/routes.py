@@ -9,10 +9,46 @@ import logging
 from ..database.database import get_db
 from ..database.models import SystemConfig, User
 from ..utils.logger import log_api_request
+from . import service
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
+
+# Pydantic models for GenAI Settings
+class GenAISettings(BaseModel):
+    llm: dict
+    rag: dict
+    agentic: dict
+    graph_rag: dict
+    embeddings: dict
+    core: dict
+    api_keys: dict
+
+@router.get("/genai/settings", response_model=GenAISettings)
+async def get_all_genai_settings(db: Session = Depends(get_db)):
+    """Get all GenAI settings"""
+    try:
+        settings = service.get_genai_settings(db)
+        settings_dict = {config.config_key: config.config_value for config in settings}
+        return GenAISettings(**settings_dict)
+    except Exception as e:
+        logger.error(f"Error getting all GenAI settings: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.put("/genai/settings")
+async def update_all_genai_settings(
+    settings: GenAISettings,
+    db: Session = Depends(get_db)
+):
+    """Update all GenAI settings"""
+    try:
+        service.update_genai_settings(db, settings.dict())
+        return {"message": "GenAI settings updated successfully"}
+    except Exception as e:
+        logger.error(f"Error updating all GenAI settings: {e}")
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
 
 # Pydantic models for GenAI Settings
 class LLMSettingsRequest(BaseModel):

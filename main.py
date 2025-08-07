@@ -16,7 +16,8 @@ from dotenv import load_dotenv
 import uuid
 
 # Import AI components
-from backend.ai.llm_manager import llm_manager, LLMSettings
+from backend.ai.llm_manager import llm_manager, LLMSettings, initialize_llm_manager
+from backend.database.database import get_db
 
 # Load environment variables from .env file
 load_dotenv()
@@ -29,43 +30,67 @@ app = FastAPI(
 )
 
 @app.on_event("startup")
-def startup_event():
+async def startup_event():
     """
-    Initializes LLM providers on application startup.
+    Initializes LLM providers on application startup using database configuration.
     """
-    print("Initializing LLM providers...")
+    print("Initializing application services...")
     
-    # Configure OpenAI
-    openai_api_key = os.getenv("OPENAI_API_KEY")
-    if openai_api_key and openai_api_key != "your_openai_api_key":
-        print("Found OpenAI API key. Configuring provider...")
-        openai_settings = LLMSettings(provider="openai", api_key=openai_api_key, model="gpt-4")
-        llm_manager.add_provider("openai", openai_settings)
-    else:
-        print("OpenAI API key not found or is a placeholder. Skipping.")
+    try:
+        # Get database session
+        db = next(get_db())
+        
+        # Initialize LLM manager with database session
+        print("Initializing LLM manager with database session...")
+        initialize_llm_manager(db)
+        
+        print("✓ LLM manager initialized successfully")
+        
+        # Initialize AI providers from environment as fallback
+        print("Setting up fallback AI providers from environment...")
+        
+        # Configure OpenAI
+        openai_api_key = os.getenv("OPENAI_API_KEY")
+        if openai_api_key and openai_api_key not in ["your_openai_api_key", "xxxxxxxxxxxxxxx"]:
+            print("✓ OpenAI API key found in environment")
+        else:
+            print("⚠ OpenAI API key not found in environment")
 
-    # Configure Groq
-    groq_api_key = os.getenv("GROQ_API_KEY")
-    if groq_api_key and groq_api_key != "your_groq_api_key":
-        print("Found Groq API key. Configuring provider...")
-        groq_settings = LLMSettings(provider="groq", api_key=groq_api_key, model="llama3-70b-8192")
-        llm_manager.add_provider("groq", groq_settings)
-    else:
-        print("Groq API key not found or is a placeholder. Skipping.")
+        # Configure Anthropic
+        anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
+        if anthropic_api_key and anthropic_api_key not in ["your_anthropic_api_key", "xxxxxxxxxxxxxxx"]:
+            print("✓ Anthropic API key found in environment")
+        else:
+            print("⚠ Anthropic API key not found in environment")
 
-    # Configure OpenRouter
-    openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
-    if openrouter_api_key and openrouter_api_key != "your_openrouter_api_key":
-        print("Found OpenRouter API key. Configuring provider...")
-        openrouter_settings = LLMSettings(provider="openrouter", api_key=openrouter_api_key, model="openai/gpt-4")
-        llm_manager.add_provider("openrouter", openrouter_settings)
-    else:
-        print("OpenRouter API key not found or is a placeholder. Skipping.")
+        # Configure Groq
+        groq_api_key = os.getenv("GROQ_API_KEY")
+        if groq_api_key and groq_api_key not in ["your_groq_api_key", "xxxxxxxxxxxxxxx"]:
+            print("✓ Groq API key found in environment")
+        else:
+            print("⚠ Groq API key not found in environment")
+
+        # Configure OpenRouter
+        openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
+        if openrouter_api_key and openrouter_api_key not in ["your_openrouter_api_key", "xxxxxxxxxxxxxxx"]:
+            print("✓ OpenRouter API key found in environment")
+        else:
+            print("⚠ OpenRouter API key not found in environment")
+        
+        print("🚀 Application startup completed successfully")
+        
+    except Exception as e:
+        print(f"❌ Error during startup: {e}")
+        print("⚠ Application will continue with limited functionality")
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8001"],  # Allow the frontend origin
+    allow_origins=[
+        "http://localhost:8001",  # Frontend server
+        "http://127.0.0.1:8001",  # Alternative frontend
+        "*"  # Allow all origins for development
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -162,11 +187,11 @@ async def operations(request: Request):
 
 @app.get("/settings", response_class=HTMLResponse)
 async def settings(request: Request):
-    return templates.TemplateResponse("settings/index.html", {"request": request})
+    return templates.TemplateResponse("settings/modern.html", {"request": request})
 
 @app.get("/chat", response_class=HTMLResponse)
 async def chat(request: Request):
-    return templates.TemplateResponse("chat/index.html", {"request": request})
+    return templates.TemplateResponse("chat/modern.html", {"request": request})
 
 @app.get("/genai-settings", response_class=HTMLResponse)
 async def genai_settings(request: Request):

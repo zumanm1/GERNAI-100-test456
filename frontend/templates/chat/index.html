@@ -83,8 +83,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-    // Add any specific JS for the new chat interface here
-    console.log('Chat interface loaded');
-</script>
+<script src="{{ url_for('static', path='/js/chat.js') }}"></script>
 {% endblock %}

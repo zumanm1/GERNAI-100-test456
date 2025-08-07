@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect
 from sqlalchemy.orm import Session
 from backend.database.database import get_db
-from backend.ai.ai_service import ai_service
+from backend.ai.ai_service import AIService
 from backend.database.models import AIConversation, User
 from pydantic import BaseModel
 from typing import List, Optional, Dict
@@ -15,9 +15,50 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
+ai_service = AIService()
+
 class ChatMessage(BaseModel):
     message: str
     session_id: Optional[str] = None
+
+@router.websocket("/chat/ws")
+async def websocket_endpoint(websocket: WebSocket, db: Session = Depends(get_db)):
+    session_id = str(uuid.uuid4())
+    await chat_manager.connect(websocket, session_id)
+
+    try:
+        while True:
+            data = await websocket.receive_text()
+            message_data = json.loads(data)
+
+            if message_data.get('type') == 'chat_message':
+                user_message = message_data.get('content', '')
+                session_id = message_data.get('session_id', session_id)
+
+                # Get AI response
+                ai_response = ai_service.get_response(
+                    user_message=user_message,
+                    session_id=session_id,
+                    user_id="default_user",  # TODO: Implement proper authentication
+                    db=db
+                )
+
+                # Send AI response to the client
+                response_message = {
+                    'type': 'chat_response',
+                    'session_id': session_id,
+                    'role': 'assistant',
+                    'content': ai_response,
+                    'timestamp': datetime.now().isoformat()
+                }
+                await chat_manager.send_personal_message(response_message, session_id)
+
+    except WebSocketDisconnect:
+        chat_manager.disconnect(session_id)
+        logger.info("WebSocket connection closed")
+    except Exception as e:
+        logger.error(f"WebSocket error: {e}")
+        chat_manager.disconnect(session_id)
 
 class ChatResponse(BaseModel):
     response: str
@@ -95,16 +136,18 @@ async def get_chat_history(
             AIConversation.user_id == user_id
         ).order_by(AIConversation.created_at.asc()).limit(limit).all()
         
-        return [
-            {
-                'id': conv.id,
+        # Convert to simple dictionaries to avoid recursion issues
+        result = []
+        for conv in conversations:
+            result.append({
+                'id': str(conv.id),
                 'role': conv.message_role,
                 'content': conv.message_content,
                 'timestamp': conv.created_at.isoformat(),
-                'metadata': conv.metadata
-            }
-            for conv in conversations
-        ]
+                'metadata': conv.conversation_metadata or {}
+            })
+        
+        return result
         
     except Exception as e:
         logger.error(f"Error getting chat history: {e}")
@@ -250,61 +293,6 @@ async def validate_configuration(
         logger.error(f"Error validating configuration: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-# WebSocket endpoint for real-time chat
-@router.websocket("/chat/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    session_id = str(uuid.uuid4())
-    await chat_manager.connect(websocket, session_id)
-    
-    try:
-        while True:
-            data = await websocket.receive_text()
-            message_data = json.loads(data)
-
-            # Handle different message types following unified schema
-            if message_data.get('type') == 'chat_message':
-                # Echo back the user message with unified schema
-                user_message = {
-                    'type': 'message_received',
-                    'session_id': session_id,
-                    'role': 'user',
-                    'content': message_data.get('content', ''),
-                    'timestamp': datetime.now().isoformat()
-                }
-                await chat_manager.send_personal_message(user_message, session_id)
-                
-            elif message_data.get('type') == 'join_session':
-                # Handle user joining a specific chat session
-                requested_session_id = message_data.get('session_id')
-                if requested_session_id:
-                    session_id = requested_session_id
-                    
-                join_message = {
-                    'type': 'session_joined',
-                    'session_id': session_id,
-                    'role': 'system',
-                    'content': f'Joined session {session_id}',
-                    'timestamp': datetime.now().isoformat()
-                }
-                await chat_manager.send_personal_message(join_message, session_id)
-                
-            elif message_data.get('type') == 'ping':
-                # Handle ping/pong for connection health
-                pong_message = {
-                    'type': 'pong',
-                    'session_id': session_id,
-                    'role': 'system',
-                    'content': 'pong',
-                    'timestamp': datetime.now().isoformat()
-                }
-                await chat_manager.send_personal_message(pong_message, session_id)
-
-    except WebSocketDisconnect:
-        chat_manager.disconnect(session_id)
-        logger.info("WebSocket connection closed")
-    except Exception as e:
-        logger.error(f"WebSocket error: {e}")
-        chat_manager.disconnect(session_id)
 
 async def broadcast_message(message: dict):
     """Broadcast message to all active WebSocket connections using unified schema"""

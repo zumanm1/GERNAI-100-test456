@@ -1,0 +1,484 @@
+nohup: ignoring input
+/home/vmuser/GENAI-113-DED/GERNAI-100-test456/main.py:32: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+🔑 Initializing OpenAI client with key: sk-proj-wK...
+✅ OpenAI client initialized successfully
+⚠️ Anthropic API key not found or is placeholder
+🔑 Initializing Groq client with key: gsk_PomOwq...
+✅ Groq client initialized successfully
+🔑 Initializing OpenRouter client with key: sk-or-v1-6...
+✅ OpenRouter client initialized successfully
+🔑 Initializing OpenAI client with key: sk-proj-wK...
+✅ OpenAI client initialized successfully
+⚠️ Anthropic API key not found or is placeholder
+🔑 Initializing Groq client with key: gsk_PomOwq...
+✅ Groq client initialized successfully
+🔑 Initializing OpenRouter client with key: sk-or-v1-6...
+✅ OpenRouter client initialized successfully
+INFO:     Started server process [1637347]
+INFO:     Waiting for application startup.
+Initializing application services...
+Initializing LLM manager with database session...
+2025-08-07 15:53:50,857 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:53:50,861 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:53:50,861 INFO sqlalchemy.engine.Engine [generated in 0.00029s] ('api_keys', 1, 0)
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+✓ LLM manager initialized successfully
+Setting up fallback AI providers from environment...
+✓ OpenAI API key found in environment
+⚠ Anthropic API key not found in environment
+✓ Groq API key found in environment
+✓ OpenRouter API key found in environment
+🚀 Application startup completed successfully
+INFO:     127.0.0.1:42068 - "GET /health HTTP/1.1" 200 OK
+2025-08-07 15:54:08,271 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:54:08,273 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:54:08,273 INFO sqlalchemy.engine.Engine [generated in 0.00046s] ('877d244c-3ecf-4ac8-a38e-6d7152b3d19a', 'default_user', 'tesla_modern_test', 'user', 'Hello! Test the new modern interface', '2025-08-07 15:54:08.270147')
+2025-08-07 15:54:08,275 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:54:08,303 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:54:08,305 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:54:08,305 INFO sqlalchemy.engine.Engine [generated in 0.00025s] ('877d244c-3ecf-4ac8-a38e-6d7152b3d19a',)
+2025-08-07 15:54:08,306 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:54:08,306 INFO sqlalchemy.engine.Engine [cached since 17.45s ago] ('core_settings', 1, 0)
+2025-08-07 15:54:08,308 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:54:08,309 INFO sqlalchemy.engine.Engine [generated in 0.00027s] ('tesla_modern_test', 'default_user', 10, 0)
+2025-08-07 15:54:08,311 INFO sqlalchemy.engine.Engine SELECT network_devices.id AS network_devices_id, network_devices.name AS network_devices_name, network_devices.ip_address AS network_devices_ip_address, network_devices.model AS network_devices_model, network_devices.status AS network_devices_status, network_devices.uptime_seconds AS network_devices_uptime_seconds, network_devices.last_seen AS network_devices_last_seen, network_devices.config_backup AS network_devices_config_backup, network_devices.device_metadata AS network_devices_device_metadata, network_devices.owner_id AS network_devices_owner_id, network_devices.created_at AS network_devices_created_at, network_devices.updated_at AS network_devices_updated_at 
+FROM network_devices 
+WHERE network_devices.owner_id = ?
+2025-08-07 15:54:08,312 INFO sqlalchemy.engine.Engine [generated in 0.00039s] ('default_user',)
+2025-08-07 15:54:08,314 INFO sqlalchemy.engine.Engine SELECT operations_log.id AS operations_log_id, operations_log.user_id AS operations_log_user_id, operations_log.device_id AS operations_log_device_id, operations_log.operation_type AS operations_log_operation_type, operations_log.status AS operations_log_status, operations_log.command AS operations_log_command, operations_log.result AS operations_log_result, operations_log.error_message AS operations_log_error_message, operations_log.execution_time_ms AS operations_log_execution_time_ms, operations_log.created_at AS operations_log_created_at 
+FROM operations_log 
+WHERE operations_log.user_id = ? ORDER BY operations_log.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:54:08,315 INFO sqlalchemy.engine.Engine [generated in 0.00031s] ('default_user', 5, 0)
+🔍 Debug: provider_name=groq, openai_client_exists=True, groq_client_exists=True
+🤖 Making Groq API call with 3 messages
+✅ Groq response received: Hello! I'm happy to help you with Cisco network automation. It looks like we're starting from a blan...
+2025-08-07 15:54:09,628 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:54:09,628 INFO sqlalchemy.engine.Engine [cached since 1.356s ago] ('9fbd6da3-4ecb-47af-a286-ebe74c3cf691', 'default_user', 'tesla_modern_test', 'user', 'Hello! Test the new modern interface', '2025-08-07 15:54:09.628081')
+2025-08-07 15:54:09,629 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:54:09,645 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:54:09,645 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:54:09,645 INFO sqlalchemy.engine.Engine [cached since 1.341s ago] ('9fbd6da3-4ecb-47af-a286-ebe74c3cf691',)
+2025-08-07 15:54:09,646 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:54:09,647 INFO sqlalchemy.engine.Engine [cached since 1.374s ago] ('0c6d3975-3d7e-4030-8b18-867c2b35ba63', 'default_user', 'tesla_modern_test', 'assistant', 'Hello! I\'m happy to help you with Cisco network automation. It looks like we\'re starting from a blank slate, with no devices currently in our syste ... (190 characters truncated) ... ? Would you like to add a new device, configure an existing one, or explore automation options? Let me know, and I\'ll guide you through the process!', '2025-08-07 15:54:09.646434')
+2025-08-07 15:54:09,647 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:54:09,659 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:54:09,660 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:54:09,660 INFO sqlalchemy.engine.Engine [cached since 1.355s ago] ('0c6d3975-3d7e-4030-8b18-867c2b35ba63',)
+2025-08-07 15:54:09,661 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:54:09,661 INFO sqlalchemy.engine.Engine [cached since 1.388s ago] ('d6e5baa5-91f8-412d-8858-c1845eb232de', 'default_user', 'tesla_modern_test', 'assistant', 'Hello! I\'m happy to help you with Cisco network automation. It looks like we\'re starting from a blank slate, with no devices currently in our syste ... (190 characters truncated) ... ? Would you like to add a new device, configure an existing one, or explore automation options? Let me know, and I\'ll guide you through the process!', '2025-08-07 15:54:09.660650')
+2025-08-07 15:54:09,661 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:54:09,671 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:54:09,671 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:54:09,671 INFO sqlalchemy.engine.Engine [cached since 1.367s ago] ('d6e5baa5-91f8-412d-8858-c1845eb232de',)
+2025-08-07 15:54:09,672 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:54360 - "POST /api/v1/chat/send HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54364 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:48296 - "GET /health HTTP/1.1" 200 OK
+2025-08-07 15:55:00,470 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:00,471 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:55:00,471 INFO sqlalchemy.engine.Engine [cached since 69.61s ago] ('core_settings', 1, 0)
+2025-08-07 15:55:00,471 - api - INFO - API Request: GET /settings/core - Status: 200 - User: None
+2025-08-07 15:55:00,472 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:48310 - "GET /api/v1/settings/core HTTP/1.1" 200 OK
+2025-08-07 15:55:01,477 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:01,477 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:55:01,478 INFO sqlalchemy.engine.Engine [cached since 53.21s ago] ('24489616-491f-4300-9e5e-70e7268cb01d', 'default_user', 'tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'user', 'Hello! Please help me configure OSPF area 0 on a Cisco router with router ID 10.0.0.1', '2025-08-07 15:55:01.477005')
+2025-08-07 15:55:01,478 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:55:01,494 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:01,494 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:55:01,495 INFO sqlalchemy.engine.Engine [cached since 53.19s ago] ('24489616-491f-4300-9e5e-70e7268cb01d',)
+2025-08-07 15:55:01,495 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:55:01,495 INFO sqlalchemy.engine.Engine [cached since 70.63s ago] ('core_settings', 1, 0)
+2025-08-07 15:55:01,496 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:55:01,496 INFO sqlalchemy.engine.Engine [cached since 53.19s ago] ('tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'default_user', 10, 0)
+2025-08-07 15:55:01,497 INFO sqlalchemy.engine.Engine SELECT network_devices.id AS network_devices_id, network_devices.name AS network_devices_name, network_devices.ip_address AS network_devices_ip_address, network_devices.model AS network_devices_model, network_devices.status AS network_devices_status, network_devices.uptime_seconds AS network_devices_uptime_seconds, network_devices.last_seen AS network_devices_last_seen, network_devices.config_backup AS network_devices_config_backup, network_devices.device_metadata AS network_devices_device_metadata, network_devices.owner_id AS network_devices_owner_id, network_devices.created_at AS network_devices_created_at, network_devices.updated_at AS network_devices_updated_at 
+FROM network_devices 
+WHERE network_devices.owner_id = ?
+2025-08-07 15:55:01,497 INFO sqlalchemy.engine.Engine [cached since 53.19s ago] ('default_user',)
+2025-08-07 15:55:01,498 INFO sqlalchemy.engine.Engine SELECT operations_log.id AS operations_log_id, operations_log.user_id AS operations_log_user_id, operations_log.device_id AS operations_log_device_id, operations_log.operation_type AS operations_log_operation_type, operations_log.status AS operations_log_status, operations_log.command AS operations_log_command, operations_log.result AS operations_log_result, operations_log.error_message AS operations_log_error_message, operations_log.execution_time_ms AS operations_log_execution_time_ms, operations_log.created_at AS operations_log_created_at 
+FROM operations_log 
+WHERE operations_log.user_id = ? ORDER BY operations_log.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:55:01,498 INFO sqlalchemy.engine.Engine [cached since 53.18s ago] ('default_user', 5, 0)
+🔍 Debug: provider_name=groq, openai_client_exists=True, groq_client_exists=True
+🤖 Making Groq API call with 3 messages
+✅ Groq response received: To configure OSPF area 0 on a Cisco router with router ID 10.0.0.1, I would suggest the following st...
+2025-08-07 15:55:03,529 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:55:03,529 INFO sqlalchemy.engine.Engine [cached since 55.26s ago] ('2b7d8ba6-7964-4351-93bc-ff091142a659', 'default_user', 'tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'user', 'Hello! Please help me configure OSPF area 0 on a Cisco router with router ID 10.0.0.1', '2025-08-07 15:55:03.528728')
+2025-08-07 15:55:03,530 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:55:03,539 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:03,539 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:55:03,539 INFO sqlalchemy.engine.Engine [cached since 55.23s ago] ('2b7d8ba6-7964-4351-93bc-ff091142a659',)
+2025-08-07 15:55:03,540 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:55:03,540 INFO sqlalchemy.engine.Engine [cached since 55.27s ago] ('3cc6cde9-e108-469c-8566-1cdf0888ba3b', 'default_user', 'tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'assistant', 'To configure OSPF area 0 on a Cisco router with router ID 10.0.0.1, I would suggest the following steps:\n\n**Note:** These are the configuration ste ... (987 characters truncated) ...  using the `show ip ospf` command to ensure that OSPF is enabled and the router ID is set correctly.\n\nWould you like me to help with anything else?', '2025-08-07 15:55:03.539852')
+2025-08-07 15:55:03,540 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:55:03,548 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:03,549 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:55:03,549 INFO sqlalchemy.engine.Engine [cached since 55.24s ago] ('3cc6cde9-e108-469c-8566-1cdf0888ba3b',)
+2025-08-07 15:55:03,550 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:55:03,550 INFO sqlalchemy.engine.Engine [cached since 55.28s ago] ('96935aad-8d07-498e-9483-1e4173620213', 'default_user', 'tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'assistant', 'To configure OSPF area 0 on a Cisco router with router ID 10.0.0.1, I would suggest the following steps:\n\n**Note:** These are the configuration ste ... (987 characters truncated) ...  using the `show ip ospf` command to ensure that OSPF is enabled and the router ID is set correctly.\n\nWould you like me to help with anything else?', '2025-08-07 15:55:03.549691')
+2025-08-07 15:55:03,550 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:55:03,558 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:03,559 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:55:03,559 INFO sqlalchemy.engine.Engine [cached since 55.25s ago] ('96935aad-8d07-498e-9483-1e4173620213',)
+2025-08-07 15:55:03,560 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:48322 - "POST /api/v1/chat/send HTTP/1.1" 200 OK
+2025-08-07 15:55:04,565 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:04,565 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:55:04,565 INFO sqlalchemy.engine.Engine [cached since 56.29s ago] ('4afcb96c-7795-4c72-a088-77c272484f73', 'default_user', 'tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'user', 'What about configuring the network statement for 192.168.1.0/24?', '2025-08-07 15:55:04.564716')
+2025-08-07 15:55:04,566 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:55:04,578 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:04,578 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:55:04,578 INFO sqlalchemy.engine.Engine [cached since 56.27s ago] ('4afcb96c-7795-4c72-a088-77c272484f73',)
+2025-08-07 15:55:04,579 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:55:04,579 INFO sqlalchemy.engine.Engine [cached since 73.72s ago] ('core_settings', 1, 0)
+2025-08-07 15:55:04,580 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:55:04,580 INFO sqlalchemy.engine.Engine [cached since 56.27s ago] ('tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'default_user', 10, 0)
+2025-08-07 15:55:04,580 INFO sqlalchemy.engine.Engine SELECT network_devices.id AS network_devices_id, network_devices.name AS network_devices_name, network_devices.ip_address AS network_devices_ip_address, network_devices.model AS network_devices_model, network_devices.status AS network_devices_status, network_devices.uptime_seconds AS network_devices_uptime_seconds, network_devices.last_seen AS network_devices_last_seen, network_devices.config_backup AS network_devices_config_backup, network_devices.device_metadata AS network_devices_device_metadata, network_devices.owner_id AS network_devices_owner_id, network_devices.created_at AS network_devices_created_at, network_devices.updated_at AS network_devices_updated_at 
+FROM network_devices 
+WHERE network_devices.owner_id = ?
+2025-08-07 15:55:04,581 INFO sqlalchemy.engine.Engine [cached since 56.27s ago] ('default_user',)
+2025-08-07 15:55:04,581 INFO sqlalchemy.engine.Engine SELECT operations_log.id AS operations_log_id, operations_log.user_id AS operations_log_user_id, operations_log.device_id AS operations_log_device_id, operations_log.operation_type AS operations_log_operation_type, operations_log.status AS operations_log_status, operations_log.command AS operations_log_command, operations_log.result AS operations_log_result, operations_log.error_message AS operations_log_error_message, operations_log.execution_time_ms AS operations_log_execution_time_ms, operations_log.created_at AS operations_log_created_at 
+FROM operations_log 
+WHERE operations_log.user_id = ? ORDER BY operations_log.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:55:04,581 INFO sqlalchemy.engine.Engine [cached since 56.27s ago] ('default_user', 5, 0)
+🔍 Debug: provider_name=groq, openai_client_exists=True, groq_client_exists=True
+🤖 Making Groq API call with 7 messages
+✅ Groq response received: To configure the network statement for 192.168.1.0/24, you would use the following command:
+
+```
+Rou...
+2025-08-07 15:55:05,747 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:55:05,748 INFO sqlalchemy.engine.Engine [cached since 57.48s ago] ('f58112ff-5f37-4f39-b5d5-f45c594297f9', 'default_user', 'tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'user', 'What about configuring the network statement for 192.168.1.0/24?', '2025-08-07 15:55:05.747359')
+2025-08-07 15:55:05,748 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:55:05,760 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:05,760 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:55:05,760 INFO sqlalchemy.engine.Engine [cached since 57.46s ago] ('f58112ff-5f37-4f39-b5d5-f45c594297f9',)
+2025-08-07 15:55:05,761 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:55:05,761 INFO sqlalchemy.engine.Engine [cached since 57.49s ago] ('48da5dac-ac98-4e01-b7f1-cd4db8437e54', 'default_user', 'tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'assistant', 'To configure the network statement for 192.168.1.0/24, you would use the following command:\n\n```\nRouter(config-router)# network 192.168.1.0 0.0.0. ... (607 characters truncated) ...  using the `show ip ospf` command to ensure that OSPF is enabled and the router ID is set correctly.\n\nWould you like me to help with anything else?', '2025-08-07 15:55:05.760897')
+2025-08-07 15:55:05,761 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:55:05,770 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:05,770 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:55:05,770 INFO sqlalchemy.engine.Engine [cached since 57.47s ago] ('48da5dac-ac98-4e01-b7f1-cd4db8437e54',)
+2025-08-07 15:55:05,771 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:55:05,771 INFO sqlalchemy.engine.Engine [cached since 57.5s ago] ('dd4336e2-d2e4-4a19-9fb4-b75e4c4de85f', 'default_user', 'tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'assistant', 'To configure the network statement for 192.168.1.0/24, you would use the following command:\n\n```\nRouter(config-router)# network 192.168.1.0 0.0.0. ... (607 characters truncated) ...  using the `show ip ospf` command to ensure that OSPF is enabled and the router ID is set correctly.\n\nWould you like me to help with anything else?', '2025-08-07 15:55:05.771170')
+2025-08-07 15:55:05,771 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:55:05,780 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:05,780 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:55:05,780 INFO sqlalchemy.engine.Engine [cached since 57.48s ago] ('dd4336e2-d2e4-4a19-9fb4-b75e4c4de85f',)
+2025-08-07 15:55:05,781 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:48324 - "POST /api/v1/chat/send HTTP/1.1" 200 OK
+2025-08-07 15:55:06,787 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:55:06,788 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at ASC
+ LIMIT ? OFFSET ?
+2025-08-07 15:55:06,788 INFO sqlalchemy.engine.Engine [generated in 0.00020s] ('tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe', 'default_user', 50, 0)
+2025-08-07 15:55:06,789 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:48340 - "GET /api/v1/chat/history/tesla_ui_test_b71e4ea7-4d8b-4d1a-ae7e-cded50deedfe HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60816 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:48346 - "POST /api/v1/genai/config/generate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46102 - "GET /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38702 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:34412 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:36980 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:59818 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:42148 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:38070 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:34368 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:52832 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:54576 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:50750 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:35912 - "GET /api/v1/status HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39926 - "GET /api/chat/status HTTP/1.1" 200 OK
+2025-08-07 16:05:53,299 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:05:53,299 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:05:53,299 INFO sqlalchemy.engine.Engine [cached since 705s ago] ('c86a34d8-d696-4015-8e6d-2d75e7a2a3e8', 'default_user', '1e37ce08-24eb-4527-aa16-52820453f778', 'user', 'Hello, can you help me with network configuration?', '2025-08-07 16:05:53.298662')
+2025-08-07 16:05:53,300 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:05:53,314 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:05:53,315 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:05:53,315 INFO sqlalchemy.engine.Engine [cached since 705s ago] ('c86a34d8-d696-4015-8e6d-2d75e7a2a3e8',)
+2025-08-07 16:05:53,316 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 16:05:53,320 INFO sqlalchemy.engine.Engine [cached since 722.5s ago] ('core_settings', 1, 0)
+2025-08-07 16:05:53,320 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 16:05:53,320 INFO sqlalchemy.engine.Engine [cached since 705s ago] ('1e37ce08-24eb-4527-aa16-52820453f778', 'default_user', 10, 0)
+2025-08-07 16:05:53,321 INFO sqlalchemy.engine.Engine SELECT network_devices.id AS network_devices_id, network_devices.name AS network_devices_name, network_devices.ip_address AS network_devices_ip_address, network_devices.model AS network_devices_model, network_devices.status AS network_devices_status, network_devices.uptime_seconds AS network_devices_uptime_seconds, network_devices.last_seen AS network_devices_last_seen, network_devices.config_backup AS network_devices_config_backup, network_devices.device_metadata AS network_devices_device_metadata, network_devices.owner_id AS network_devices_owner_id, network_devices.created_at AS network_devices_created_at, network_devices.updated_at AS network_devices_updated_at 
+FROM network_devices 
+WHERE network_devices.owner_id = ?
+2025-08-07 16:05:53,321 INFO sqlalchemy.engine.Engine [cached since 705s ago] ('default_user',)
+2025-08-07 16:05:53,322 INFO sqlalchemy.engine.Engine SELECT operations_log.id AS operations_log_id, operations_log.user_id AS operations_log_user_id, operations_log.device_id AS operations_log_device_id, operations_log.operation_type AS operations_log_operation_type, operations_log.status AS operations_log_status, operations_log.command AS operations_log_command, operations_log.result AS operations_log_result, operations_log.error_message AS operations_log_error_message, operations_log.execution_time_ms AS operations_log_execution_time_ms, operations_log.created_at AS operations_log_created_at 
+FROM operations_log 
+WHERE operations_log.user_id = ? ORDER BY operations_log.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 16:05:53,322 INFO sqlalchemy.engine.Engine [cached since 705s ago] ('default_user', 5, 0)
+🔍 Debug: provider_name=groq, openai_client_exists=True, groq_client_exists=True
+🤖 Making Groq API call with 3 messages
+✅ Groq response received: I'd be happy to help with network configuration. Before we get started, I just want to confirm that ...
+2025-08-07 16:05:54,698 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:05:54,698 INFO sqlalchemy.engine.Engine [cached since 706.4s ago] ('b33ccfed-e5d2-4d43-b1f8-78b4a86b1ffe', 'default_user', '1e37ce08-24eb-4527-aa16-52820453f778', 'user', 'Hello, can you help me with network configuration?', '2025-08-07 16:05:54.697992')
+2025-08-07 16:05:54,699 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:05:54,710 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:05:54,710 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:05:54,710 INFO sqlalchemy.engine.Engine [cached since 706.4s ago] ('b33ccfed-e5d2-4d43-b1f8-78b4a86b1ffe',)
+2025-08-07 16:05:54,711 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:05:54,711 INFO sqlalchemy.engine.Engine [cached since 706.4s ago] ('b47c3251-501c-4cfe-8be5-f7270c035c43', 'default_user', '1e37ce08-24eb-4527-aa16-52820453f778', 'assistant', "I'd be happy to help with network configuration. Before we get started, I just want to confirm that I'm working with an empty slate - I don't see any ... (479 characters truncated) ... perations will require manual confirmation before I can execute them. But I can definitely provide guidance and walk you through the necessary steps.", '2025-08-07 16:05:54.710865')
+2025-08-07 16:05:54,711 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:05:54,719 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:05:54,720 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:05:54,720 INFO sqlalchemy.engine.Engine [cached since 706.4s ago] ('b47c3251-501c-4cfe-8be5-f7270c035c43',)
+2025-08-07 16:05:54,720 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:05:54,720 INFO sqlalchemy.engine.Engine [cached since 706.4s ago] ('aea106c6-8485-4492-bc5b-5210d9b59fce', 'default_user', '1e37ce08-24eb-4527-aa16-52820453f778', 'assistant', "I'd be happy to help with network configuration. Before we get started, I just want to confirm that I'm working with an empty slate - I don't see any ... (479 characters truncated) ... perations will require manual confirmation before I can execute them. But I can definitely provide guidance and walk you through the necessary steps.", '2025-08-07 16:05:54.720488')
+2025-08-07 16:05:54,721 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:05:54,735 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:05:54,735 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:05:54,735 INFO sqlalchemy.engine.Engine [cached since 706.4s ago] ('aea106c6-8485-4492-bc5b-5210d9b59fce',)
+2025-08-07 16:05:54,736 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:42458 - "POST /api/v1/chat/send HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42862 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:36020 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:38536 - "OPTIONS /api/v1/chat/send HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:38536 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:60996 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:32774 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32780 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39212 - "OPTIONS /api/v1/settings HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:39212 - "OPTIONS /api/v1/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:44428 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:57178 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:57632 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+2025-08-07 16:09:17,203 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:09:17,203 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:09:17,203 INFO sqlalchemy.engine.Engine [cached since 908.9s ago] ('b720cae7-ec51-4081-a720-07f80d29c76a', 'default_user', '9eea5aa1-381f-4013-acad-6c2034783480', 'user', 'test', '2025-08-07 16:09:17.202572')
+2025-08-07 16:09:17,204 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:09:17,231 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:09:17,232 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:09:17,232 INFO sqlalchemy.engine.Engine [cached since 908.9s ago] ('b720cae7-ec51-4081-a720-07f80d29c76a',)
+2025-08-07 16:09:17,233 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 16:09:17,233 INFO sqlalchemy.engine.Engine [cached since 926.4s ago] ('core_settings', 1, 0)
+2025-08-07 16:09:17,234 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 16:09:17,234 INFO sqlalchemy.engine.Engine [cached since 908.9s ago] ('9eea5aa1-381f-4013-acad-6c2034783480', 'default_user', 10, 0)
+2025-08-07 16:09:17,234 INFO sqlalchemy.engine.Engine SELECT network_devices.id AS network_devices_id, network_devices.name AS network_devices_name, network_devices.ip_address AS network_devices_ip_address, network_devices.model AS network_devices_model, network_devices.status AS network_devices_status, network_devices.uptime_seconds AS network_devices_uptime_seconds, network_devices.last_seen AS network_devices_last_seen, network_devices.config_backup AS network_devices_config_backup, network_devices.device_metadata AS network_devices_device_metadata, network_devices.owner_id AS network_devices_owner_id, network_devices.created_at AS network_devices_created_at, network_devices.updated_at AS network_devices_updated_at 
+FROM network_devices 
+WHERE network_devices.owner_id = ?
+2025-08-07 16:09:17,235 INFO sqlalchemy.engine.Engine [cached since 908.9s ago] ('default_user',)
+2025-08-07 16:09:17,235 INFO sqlalchemy.engine.Engine SELECT operations_log.id AS operations_log_id, operations_log.user_id AS operations_log_user_id, operations_log.device_id AS operations_log_device_id, operations_log.operation_type AS operations_log_operation_type, operations_log.status AS operations_log_status, operations_log.command AS operations_log_command, operations_log.result AS operations_log_result, operations_log.error_message AS operations_log_error_message, operations_log.execution_time_ms AS operations_log_execution_time_ms, operations_log.created_at AS operations_log_created_at 
+FROM operations_log 
+WHERE operations_log.user_id = ? ORDER BY operations_log.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 16:09:17,235 INFO sqlalchemy.engine.Engine [cached since 908.9s ago] ('default_user', 5, 0)
+🔍 Debug: provider_name=groq, openai_client_exists=True, groq_client_exists=True
+🤖 Making Groq API call with 3 messages
+✅ Groq response received: It seems like you're just testing to see if I'm working properly. That's perfectly fine! I'm happy t...
+2025-08-07 16:09:18,434 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:09:18,434 INFO sqlalchemy.engine.Engine [cached since 910.2s ago] ('b8e1133e-0287-4986-92fc-be65355f64cc', 'default_user', '9eea5aa1-381f-4013-acad-6c2034783480', 'user', 'test', '2025-08-07 16:09:18.433493')
+2025-08-07 16:09:18,434 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:09:18,449 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:09:18,449 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:09:18,449 INFO sqlalchemy.engine.Engine [cached since 910.1s ago] ('b8e1133e-0287-4986-92fc-be65355f64cc',)
+2025-08-07 16:09:18,450 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:09:18,450 INFO sqlalchemy.engine.Engine [cached since 910.2s ago] ('93347328-0666-43ab-bf3d-65e8bec99370', 'default_user', '9eea5aa1-381f-4013-acad-6c2034783480', 'assistant', "It seems like you're just testing to see if I'm working properly. That's perfectly fine! I'm happy to report that I'm functioning as expected and rea ... (451 characters truncated) ...  I can guide you through the process, but please note that actual device operations will require manual confirmation for safety and security reasons.", '2025-08-07 16:09:18.450158')
+2025-08-07 16:09:18,451 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:09:18,462 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:09:18,462 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:09:18,462 INFO sqlalchemy.engine.Engine [cached since 910.2s ago] ('93347328-0666-43ab-bf3d-65e8bec99370',)
+2025-08-07 16:09:18,463 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:09:18,463 INFO sqlalchemy.engine.Engine [cached since 910.2s ago] ('541d925c-2908-4991-99b2-a6a61459c8ab', 'default_user', '9eea5aa1-381f-4013-acad-6c2034783480', 'assistant', "It seems like you're just testing to see if I'm working properly. That's perfectly fine! I'm happy to report that I'm functioning as expected and rea ... (451 characters truncated) ...  I can guide you through the process, but please note that actual device operations will require manual confirmation for safety and security reasons.", '2025-08-07 16:09:18.463199')
+2025-08-07 16:09:18,464 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:09:18,474 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:09:18,475 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:09:18,475 INFO sqlalchemy.engine.Engine [cached since 910.2s ago] ('541d925c-2908-4991-99b2-a6a61459c8ab',)
+2025-08-07 16:09:18,476 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:57654 - "POST /api/v1/chat/send HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52936 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:51304 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:52146 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+2025-08-07 16:10:48,464 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:10:48,464 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:10:48,464 INFO sqlalchemy.engine.Engine [cached since 1000s ago] ('8e2c8963-cb34-4522-8cdf-2685aaea51b1', 'default_user', '27839c35-aa75-4511-b5a9-4b0c3c468819', 'user', 'Hello, test message', '2025-08-07 16:10:48.463775')
+2025-08-07 16:10:48,465 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:10:48,497 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:10:48,498 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:10:48,498 INFO sqlalchemy.engine.Engine [cached since 1000s ago] ('8e2c8963-cb34-4522-8cdf-2685aaea51b1',)
+2025-08-07 16:10:48,499 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 16:10:48,499 INFO sqlalchemy.engine.Engine [cached since 1018s ago] ('core_settings', 1, 0)
+2025-08-07 16:10:48,500 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 16:10:48,500 INFO sqlalchemy.engine.Engine [cached since 1000s ago] ('27839c35-aa75-4511-b5a9-4b0c3c468819', 'default_user', 10, 0)
+2025-08-07 16:10:48,501 INFO sqlalchemy.engine.Engine SELECT network_devices.id AS network_devices_id, network_devices.name AS network_devices_name, network_devices.ip_address AS network_devices_ip_address, network_devices.model AS network_devices_model, network_devices.status AS network_devices_status, network_devices.uptime_seconds AS network_devices_uptime_seconds, network_devices.last_seen AS network_devices_last_seen, network_devices.config_backup AS network_devices_config_backup, network_devices.device_metadata AS network_devices_device_metadata, network_devices.owner_id AS network_devices_owner_id, network_devices.created_at AS network_devices_created_at, network_devices.updated_at AS network_devices_updated_at 
+FROM network_devices 
+WHERE network_devices.owner_id = ?
+2025-08-07 16:10:48,501 INFO sqlalchemy.engine.Engine [cached since 1000s ago] ('default_user',)
+2025-08-07 16:10:48,502 INFO sqlalchemy.engine.Engine SELECT operations_log.id AS operations_log_id, operations_log.user_id AS operations_log_user_id, operations_log.device_id AS operations_log_device_id, operations_log.operation_type AS operations_log_operation_type, operations_log.status AS operations_log_status, operations_log.command AS operations_log_command, operations_log.result AS operations_log_result, operations_log.error_message AS operations_log_error_message, operations_log.execution_time_ms AS operations_log_execution_time_ms, operations_log.created_at AS operations_log_created_at 
+FROM operations_log 
+WHERE operations_log.user_id = ? ORDER BY operations_log.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 16:10:48,502 INFO sqlalchemy.engine.Engine [cached since 1000s ago] ('default_user', 5, 0)
+🔍 Debug: provider_name=groq, openai_client_exists=True, groq_client_exists=True
+🤖 Making Groq API call with 3 messages
+✅ Groq response received: Hello! I'm a GENAI network assistant specialized in Cisco network automation. I'm here to help with ...
+2025-08-07 16:10:49,483 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:10:49,483 INFO sqlalchemy.engine.Engine [cached since 1001s ago] ('89f34149-52b8-4152-999a-7959053ea0e5', 'default_user', '27839c35-aa75-4511-b5a9-4b0c3c468819', 'user', 'Hello, test message', '2025-08-07 16:10:49.482513')
+2025-08-07 16:10:49,483 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:10:49,493 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:10:49,493 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:10:49,493 INFO sqlalchemy.engine.Engine [cached since 1001s ago] ('89f34149-52b8-4152-999a-7959053ea0e5',)
+2025-08-07 16:10:49,494 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:10:49,494 INFO sqlalchemy.engine.Engine [cached since 1001s ago] ('4b2e0909-d5ba-4827-89d3-4d2c9c68b125', 'default_user', '27839c35-aa75-4511-b5a9-4b0c3c468819', 'assistant', "Hello! I'm a GENAI network assistant specialized in Cisco network automation. I'm here to help with network configuration, troubleshooting, and autom ... (47 characters truncated) ... a blank slate, with no devices currently in our system context.\n\nWhat can I assist you with today? Do you have a specific task or question in mind?", '2025-08-07 16:10:49.494032')
+2025-08-07 16:10:49,495 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:10:49,506 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:10:49,507 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:10:49,507 INFO sqlalchemy.engine.Engine [cached since 1001s ago] ('4b2e0909-d5ba-4827-89d3-4d2c9c68b125',)
+2025-08-07 16:10:49,507 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 16:10:49,507 INFO sqlalchemy.engine.Engine [cached since 1001s ago] ('2cd1110b-720d-43ba-b972-199c89ce3b73', 'default_user', '27839c35-aa75-4511-b5a9-4b0c3c468819', 'assistant', "Hello! I'm a GENAI network assistant specialized in Cisco network automation. I'm here to help with network configuration, troubleshooting, and autom ... (47 characters truncated) ... a blank slate, with no devices currently in our system context.\n\nWhat can I assist you with today? Do you have a specific task or question in mind?", '2025-08-07 16:10:49.507521')
+2025-08-07 16:10:49,508 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 16:10:49,519 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 16:10:49,520 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 16:10:49,520 INFO sqlalchemy.engine.Engine [cached since 1001s ago] ('2cd1110b-720d-43ba-b972-199c89ce3b73',)
+2025-08-07 16:10:49,521 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:51408 - "POST /api/v1/chat/send HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48790 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:50058 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:45080 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:34890 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:37042 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:49738 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:34452 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:45078 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:60992 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:50586 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:53018 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:43562 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:41840 - "GET /api/chat/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54156 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:58122 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     172.16.39.30:60188 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59468 - "GET /api/chat/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59478 - "OPTIONS /api/chat/status HTTP/1.1" 400 Bad Request
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1637347]

@@ -31,3 +31,8 @@
 2025-08-03 16:30:48,989 - api - INFO - API Request: GET /settings/ - Status: 200 - User: None
 2025-08-03 16:42:54,271 - api - INFO - API Request: GET /settings/ - Status: 200 - User: None
 2025-08-03 16:42:54,720 - api - INFO - API Request: GET /settings/ - Status: 200 - User: None
+2025-08-07 15:40:02,678 - api - INFO - API Request: GET /settings/core - Status: 200 - User: None
+2025-08-07 15:41:13,566 - api - INFO - API Request: GET /settings/core - Status: 200 - User: None
+2025-08-07 15:55:00,471 - api - INFO - API Request: GET /settings/core - Status: 200 - User: None
+2025-08-07 17:47:45,914 - api - INFO - API Request: GET /settings/ - Status: 200 - User: None
+2025-08-07 17:49:56,401 - api - INFO - API Request: GET /settings/ - Status: 200 - User: None

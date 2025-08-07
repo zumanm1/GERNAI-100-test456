@@ -34,8 +34,8 @@ clear_ports() {
 # FUNCTION TO START BACKEND
 start_backend() {
     echo "Starting the FastAPI backend..."
-    cd /home/test/Documents/GENAI-100-test456-optiplex/GERNAI-100-test456
-    source venv_run/bin/activate
+    cd /home/vmuser/GENAI-113-DED/GERNAI-100-test456
+    source venv/bin/activate
     nohup python3 main.py > backend.log 2>&1 &
     sleep 5
     
@@ -50,8 +50,8 @@ start_backend() {
 # FUNCTION TO START FRONTEND
 start_frontend() {
     echo "Starting the frontend server..."
-    cd /home/test/Documents/GENAI-100-test456-optiplex/GERNAI-100-test456
-    source venv_run/bin/activate
+    cd /home/vmuser/GENAI-113-DED/GERNAI-100-test456
+    source venv/bin/activate
     nohup python3 frontend/server.py > frontend.log 2>&1 &
     sleep 3
     

@@ -52,9 +52,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-// JavaScript for handling tab navigation or loading initial settings
-// This script can fetch settings from the API and populate each tab with existing configurations
-</script>
+<script src="{{ url_for('static', path='/js/settings.js') }}"></script>
 {% endblock %}
 

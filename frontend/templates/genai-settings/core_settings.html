@@ -1,3 +1,168 @@
-<!-- Placeholder for Core settings -->
-<p>Core settings will be displayed here.</p>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Core GenAI Settings</h5>
+        <p class="card-text text-muted">Configure the core settings for GenAI functionality.</p>
+        
+        <form id="coreSettingsForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="defaultChatProvider" class="form-label">Default Chat Provider</label>
+                        <select class="form-select" id="defaultChatProvider" name="default_chat_provider">
+                            <option value="openai">OpenAI</option>
+                            <option value="anthropic">Anthropic</option>
+                            <option value="groq">Groq</option>
+                            <option value="openrouter">OpenRouter</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="responseTimeout" class="form-label">Response Timeout (seconds)</label>
+                        <input type="number" class="form-control" id="responseTimeout" name="response_timeout" min="10" max="600" step="10">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="concurrentRequests" class="form-label">Concurrent Requests</label>
+                        <input type="number" class="form-control" id="concurrentRequests" name="concurrent_requests" min="1" max="20">
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="cacheDuration" class="form-label">Cache Duration (seconds)</label>
+                        <input type="number" class="form-control" id="cacheDuration" name="cache_duration" min="300" max="86400" step="300">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="cacheEnabled" name="cache_enabled">
+                        <label class="form-check-label" for="cacheEnabled">
+                            Enable Response Caching
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="logAllOperations" name="log_all_operations">
+                        <label class="form-check-label" for="logAllOperations">
+                            Log All Operations
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary" id="saveCoreSettings">
+                    <i data-lucide="save" class="me-2"></i>
+                    Save Core Settings
+                </button>
+                <button type="button" class="btn btn-secondary" id="loadCoreSettings">
+                    <i data-lucide="refresh-cw" class="me-2"></i>
+                    Reset to Defaults
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+// Load core settings when the tab is activated or page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadCoreSettings();
+    
+    // Also load when core tab is clicked
+    const coreTab = document.getElementById('core-tab');
+    if (coreTab) {
+        coreTab.addEventListener('click', loadCoreSettings);
+    }
+});
+
+function loadCoreSettings() {
+    fetch('http://localhost:8002/api/v1/genai-settings/genai/core')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('defaultChatProvider').value = data.default_chat_provider || 'openai';
+            document.getElementById('responseTimeout').value = data.response_timeout || 120;
+            document.getElementById('concurrentRequests').value = data.concurrent_requests || 5;
+            document.getElementById('cacheDuration').value = data.cache_duration || 3600;
+            document.getElementById('cacheEnabled').checked = data.cache_enabled || false;
+            document.getElementById('logAllOperations').checked = data.log_all_operations || false;
+        })
+        .catch(error => {
+            console.error('Error loading core settings:', error);
+            showToast('Error loading core settings', 'error');
+        });
+}
+
+// Handle form submission
+document.getElementById('coreSettingsForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const settings = {
+        default_chat_provider: formData.get('default_chat_provider'),
+        response_timeout: parseInt(formData.get('response_timeout')),
+        concurrent_requests: parseInt(formData.get('concurrent_requests')),
+        cache_duration: parseInt(formData.get('cache_duration')),
+        cache_enabled: formData.has('cache_enabled'),
+        log_all_operations: formData.has('log_all_operations')
+    };
+    
+    fetch('http://localhost:8002/api/v1/genai-settings/genai/core', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(settings)
+    })
+    .then(response => response.json())
+    .then(data => {
+        showToast('Core settings saved successfully!', 'success');
+        console.log('Settings saved:', data);
+    })
+    .catch(error => {
+        console.error('Error saving settings:', error);
+        showToast('Error saving core settings', 'error');
+    });
+});
+
+// Handle reset button
+document.getElementById('loadCoreSettings').addEventListener('click', function() {
+    loadCoreSettings();
+    showToast('Settings reset to current values', 'info');
+});
+
+// Simple toast function
+function showToast(message, type = 'info') {
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `alert alert-${type === 'error' ? 'danger' : type === 'success' ? 'success' : 'info'} alert-dismissible fade show position-fixed`;
+    toast.style.cssText = 'top: 20px; right: 20px; z-index: 1050; min-width: 300px;';
+    toast.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Remove toast after 5 seconds
+    setTimeout(() => {
+        if (toast && toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+        }
+    }, 5000);
+}
+</script>
 

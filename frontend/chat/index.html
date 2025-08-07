@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Network Assistant - Network Automation Platform</title>
+    
+    <!-- Tesla-inspired Design System -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tesla-black': '#000000',
+                        'tesla-white': '#ffffff',
+                        'tesla-gray': '#393c41',
+                        'tesla-red': '#e31e24',
+                        'tesla-blue': '#1e3a8a',
+                        'tesla-silver': '#f7fafc'
+                    },
+                    fontFamily: {
+                        'tesla': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .message-bubble {
+            max-width: 85%;
+            word-wrap: break-word;
+            animation: fadeInUp 0.3s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .typing-indicator {
+            animation: pulse 1.5s ease-in-out infinite alternate;
+        }
+        
+        .tesla-gradient {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            border-left: 4px solid #e31e24;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+        }
+        
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #393c41;
+            border-radius: 2px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #e31e24;
+        }
+    </style>
+</head>
+
+<body class="h-full bg-gray-50 font-tesla">
+    <!-- Header -->
+    <header class="tesla-gradient shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-tesla-red rounded-full flex items-center justify-center">
+                            <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-semibold text-white">AI Network Assistant</h1>
+                            <p class="text-xs text-gray-300">Professional Network Engineering Platform</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Status & Controls -->
+                <div class="flex items-center space-x-4">
+                    <!-- Model Status -->
+                    <div class="flex items-center space-x-2 bg-green-900/30 px-3 py-1 rounded-full">
+                        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <span class="text-sm text-green-300" id="model-status">Groq LLaMA 3-70B</span>
+                    </div>
+                    
+                    <!-- Settings -->
+                    <button onclick="window.location.href='/settings'" 
+                            class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                        <i data-lucide="settings" class="w-5 h-5"></i>
+                    </button>
+                    
+                    <!-- Menu -->
+                    <button class="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="h-full flex flex-col" style="height: calc(100vh - 80px);">
+        <!-- Chat Container -->
+        <div class="flex-1 flex">
+            <!-- Chat Messages -->
+            <div class="flex-1 flex flex-col">
+                <!-- Messages Area -->
+                <div id="chat-messages" 
+                     class="flex-1 overflow-y-auto custom-scrollbar px-4 py-6 space-y-6 bg-white">
+                    
+                    <!-- Welcome Message -->
+                    <div class="max-w-4xl mx-auto">
+                        <div class="text-center py-12">
+                            <div class="w-16 h-16 bg-tesla-red rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-lucide="bot" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h2 class="text-2xl font-semibold text-gray-900 mb-2">Welcome to AI Network Assistant</h2>
+                            <p class="text-gray-600 max-w-md mx-auto">
+                                Your intelligent companion for Cisco network automation, configuration, and troubleshooting.
+                            </p>
+                            
+                            <!-- Quick Actions -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 max-w-2xl mx-auto">
+                                <button onclick="sendQuickMessage('Help me configure OSPF on a Cisco router')" 
+                                        class="p-4 bg-gray-50 hover:bg-gray-100 rounded-xl text-left transition-colors border">
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="network" class="w-5 h-5 text-tesla-red"></i>
+                                        <div>
+                                            <p class="font-medium text-gray-900">OSPF Configuration</p>
+                                            <p class="text-sm text-gray-500">Configure routing protocols</p>
+                                        </div>
+                                    </div>
+                                </button>
+                                
+                                <button onclick="sendQuickMessage('Generate VLAN configuration for a switch')" 
+                                        class="p-4 bg-gray-50 hover:bg-gray-100 rounded-xl text-left transition-colors border">
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="layers" class="w-5 h-5 text-tesla-red"></i>
+                                        <div>
+                                            <p class="font-medium text-gray-900">VLAN Setup</p>
+                                            <p class="text-sm text-gray-500">Create switch configurations</p>
+                                        </div>
+                                    </div>
+                                </button>
+                                
+                                <button onclick="sendQuickMessage('Troubleshoot network connectivity issues')" 
+                                        class="p-4 bg-gray-50 hover:bg-gray-100 rounded-xl text-left transition-colors border">
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="search" class="w-5 h-5 text-tesla-red"></i>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Troubleshooting</p>
+                                            <p class="text-sm text-gray-500">Diagnose network issues</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Input Area -->
+                <div class="border-t border-gray-200 bg-white">
+                    <div class="max-w-4xl mx-auto p-4">
+                        <div class="flex space-x-4">
+                            <!-- Message Input -->
+                            <div class="flex-1 relative">
+                                <textarea id="message-input" 
+                                          rows="1"
+                                          placeholder="Ask me anything about network configuration, troubleshooting, or automation..."
+                                          class="w-full resize-none rounded-2xl border border-gray-300 px-4 py-3 pr-12 focus:border-tesla-red focus:outline-none focus:ring-2 focus:ring-tesla-red/20 text-gray-900 placeholder-gray-500"
+                                          style="min-height: 48px; max-height: 120px;"></textarea>
+                                
+                                <!-- Send Button -->
+                                <button id="send-button" 
+                                        class="absolute right-2 bottom-2 p-2 bg-tesla-red text-white rounded-xl hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <i data-lucide="send" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Input Footer -->
+                        <div class="flex items-center justify-between mt-3 text-xs text-gray-500">
+                            <div class="flex items-center space-x-4">
+                                <span>Press Enter to send, Shift+Enter for new line</span>
+                                <span class="px-2 py-1 bg-gray-100 rounded">Powered by AI</span>
+                            </div>
+                            <div id="connection-status" class="flex items-center space-x-1">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span>Connected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 flex flex-col items-center space-y-4">
+            <div class="animate-spin w-8 h-8 border-4 border-tesla-red border-t-transparent rounded-full"></div>
+            <p class="text-gray-600">AI is thinking...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/chat-frontend.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Auto-resize textarea
+        const textarea = document.getElementById('message-input');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+    </script>
+</body>
+</html>

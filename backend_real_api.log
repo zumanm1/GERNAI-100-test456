@@ -1,0 +1,222 @@
+nohup: ignoring input
+/home/vmuser/GENAI-113-DED/GERNAI-100-test456/main.py:32: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+🔑 Initializing OpenAI client with key: sk-proj-wK...
+✅ OpenAI client initialized successfully
+⚠️ Anthropic API key not found or is placeholder
+🔑 Initializing Groq client with key: gsk_PomOwq...
+✅ Groq client initialized successfully
+🔑 Initializing OpenAI client with key: sk-proj-wK...
+✅ OpenAI client initialized successfully
+⚠️ Anthropic API key not found or is placeholder
+🔑 Initializing Groq client with key: gsk_PomOwq...
+✅ Groq client initialized successfully
+INFO:     Started server process [1479076]
+INFO:     Waiting for application startup.
+Initializing application services...
+Initializing LLM manager with database session...
+2025-08-07 15:24:36,921 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:24:36,925 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:24:36,926 INFO sqlalchemy.engine.Engine [generated in 0.00041s] ('api_keys', 1, 0)
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+✓ LLM manager initialized successfully
+Setting up fallback AI providers from environment...
+✓ OpenAI API key found in environment
+⚠ Anthropic API key not found in environment
+✓ Groq API key found in environment
+✓ OpenRouter API key found in environment
+🚀 Application startup completed successfully
+2025-08-07 15:24:52,947 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:24:52,952 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:24:52,952 INFO sqlalchemy.engine.Engine [generated in 0.00042s] ('aa88eb58-67f6-438d-941d-f9ec1354e744', 'default_user', 'real_groq_test_session', 'user', 'Hello! Can you help me configure a VLAN on a Cisco switch? I need VLAN 200 for the finance department.', '2025-08-07 15:24:52.947037')
+2025-08-07 15:24:52,955 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:24:52,975 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:24:52,977 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:24:52,977 INFO sqlalchemy.engine.Engine [generated in 0.00024s] ('aa88eb58-67f6-438d-941d-f9ec1354e744',)
+2025-08-07 15:24:52,978 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:24:52,979 INFO sqlalchemy.engine.Engine [cached since 16.05s ago] ('core_settings', 1, 0)
+2025-08-07 15:24:52,980 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:24:52,981 INFO sqlalchemy.engine.Engine [generated in 0.00023s] ('real_groq_test_session', 'default_user', 10, 0)
+2025-08-07 15:24:52,983 INFO sqlalchemy.engine.Engine SELECT network_devices.id AS network_devices_id, network_devices.name AS network_devices_name, network_devices.ip_address AS network_devices_ip_address, network_devices.model AS network_devices_model, network_devices.status AS network_devices_status, network_devices.uptime_seconds AS network_devices_uptime_seconds, network_devices.last_seen AS network_devices_last_seen, network_devices.config_backup AS network_devices_config_backup, network_devices.device_metadata AS network_devices_device_metadata, network_devices.owner_id AS network_devices_owner_id, network_devices.created_at AS network_devices_created_at, network_devices.updated_at AS network_devices_updated_at 
+FROM network_devices 
+WHERE network_devices.owner_id = ?
+2025-08-07 15:24:52,983 INFO sqlalchemy.engine.Engine [generated in 0.00023s] ('default_user',)
+2025-08-07 15:24:52,985 INFO sqlalchemy.engine.Engine SELECT operations_log.id AS operations_log_id, operations_log.user_id AS operations_log_user_id, operations_log.device_id AS operations_log_device_id, operations_log.operation_type AS operations_log_operation_type, operations_log.status AS operations_log_status, operations_log.command AS operations_log_command, operations_log.result AS operations_log_result, operations_log.error_message AS operations_log_error_message, operations_log.execution_time_ms AS operations_log_execution_time_ms, operations_log.created_at AS operations_log_created_at 
+FROM operations_log 
+WHERE operations_log.user_id = ? ORDER BY operations_log.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:24:52,985 INFO sqlalchemy.engine.Engine [generated in 0.00020s] ('default_user', 5, 0)
+🔍 Debug: provider_name=groq, openai_client_exists=True, groq_client_exists=True
+🤖 Making Groq API call with 3 messages
+✅ Groq response received: I'd be happy to help you with that. To configure VLAN 200 on a Cisco switch, I would recommend the f...
+2025-08-07 15:24:55,052 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:24:55,053 INFO sqlalchemy.engine.Engine [cached since 2.101s ago] ('6681e0ee-9374-481f-bb98-27e7a7189a5d', 'default_user', 'real_groq_test_session', 'user', 'Hello! Can you help me configure a VLAN on a Cisco switch? I need VLAN 200 for the finance department.', '2025-08-07 15:24:55.052003')
+2025-08-07 15:24:55,053 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:24:55,064 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:24:55,064 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:24:55,064 INFO sqlalchemy.engine.Engine [cached since 2.088s ago] ('6681e0ee-9374-481f-bb98-27e7a7189a5d',)
+2025-08-07 15:24:55,067 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:24:55,067 INFO sqlalchemy.engine.Engine [cached since 2.116s ago] ('99d285fc-6ab6-42e3-b149-c65186b353be', 'default_user', 'real_groq_test_session', 'assistant', "I'd be happy to help you with that. To configure VLAN 200 on a Cisco switch, I would recommend the following steps:\n\n1. **Create the VLAN**: I woul ... (1060 characters truncated) ... s to avoid any disruptions to your network.\n\nPlease let me know if you want to proceed with these configurations or if you need further assistance!", '2025-08-07 15:24:55.066939')
+2025-08-07 15:24:55,068 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:24:55,077 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:24:55,077 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:24:55,077 INFO sqlalchemy.engine.Engine [cached since 2.1s ago] ('99d285fc-6ab6-42e3-b149-c65186b353be',)
+2025-08-07 15:24:55,078 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:24:55,078 INFO sqlalchemy.engine.Engine [cached since 2.127s ago] ('084af39b-5a63-44e6-a186-eef21e8dcd40', 'default_user', 'real_groq_test_session', 'assistant', "I'd be happy to help you with that. To configure VLAN 200 on a Cisco switch, I would recommend the following steps:\n\n1. **Create the VLAN**: I woul ... (1060 characters truncated) ... s to avoid any disruptions to your network.\n\nPlease let me know if you want to proceed with these configurations or if you need further assistance!", '2025-08-07 15:24:55.078031')
+2025-08-07 15:24:55,079 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:24:55,088 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:24:55,089 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:24:55,089 INFO sqlalchemy.engine.Engine [cached since 2.112s ago] ('084af39b-5a63-44e6-a186-eef21e8dcd40',)
+2025-08-07 15:24:55,090 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:48602 - "POST /api/v1/chat/send HTTP/1.1" 200 OK
+2025-08-07 15:25:02,044 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:25:02,046 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at ASC
+ LIMIT ? OFFSET ?
+2025-08-07 15:25:02,046 INFO sqlalchemy.engine.Engine [generated in 0.00027s] ('real_groq_test_session', 'default_user', 50, 0)
+2025-08-07 15:25:02,051 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:42004 - "GET /api/v1/chat/history/real_groq_test_session HTTP/1.1" 200 OK
+2025-08-07 15:25:09,041 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:25:09,042 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:25:09,042 INFO sqlalchemy.engine.Engine [cached since 16.09s ago] ('8784ee57-80e5-4213-b393-7c71fbfd161b', 'default_user', 'real_groq_test_session', 'user', 'What about creating an SVI interface for that VLAN?', '2025-08-07 15:25:09.041190')
+2025-08-07 15:25:09,042 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:25:09,059 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:25:09,060 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:25:09,060 INFO sqlalchemy.engine.Engine [cached since 16.08s ago] ('8784ee57-80e5-4213-b393-7c71fbfd161b',)
+2025-08-07 15:25:09,063 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:25:09,063 INFO sqlalchemy.engine.Engine [cached since 32.14s ago] ('core_settings', 1, 0)
+2025-08-07 15:25:09,065 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:25:09,065 INFO sqlalchemy.engine.Engine [cached since 16.09s ago] ('real_groq_test_session', 'default_user', 10, 0)
+2025-08-07 15:25:09,067 INFO sqlalchemy.engine.Engine SELECT network_devices.id AS network_devices_id, network_devices.name AS network_devices_name, network_devices.ip_address AS network_devices_ip_address, network_devices.model AS network_devices_model, network_devices.status AS network_devices_status, network_devices.uptime_seconds AS network_devices_uptime_seconds, network_devices.last_seen AS network_devices_last_seen, network_devices.config_backup AS network_devices_config_backup, network_devices.device_metadata AS network_devices_device_metadata, network_devices.owner_id AS network_devices_owner_id, network_devices.created_at AS network_devices_created_at, network_devices.updated_at AS network_devices_updated_at 
+FROM network_devices 
+WHERE network_devices.owner_id = ?
+2025-08-07 15:25:09,067 INFO sqlalchemy.engine.Engine [cached since 16.08s ago] ('default_user',)
+2025-08-07 15:25:09,067 INFO sqlalchemy.engine.Engine SELECT operations_log.id AS operations_log_id, operations_log.user_id AS operations_log_user_id, operations_log.device_id AS operations_log_device_id, operations_log.operation_type AS operations_log_operation_type, operations_log.status AS operations_log_status, operations_log.command AS operations_log_command, operations_log.result AS operations_log_result, operations_log.error_message AS operations_log_error_message, operations_log.execution_time_ms AS operations_log_execution_time_ms, operations_log.created_at AS operations_log_created_at 
+FROM operations_log 
+WHERE operations_log.user_id = ? ORDER BY operations_log.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:25:09,067 INFO sqlalchemy.engine.Engine [cached since 16.08s ago] ('default_user', 5, 0)
+🔍 Debug: provider_name=groq, openai_client_exists=True, groq_client_exists=True
+🤖 Making Groq API call with 7 messages
+✅ Groq response received: An SVI (Switched Virtual Interface) is a routed interface that's associated with a VLAN. To create a...
+2025-08-07 15:25:10,435 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:25:10,435 INFO sqlalchemy.engine.Engine [cached since 17.48s ago] ('61174adf-5e28-43a3-a7ab-319d2578c4f7', 'default_user', 'real_groq_test_session', 'user', 'What about creating an SVI interface for that VLAN?', '2025-08-07 15:25:10.434468')
+2025-08-07 15:25:10,435 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:25:10,447 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:25:10,447 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:25:10,447 INFO sqlalchemy.engine.Engine [cached since 17.47s ago] ('61174adf-5e28-43a3-a7ab-319d2578c4f7',)
+2025-08-07 15:25:10,448 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:25:10,448 INFO sqlalchemy.engine.Engine [cached since 17.5s ago] ('57440a64-d7a9-4042-bc5e-32393fa8e28e', 'default_user', 'real_groq_test_session', 'assistant', "An SVI (Switched Virtual Interface) is a routed interface that's associated with a VLAN. To create an SVI interface for VLAN 200, I would recommend t ... (813 characters truncated) ... y conflicts or disruptions to your network.\n\nPlease let me know if you want to proceed with these configurations or if you need further assistance!", '2025-08-07 15:25:10.447736')
+2025-08-07 15:25:10,448 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:25:10,457 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:25:10,458 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:25:10,458 INFO sqlalchemy.engine.Engine [cached since 17.48s ago] ('57440a64-d7a9-4042-bc5e-32393fa8e28e',)
+2025-08-07 15:25:10,459 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:25:10,459 INFO sqlalchemy.engine.Engine [cached since 17.51s ago] ('ffbb0d60-4fbe-4709-9263-f65c3d117c55', 'default_user', 'real_groq_test_session', 'assistant', "An SVI (Switched Virtual Interface) is a routed interface that's associated with a VLAN. To create an SVI interface for VLAN 200, I would recommend t ... (813 characters truncated) ... y conflicts or disruptions to your network.\n\nPlease let me know if you want to proceed with these configurations or if you need further assistance!", '2025-08-07 15:25:10.458842')
+2025-08-07 15:25:10,460 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:25:10,470 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:25:10,470 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:25:10,470 INFO sqlalchemy.engine.Engine [cached since 17.49s ago] ('ffbb0d60-4fbe-4709-9263-f65c3d117c55',)
+2025-08-07 15:25:10,471 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:51854 - "POST /api/v1/chat/send HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39288 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:39292 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:42326 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:42336 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:59438 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:59454 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:34398 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:34404 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+2025-08-07 15:26:50,408 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:26:50,408 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at ASC
+ LIMIT ? OFFSET ?
+2025-08-07 15:26:50,408 INFO sqlalchemy.engine.Engine [cached since 108.4s ago] ('real_groq_test_session', 'default_user', 50, 0)
+2025-08-07 15:26:50,410 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:47084 - "GET /api/v1/chat/history/real_groq_test_session HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47098 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+2025-08-07 15:26:55,400 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:26:55,400 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at ASC
+ LIMIT ? OFFSET ?
+2025-08-07 15:26:55,400 INFO sqlalchemy.engine.Engine [cached since 113.4s ago] ('real_groq_test_session', 'default_user', 50, 0)
+2025-08-07 15:26:55,402 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:47102 - "GET /api/v1/chat/history/real_groq_test_session HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47108 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:59962 - "POST /api/v1/config/generate HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59972 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:42196 - "POST /api/v1/config/generate HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:42200 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+Error generating config: name 'NetworkAutomationCrew' is not defined
+INFO:     127.0.0.1:60342 - "POST /api/v1/genai/config/generate HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:60350 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1479076]

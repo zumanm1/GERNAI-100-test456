@@ -30,6 +30,12 @@ def get_db():
     finally:
         db.close()
 
+def get_database_url():
+    """
+    Get the database URL
+    """
+    return DATABASE_URL
+
 def init_db():
     """
     Initialize the database by creating all tables

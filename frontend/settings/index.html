@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - AI Network Assistant</title>
+    
+    <!-- Tesla-inspired Design System -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tesla-black': '#000000',
+                        'tesla-white': '#ffffff',
+                        'tesla-gray': '#393c41',
+                        'tesla-red': '#e31e24',
+                        'tesla-blue': '#1e3a8a',
+                        'tesla-silver': '#f7fafc'
+                    },
+                    fontFamily: {
+                        'tesla': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .tesla-gradient {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+        
+        .setting-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .setting-card:hover {
+            border-color: #e31e24;
+            box-shadow: 0 4px 12px rgba(227, 30, 36, 0.1);
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #e31e24;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #393c41;
+            border-radius: 2px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #e31e24;
+        }
+    </style>
+</head>
+
+<body class="h-full bg-gray-50 font-tesla">
+    <!-- Header -->
+    <header class="tesla-gradient shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-tesla-red rounded-full flex items-center justify-center">
+                            <i data-lucide="settings" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-semibold text-white">Settings</h1>
+                            <p class="text-xs text-gray-300">Configure your AI assistant preferences</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="flex items-center space-x-4">
+                    <!-- Back to Chat -->
+                    <button onclick="window.location.href='/chat'" 
+                            class="px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors flex items-center space-x-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>Back to Chat</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <!-- Settings Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Settings Panel -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- AI Model Configuration -->
+                <div class="setting-card bg-white rounded-2xl p-6">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-tesla-red rounded-xl flex items-center justify-center">
+                            <i data-lucide="cpu" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-900">AI Model Configuration</h2>
+                            <p class="text-sm text-gray-500">Configure the AI model and performance settings</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Model Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">AI Model Provider</label>
+                            <select id="model-provider" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:border-tesla-red focus:ring-2 focus:ring-tesla-red/20 focus:outline-none">
+                                <option value="groq" selected>Groq (Ultra Fast)</option>
+                                <option value="openai">OpenAI GPT-4</option>
+                                <option value="claude">Anthropic Claude</option>
+                                <option value="openrouter">OpenRouter (Multiple Models)</option>
+                                <option value="gemini">Google Gemini</option>
+                                <option value="perplexity">Perplexity AI</option>
+                                <option value="cohere">Cohere</option>
+                                <option value="local">Local Model (Ollama)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Model Specific Settings -->
+                        <div id="groq-settings">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Groq Model</label>
+                            <select id="groq-model" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:border-tesla-red focus:ring-2 focus:ring-tesla-red/20 focus:outline-none">
+                                <option value="llama3-70b-8192" selected>LLaMA 3.1 70B (Recommended)</option>
+                                <option value="llama3-8b-8192">LLaMA 3.1 8B (Faster)</option>
+                                <option value="mixtral-8x7b-32768">Mixtral 8x7B</option>
+                                <option value="gemma-7b-it">Gemma 7B</option>
+                            </select>
+                        </div>
+                        
+                        <div id="openai-settings" style="display: none;">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">OpenAI Model</label>
+                            <select id="openai-model" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:border-tesla-red focus:ring-2 focus:ring-tesla-red/20 focus:outline-none">
+                                <option value="gpt-4o" selected>GPT-4o (Latest)</option>
+                                <option value="gpt-4o-mini">GPT-4o Mini (Cost Effective)</option>
+                                <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                                <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                            </select>
+                        </div>
+                        
+                        <div id="claude-settings" style="display: none;">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Claude Model</label>
+                            <select id="claude-model" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:border-tesla-red focus:ring-2 focus:ring-tesla-red/20 focus:outline-none">
+                                <option value="claude-3.5-sonnet" selected>Claude 3.5 Sonnet (Latest)</option>
+                                <option value="claude-3-opus">Claude 3 Opus (Best Quality)</option>
+                                <option value="claude-3-haiku">Claude 3 Haiku (Fast)</option>
+                            </select>
+                        </div>
+                        
+                        <div id="openrouter-settings" style="display: none;">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">OpenRouter Model</label>
+                            <select id="openrouter-model" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:border-tesla-red focus:ring-2 focus:ring-tesla-red/20 focus:outline-none">
+                                <option value="anthropic/claude-3.5-sonnet" selected>Claude 3.5 Sonnet</option>
+                                <option value="openai/gpt-4o">GPT-4o</option>
+                                <option value="meta-llama/llama-3.1-70b-instruct">LLaMA 3.1 70B</option>
+                                <option value="google/gemini-pro-1.5">Gemini Pro 1.5</option>
+                                <option value="perplexity/llama-3.1-sonar-large-128k-online">Perplexity Sonar Large</option>
+                            </select>
+                        </div>
+                        
+                        <div id="gemini-settings" style="display: none;">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Gemini Model</label>
+                            <select id="gemini-model" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:border-tesla-red focus:ring-2 focus:ring-tesla-red/20 focus:outline-none">
+                                <option value="gemini-1.5-pro" selected>Gemini 1.5 Pro (Latest)</option>
+                                <option value="gemini-1.5-flash">Gemini 1.5 Flash (Fast)</option>
+                                <option value="gemini-pro">Gemini Pro</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Temperature -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                Response Creativity
+                                <span class="text-xs text-gray-500 ml-2">(Temperature: <span id="temperature-value">0.7</span>)</span>
+                            </label>
+                            <input type="range" id="temperature-slider" 
+                                   min="0" max="2" step="0.1" value="0.7"
+                                   class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>More Consistent</span>
+                                <span>More Creative</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Max Tokens -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                Max Response Length
+                                <span class="text-xs text-gray-500 ml-2">(<span id="max-tokens-value">4096</span> tokens)</span>
+                            </label>
+                            <input type="range" id="max-tokens-slider" 
+                                   min="512" max="8192" step="256" value="4096"
+                                   class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>Shorter (512)</span>
+                                <span>Longer (8192)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interface Preferences -->
+                <div class="setting-card bg-white rounded-2xl p-6">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center">
+                            <i data-lucide="palette" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-900">Interface Preferences</h2>
+                            <p class="text-sm text-gray-500">Customize your chat experience</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Theme -->
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-900">Dark Mode</h3>
+                                <p class="text-sm text-gray-500">Switch to dark theme</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="dark-mode">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <!-- Auto-scroll -->
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-900">Auto-scroll</h3>
+                                <p class="text-sm text-gray-500">Automatically scroll to new messages</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="auto-scroll" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <!-- Sound Effects -->
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-900">Sound Effects</h3>
+                                <p class="text-sm text-gray-500">Play sounds for notifications</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="sound-effects">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <!-- Message Display -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Message Display Style</label>
+                            <select id="message-style" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:border-tesla-red focus:ring-2 focus:ring-tesla-red/20 focus:outline-none">
+                                <option value="bubbles" selected>Chat Bubbles</option>
+                                <option value="compact">Compact</option>
+                                <option value="detailed">Detailed</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Network & API Configuration -->
+                <div class="setting-card bg-white rounded-2xl p-6">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center">
+                            <i data-lucide="globe" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-900">Network & API Configuration</h2>
+                            <p class="text-sm text-gray-500">Configure backend connections and API settings</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Backend URL -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Backend API URL</label>
+                            <input type="text" id="backend-url" 
+                                   value="http://localhost:8002" 
+                                   class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:border-tesla-red focus:ring-2 focus:ring-tesla-red/20 focus:outline-none">
+                            <p class="text-xs text-gray-500 mt-2">The URL of the backend server API</p>
+                        </div>
+                        
+                        <!-- Request Timeout -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                Request Timeout
+                                <span class="text-xs text-gray-500 ml-2">(<span id="timeout-value">30</span> seconds)</span>
+                            </label>
+                            <input type="range" id="timeout-slider" 
+                                   min="10" max="120" step="5" value="30"
+                                   class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        
+                        <!-- Connection Status -->
+                        <div class="bg-gray-50 rounded-xl p-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div id="connection-indicator" class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Connection Status</p>
+                                        <p id="connection-text" class="text-xs text-gray-500">Checking connection...</p>
+                                    </div>
+                                </div>
+                                <button id="test-connection" 
+                                        class="px-4 py-2 bg-tesla-red text-white text-sm rounded-lg hover:bg-red-700 transition-colors">
+                                    Test Connection
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Side Panel -->
+            <div class="space-y-8">
+                <!-- Quick Actions -->
+                <div class="setting-card bg-white rounded-2xl p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <button id="save-settings" 
+                                class="w-full px-4 py-3 bg-tesla-red text-white rounded-xl hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
+                            <i data-lucide="save" class="w-4 h-4"></i>
+                            <span>Save Settings</span>
+                        </button>
+                        
+                        <button id="reset-settings" 
+                                class="w-full px-4 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center space-x-2">
+                            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                            <span>Reset to Defaults</span>
+                        </button>
+                        
+                        <button id="export-settings" 
+                                class="w-full px-4 py-3 bg-blue-50 text-blue-700 rounded-xl hover:bg-blue-100 transition-colors flex items-center justify-center space-x-2">
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                            <span>Export Settings</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- System Info -->
+                <div class="setting-card bg-white rounded-2xl p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">System Information</h3>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Frontend Version:</span>
+                            <span class="font-medium">v1.0.0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Backend Status:</span>
+                            <span id="backend-status" class="font-medium text-yellow-600">Connecting...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">AI Model:</span>
+                            <span id="current-model" class="font-medium">LLaMA 3-70B</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Last Updated:</span>
+                            <span id="last-updated" class="font-medium">Now</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Help & Support -->
+                <div class="setting-card bg-white rounded-2xl p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Help & Support</h3>
+                    <div class="space-y-3">
+                        <button class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors flex items-center space-x-2">
+                            <i data-lucide="help-circle" class="w-4 h-4"></i>
+                            <span>Documentation</span>
+                        </button>
+                        
+                        <button class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors flex items-center space-x-2">
+                            <i data-lucide="bug" class="w-4 h-4"></i>
+                            <span>Report Bug</span>
+                        </button>
+                        
+                        <button class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors flex items-center space-x-2">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                            <span>Contact Support</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Toast -->
+    <div id="success-toast" class="hidden fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg z-50">
+        <div class="flex items-center space-x-2">
+            <i data-lucide="check-circle" class="w-5 h-5"></i>
+            <span>Settings saved successfully!</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/settings-frontend.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Temperature slider update
+        document.getElementById('temperature-slider').addEventListener('input', function() {
+            document.getElementById('temperature-value').textContent = this.value;
+        });
+        
+        // Max tokens slider update
+        document.getElementById('max-tokens-slider').addEventListener('input', function() {
+            document.getElementById('max-tokens-value').textContent = this.value;
+        });
+        
+        // Timeout slider update
+        document.getElementById('timeout-slider').addEventListener('input', function() {
+            document.getElementById('timeout-value').textContent = this.value;
+        });
+    </script>
+</body>
+</html>

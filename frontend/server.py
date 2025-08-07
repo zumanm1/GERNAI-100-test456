@@ -69,8 +69,13 @@ async def get_device_management(request: Request):
 
 @app.get("/chat", response_class=HTMLResponse)
 async def get_chat(request: Request):
-    """Chat page rendering"""
-    return templates.TemplateResponse("chat/index.html", {"request": request})
+    """Chat page rendering - serve modern frontend directly"""
+    chat_file = os.path.join(frontend_dir, "chat", "index.html")
+    if os.path.exists(chat_file):
+        return FileResponse(chat_file, media_type="text/html")
+    else:
+        # Fallback to template
+        return templates.TemplateResponse("chat/index.html", {"request": request})
 
 @app.get("/operations", response_class=HTMLResponse)
 async def get_operations(request: Request):
@@ -79,8 +84,18 @@ async def get_operations(request: Request):
 
 @app.get("/settings", response_class=HTMLResponse)
 async def get_settings(request: Request):
-    """Settings page rendering"""
-    return templates.TemplateResponse("settings/index.html", {"request": request})
+    """Settings page rendering - serve modern frontend directly"""
+    settings_file = os.path.join(frontend_dir, "settings", "index.html")
+    if os.path.exists(settings_file):
+        return FileResponse(settings_file, media_type="text/html")
+    else:
+        # Fallback to template
+        return templates.TemplateResponse("settings/index.html", {"request": request})
+
+@app.get("/genai-settings", response_class=HTMLResponse)
+async def get_genai_settings(request: Request):
+    """GenAI settings page rendering"""
+    return templates.TemplateResponse("genai-settings/index.html", {"request": request})
 
 
 if __name__ == "__main__":

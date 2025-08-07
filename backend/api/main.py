@@ -89,4 +89,22 @@ def get_network_operations_status():
 
 @api_router.get("/chat/status")
 def get_chat_status():
-    return {"message": "Chat service status", "status": "active"}
+    import os
+    # Check which AI providers are available
+    groq_available = bool(os.getenv("GROQ_API_KEY") and os.getenv("GROQ_API_KEY") not in ["your_groq_api_key", ""])
+    openai_available = bool(os.getenv("OPENAI_API_KEY") and os.getenv("OPENAI_API_KEY") not in ["your_openai_api_key", ""])
+    openrouter_available = bool(os.getenv("OPENROUTER_API_KEY") and os.getenv("OPENROUTER_API_KEY") not in ["your_openrouter_api_key", ""])
+    
+    # Determine current model
+    current_model = "Groq LLaMA 3-70B" if groq_available else "OpenAI GPT-4" if openai_available else "OpenRouter" if openrouter_available else "No AI Provider"
+    
+    return {
+        "message": "Chat service status", 
+        "status": "active",
+        "model": current_model,
+        "providers": {
+            "groq": groq_available,
+            "openai": openai_available, 
+            "openrouter": openrouter_available
+        }
+    }

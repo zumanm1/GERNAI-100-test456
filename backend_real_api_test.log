@@ -1,0 +1,200 @@
+nohup: ignoring input
+/home/vmuser/GENAI-113-DED/GERNAI-100-test456/main.py:32: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+🔑 Initializing OpenAI client with key: sk-proj-wK...
+✅ OpenAI client initialized successfully
+⚠️ Anthropic API key not found or is placeholder
+🔑 Initializing Groq client with key: gsk_PomOwq...
+✅ Groq client initialized successfully
+🔑 Initializing OpenRouter client with key: sk-or-v1-6...
+✅ OpenRouter client initialized successfully
+🔑 Initializing OpenAI client with key: sk-proj-wK...
+✅ OpenAI client initialized successfully
+⚠️ Anthropic API key not found or is placeholder
+🔑 Initializing Groq client with key: gsk_PomOwq...
+✅ Groq client initialized successfully
+🔑 Initializing OpenRouter client with key: sk-or-v1-6...
+✅ OpenRouter client initialized successfully
+INFO:     Started server process [1530683]
+INFO:     Waiting for application startup.
+Initializing application services...
+Initializing LLM manager with database session...
+2025-08-07 15:33:39,272 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:33:39,276 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:33:39,276 INFO sqlalchemy.engine.Engine [generated in 0.00032s] ('api_keys', 1, 0)
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+INFO:     127.0.0.1:49408 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+✓ LLM manager initialized successfully
+Setting up fallback AI providers from environment...
+✓ OpenAI API key found in environment
+⚠ Anthropic API key not found in environment
+✓ Groq API key found in environment
+✓ OpenRouter API key found in environment
+🚀 Application startup completed successfully
+INFO:     127.0.0.1:49418 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49426 - "POST /api/v1/genai/config/generate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34234 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34244 - "GET /api/v1/settings/core HTTP/1.1" 404 Not Found
+2025-08-07 15:34:27,453 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:27,455 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:34:27,456 INFO sqlalchemy.engine.Engine [generated in 0.00040s] ('48b7c3be-15de-488a-b3de-53f0623ca9e3', 'default_user', 'integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'user', 'Hello! Can you help me configure OSPF on a Cisco router?', '2025-08-07 15:34:27.452803')
+2025-08-07 15:34:27,457 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:34:27,477 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:27,480 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:34:27,482 INFO sqlalchemy.engine.Engine [generated in 0.00253s] ('48b7c3be-15de-488a-b3de-53f0623ca9e3',)
+2025-08-07 15:34:27,484 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:34:27,484 INFO sqlalchemy.engine.Engine [cached since 48.21s ago] ('core_settings', 1, 0)
+2025-08-07 15:34:27,486 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:34:27,486 INFO sqlalchemy.engine.Engine [generated in 0.00021s] ('integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'default_user', 10, 0)
+2025-08-07 15:34:27,489 INFO sqlalchemy.engine.Engine SELECT network_devices.id AS network_devices_id, network_devices.name AS network_devices_name, network_devices.ip_address AS network_devices_ip_address, network_devices.model AS network_devices_model, network_devices.status AS network_devices_status, network_devices.uptime_seconds AS network_devices_uptime_seconds, network_devices.last_seen AS network_devices_last_seen, network_devices.config_backup AS network_devices_config_backup, network_devices.device_metadata AS network_devices_device_metadata, network_devices.owner_id AS network_devices_owner_id, network_devices.created_at AS network_devices_created_at, network_devices.updated_at AS network_devices_updated_at 
+FROM network_devices 
+WHERE network_devices.owner_id = ?
+2025-08-07 15:34:27,489 INFO sqlalchemy.engine.Engine [generated in 0.00021s] ('default_user',)
+2025-08-07 15:34:27,491 INFO sqlalchemy.engine.Engine SELECT operations_log.id AS operations_log_id, operations_log.user_id AS operations_log_user_id, operations_log.device_id AS operations_log_device_id, operations_log.operation_type AS operations_log_operation_type, operations_log.status AS operations_log_status, operations_log.command AS operations_log_command, operations_log.result AS operations_log_result, operations_log.error_message AS operations_log_error_message, operations_log.execution_time_ms AS operations_log_execution_time_ms, operations_log.created_at AS operations_log_created_at 
+FROM operations_log 
+WHERE operations_log.user_id = ? ORDER BY operations_log.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:34:27,491 INFO sqlalchemy.engine.Engine [generated in 0.00021s] ('default_user', 5, 0)
+🔍 Debug: provider_name=groq, openai_client_exists=True, groq_client_exists=True
+🤖 Making Groq API call with 3 messages
+✅ Groq response received: I'd be happy to guide you through the process of configuring OSPF on a Cisco router.
+
+To configure O...
+2025-08-07 15:34:29,046 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:34:29,046 INFO sqlalchemy.engine.Engine [cached since 1.591s ago] ('c0561097-6c9c-4259-b4f7-0b1a0f756f4c', 'default_user', 'integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'user', 'Hello! Can you help me configure OSPF on a Cisco router?', '2025-08-07 15:34:29.045875')
+2025-08-07 15:34:29,047 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:34:29,060 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:29,061 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:34:29,061 INFO sqlalchemy.engine.Engine [cached since 1.581s ago] ('c0561097-6c9c-4259-b4f7-0b1a0f756f4c',)
+2025-08-07 15:34:29,062 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:34:29,062 INFO sqlalchemy.engine.Engine [cached since 1.607s ago] ('0aae953a-ca97-43e0-a2a3-65fb20420d75', 'default_user', 'integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'assistant', "I'd be happy to guide you through the process of configuring OSPF on a Cisco router.\n\nTo configure OSPF, I'll need to know a few details about your ... (863 characters truncated) ... ply them to your router manually.\n\nLet me know if you have any questions or if you're ready to provide the necessary information to configure OSPF!", '2025-08-07 15:34:29.061831')
+2025-08-07 15:34:29,063 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:34:29,073 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:29,074 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:34:29,074 INFO sqlalchemy.engine.Engine [cached since 1.594s ago] ('0aae953a-ca97-43e0-a2a3-65fb20420d75',)
+2025-08-07 15:34:29,075 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:34:29,075 INFO sqlalchemy.engine.Engine [cached since 1.62s ago] ('a6f3363c-2612-4ec6-b7cb-8e1cce22ce80', 'default_user', 'integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'assistant', "I'd be happy to guide you through the process of configuring OSPF on a Cisco router.\n\nTo configure OSPF, I'll need to know a few details about your ... (863 characters truncated) ... ply them to your router manually.\n\nLet me know if you have any questions or if you're ready to provide the necessary information to configure OSPF!", '2025-08-07 15:34:29.074680')
+2025-08-07 15:34:29,075 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:34:29,088 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:29,088 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:34:29,088 INFO sqlalchemy.engine.Engine [cached since 1.608s ago] ('a6f3363c-2612-4ec6-b7cb-8e1cce22ce80',)
+2025-08-07 15:34:29,089 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:34258 - "POST /api/v1/chat/send HTTP/1.1" 200 OK
+2025-08-07 15:34:29,094 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:29,094 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:34:29,095 INFO sqlalchemy.engine.Engine [cached since 1.639s ago] ('f18ed819-dda4-486e-be40-deabec38e34f', 'default_user', 'integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'user', 'What about OSPF areas and their benefits?', '2025-08-07 15:34:29.094128')
+2025-08-07 15:34:29,095 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:34:29,116 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:29,117 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:34:29,117 INFO sqlalchemy.engine.Engine [cached since 1.637s ago] ('f18ed819-dda4-486e-be40-deabec38e34f',)
+2025-08-07 15:34:29,117 INFO sqlalchemy.engine.Engine SELECT system_configs.id AS system_configs_id, system_configs.config_key AS system_configs_config_key, system_configs.config_value AS system_configs_config_value, system_configs.description AS system_configs_description, system_configs.is_encrypted AS system_configs_is_encrypted, system_configs.updated_by AS system_configs_updated_by, system_configs.created_at AS system_configs_created_at, system_configs.updated_at AS system_configs_updated_at 
+FROM system_configs 
+WHERE system_configs.config_key = ?
+ LIMIT ? OFFSET ?
+2025-08-07 15:34:29,118 INFO sqlalchemy.engine.Engine [cached since 49.84s ago] ('core_settings', 1, 0)
+2025-08-07 15:34:29,118 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:34:29,118 INFO sqlalchemy.engine.Engine [cached since 1.632s ago] ('integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'default_user', 10, 0)
+2025-08-07 15:34:29,120 INFO sqlalchemy.engine.Engine SELECT network_devices.id AS network_devices_id, network_devices.name AS network_devices_name, network_devices.ip_address AS network_devices_ip_address, network_devices.model AS network_devices_model, network_devices.status AS network_devices_status, network_devices.uptime_seconds AS network_devices_uptime_seconds, network_devices.last_seen AS network_devices_last_seen, network_devices.config_backup AS network_devices_config_backup, network_devices.device_metadata AS network_devices_device_metadata, network_devices.owner_id AS network_devices_owner_id, network_devices.created_at AS network_devices_created_at, network_devices.updated_at AS network_devices_updated_at 
+FROM network_devices 
+WHERE network_devices.owner_id = ?
+2025-08-07 15:34:29,121 INFO sqlalchemy.engine.Engine [cached since 1.632s ago] ('default_user',)
+2025-08-07 15:34:29,121 INFO sqlalchemy.engine.Engine SELECT operations_log.id AS operations_log_id, operations_log.user_id AS operations_log_user_id, operations_log.device_id AS operations_log_device_id, operations_log.operation_type AS operations_log_operation_type, operations_log.status AS operations_log_status, operations_log.command AS operations_log_command, operations_log.result AS operations_log_result, operations_log.error_message AS operations_log_error_message, operations_log.execution_time_ms AS operations_log_execution_time_ms, operations_log.created_at AS operations_log_created_at 
+FROM operations_log 
+WHERE operations_log.user_id = ? ORDER BY operations_log.created_at DESC
+ LIMIT ? OFFSET ?
+2025-08-07 15:34:29,121 INFO sqlalchemy.engine.Engine [cached since 1.63s ago] ('default_user', 5, 0)
+🔍 Debug: provider_name=groq, openai_client_exists=True, groq_client_exists=True
+🤖 Making Groq API call with 7 messages
+✅ Groq response received: OSPF areas are a crucial concept in OSPF routing.
+
+In OSPF, an area is a logical grouping of routers...
+2025-08-07 15:34:31,544 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:34:31,544 INFO sqlalchemy.engine.Engine [cached since 4.089s ago] ('2bb9c3a1-d251-4931-b294-200c2eab74a9', 'default_user', 'integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'user', 'What about OSPF areas and their benefits?', '2025-08-07 15:34:31.543755')
+2025-08-07 15:34:31,545 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:34:31,558 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:31,559 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:34:31,559 INFO sqlalchemy.engine.Engine [cached since 4.079s ago] ('2bb9c3a1-d251-4931-b294-200c2eab74a9',)
+2025-08-07 15:34:31,560 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:34:31,560 INFO sqlalchemy.engine.Engine [cached since 4.105s ago] ('0611675d-fc84-46a9-99c7-b40e695f75ae', 'default_user', 'integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'assistant', "OSPF areas are a crucial concept in OSPF routing.\n\nIn OSPF, an area is a logical grouping of routers and networks that are connected by OSPF links. ... (2161 characters truncated) ... ing, scalability, and manageability.\n\nDo you have any specific questions about OSPF areas or would you like me to elaborate on any of these topics?", '2025-08-07 15:34:31.559849')
+2025-08-07 15:34:31,561 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:34:31,574 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:31,575 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:34:31,575 INFO sqlalchemy.engine.Engine [cached since 4.095s ago] ('0611675d-fc84-46a9-99c7-b40e695f75ae',)
+2025-08-07 15:34:31,576 INFO sqlalchemy.engine.Engine INSERT INTO ai_conversations (id, user_id, session_id, message_role, message_content, created_at) VALUES (?, ?, ?, ?, ?, ?)
+2025-08-07 15:34:31,576 INFO sqlalchemy.engine.Engine [cached since 4.121s ago] ('f3bbc76f-7020-4bc5-b167-bc78eb245092', 'default_user', 'integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'assistant', "OSPF areas are a crucial concept in OSPF routing.\n\nIn OSPF, an area is a logical grouping of routers and networks that are connected by OSPF links. ... (2161 characters truncated) ... ing, scalability, and manageability.\n\nDo you have any specific questions about OSPF areas or would you like me to elaborate on any of these topics?", '2025-08-07 15:34:31.575784')
+2025-08-07 15:34:31,576 INFO sqlalchemy.engine.Engine COMMIT
+2025-08-07 15:34:31,587 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:31,588 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id, ai_conversations.user_id, ai_conversations.session_id, ai_conversations.message_role, ai_conversations.message_content, ai_conversations.conversation_metadata, ai_conversations.created_at 
+FROM ai_conversations 
+WHERE ai_conversations.id = ?
+2025-08-07 15:34:31,588 INFO sqlalchemy.engine.Engine [cached since 4.108s ago] ('f3bbc76f-7020-4bc5-b167-bc78eb245092',)
+2025-08-07 15:34:31,589 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:39110 - "POST /api/v1/chat/send HTTP/1.1" 200 OK
+2025-08-07 15:34:31,593 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-08-07 15:34:31,595 INFO sqlalchemy.engine.Engine SELECT ai_conversations.id AS ai_conversations_id, ai_conversations.user_id AS ai_conversations_user_id, ai_conversations.session_id AS ai_conversations_session_id, ai_conversations.message_role AS ai_conversations_message_role, ai_conversations.message_content AS ai_conversations_message_content, ai_conversations.conversation_metadata AS ai_conversations_conversation_metadata, ai_conversations.created_at AS ai_conversations_created_at 
+FROM ai_conversations 
+WHERE ai_conversations.session_id = ? AND ai_conversations.user_id = ? ORDER BY ai_conversations.created_at ASC
+ LIMIT ? OFFSET ?
+2025-08-07 15:34:31,595 INFO sqlalchemy.engine.Engine [generated in 0.00024s] ('integration_test_13e616bc-ded5-473f-b36a-467c614084b3', 'default_user', 50, 0)
+2025-08-07 15:34:31,598 INFO sqlalchemy.engine.Engine ROLLBACK
+INFO:     127.0.0.1:39120 - "GET /api/v1/chat/history/integration_test_13e616bc-ded5-473f-b36a-467c614084b3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39126 - "POST /api/v1/genai/config/generate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37574 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:57098 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:45236 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45240 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36632 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:55512 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:59226 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     127.0.0.1:51568 - "GET /api/v1/settings/core HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:36402 - "WebSocket /api/v1/chat/ws" 403
+INFO:     connection rejected (403 Forbidden)
+INFO:     connection closed
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1530683]
